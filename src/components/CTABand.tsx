@@ -13,7 +13,7 @@ export function CTABand({
   headline = 'Ready to Take Your Training to the Next Level?',
   subtitle = 'Book a free consultation and discover how personalised coaching can transform your performance.',
   buttonText = 'Book Your Free Consultation',
-  buttonHref = '/contact',
+  buttonHref = '/contact/',
 }: CTABandProps) {
   const { ref, inView } = useInView<HTMLDivElement>()
 

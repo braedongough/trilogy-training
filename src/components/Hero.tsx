@@ -54,10 +54,10 @@ export function Hero() {
           Expert coaching from Switzerland &amp; Spain — triathlon, running, cycling &amp; swimming programmes built around your life.
         </p>
         <div className="hero__actions">
-          <Button href="/contact" variant="primary" size="lg">
+          <Button href="/contact/" variant="primary" size="lg">
             Book a Free Call
           </Button>
-          <Button href="/plans" variant="outline" size="lg">
+          <Button href="/plans/" variant="outline" size="lg">
             View Plans
           </Button>
         </div>

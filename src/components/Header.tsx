@@ -4,9 +4,9 @@ import './Header.css'
 
 const navLinks: { href: string; label: string; external?: boolean }[] = [
   { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/plans', label: 'Plans' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/about/', label: 'About' },
+  { href: '/plans/', label: 'Plans' },
+  { href: '/contact/', label: 'Contact' },
   { href: 'https://www.owayo.ie/store/trilogytraining', label: 'Shop', external: true },
 ]
 
@@ -58,7 +58,7 @@ export function Header() {
         </nav>
 
         <div className="header__cta">
-          <Button href="/contact" variant="primary" size="sm">
+          <Button href="/contact/" variant="primary" size="sm">
             Book a Free Call
           </Button>
         </div>

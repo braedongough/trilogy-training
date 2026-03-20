@@ -3,9 +3,9 @@ import './Footer.css'
 
 const sitemapLinks = [
   { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/plans', label: 'Plans & Pricing' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/about/', label: 'About' },
+  { href: '/plans/', label: 'Plans & Pricing' },
+  { href: '/contact/', label: 'Contact' },
   { href: 'https://www.owayo.ie/store/trilogytraining', label: 'Shop' },
 ]
 

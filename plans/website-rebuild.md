@@ -15,18 +15,18 @@ To see it working: from the repository root, run `npm run dev` to launch the dev
 ## Progress
 
 - [x] Milestone 1: Project scaffolding, design system, and layout shell
-- [ ] Milestone 2: Homepage with hero animation, testimonials, and CTA sections
-- [ ] Milestone 3: About page with coach profiles
-- [ ] Milestone 4: Plans & Pricing page with tiered pricing cards
+- [x] Milestone 2: Homepage with hero animation, testimonials, and CTA sections
+- [x] Milestone 3: About page with coach profiles
+- [x] Milestone 4: Plans & Pricing page with tiered pricing cards
 - [ ] ~~Milestone 5: Training Camps page~~ — REMOVED
-- [ ] Milestone 6: Contact page with lead-generation form
+- [x] Milestone 6: Contact page with lead-generation form
 - [ ] Milestone 7: SEO, meta tags, structured data, favicon, and final polish
 - [ ] Milestone 8: Build validation, accessibility audit, and deployment-readiness check
 
 
 ## Surprises & Discoveries
 
-None yet — this section will be updated as implementation proceeds.
+- Vite's dev server defaults to `appType: 'spa'`, which serves the root `index.html` for all unmatched routes. This caused every page to render as the homepage during development. Fixed by setting `appType: 'mpa'` in `vite.config.ts`. Additionally, MPA mode requires trailing slashes on internal links (`/about/` not `/about`) to resolve to `about/index.html`. All nav links, CTA buttons, and footer links were updated accordingly.
 
 
 ## Decision Log
@@ -65,6 +65,14 @@ None yet — this section will be updated as implementation proceeds.
 
 - Decision: Re-add "Shop" external link to top-level navigation and footer, linking to https://www.owayo.ie/store/trilogytraining (opens in new tab).
   Rationale: The original Wix site included a Shop nav link to the owayo.ie store. This preserves that functionality as an external redirect rather than an internal page.
+  Date/Author: 2026-03-20 / Developer
+
+- Decision: Set `appType: 'mpa'` in `vite.config.ts` and use trailing slashes on all internal links (e.g. `/about/` instead of `/about`).
+  Rationale: Vite's default SPA fallback was routing all pages to the root `index.html`, causing every page to render as the homepage. MPA mode disables that fallback. Trailing slashes are required so the dev server resolves `/about/` to `about/index.html`.
+  Date/Author: 2026-03-20 / Developer
+
+- Decision: Use real coach photos in circular frames with accent-coloured ring borders instead of geometric triangle avatars with initials.
+  Rationale: Real photos build trust and credibility. Photos are served from `/images/coaches/adam.jpg` and `/images/coaches/cameron.jpg`. The circular frame uses `border-radius: 50%` with a 4px padding ring in each coach's accent colour (cyan for Adam, pink for Cameron). Bio text is justified for clean edges.
   Date/Author: 2026-03-20 / Developer
 
 
