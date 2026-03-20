@@ -14,11 +14,11 @@ To see it working: from the repository root, run `npm run dev` to launch the dev
 
 ## Progress
 
-- [ ] Milestone 1: Project scaffolding, design system, and layout shell
+- [x] Milestone 1: Project scaffolding, design system, and layout shell
 - [ ] Milestone 2: Homepage with hero animation, testimonials, and CTA sections
 - [ ] Milestone 3: About page with coach profiles
 - [ ] Milestone 4: Plans & Pricing page with tiered pricing cards
-- [ ] Milestone 5: Training Camps page
+- [ ] ~~Milestone 5: Training Camps page~~ — REMOVED
 - [ ] Milestone 6: Contact page with lead-generation form
 - [ ] Milestone 7: SEO, meta tags, structured data, favicon, and final polish
 - [ ] Milestone 8: Build validation, accessibility audit, and deployment-readiness check
@@ -58,6 +58,14 @@ None yet — this section will be updated as implementation proceeds.
 - Decision: Do not display the IRONMAN Certified Coach badge. Instead mention certifications in prose on the About page.
   Rationale: Adam explicitly said he doesn't care about keeping the badge. His certifications (Endurance Sport Coaching Institute, Ironman U Certified Coach) will be mentioned in his bio text.
   Date/Author: 2026-03-20 / Plan author
+
+- Decision: Remove Training Camps page (Milestone 5) from the initial rebuild. The camps page, related components (Gallery.tsx, NotifyForm.tsx), and /camps route have been removed entirely.
+  Rationale: The camps page will be rebuilt later as a separate effort. The site now has four pages: Home, About, Plans & Pricing, and Contact.
+  Date/Author: 2026-03-20 / Developer
+
+- Decision: Re-add "Shop" external link to top-level navigation and footer, linking to https://www.owayo.ie/store/trilogytraining (opens in new tab).
+  Rationale: The original Wix site included a Shop nav link to the owayo.ie store. This preserves that functionality as an external redirect rather than an internal page.
+  Date/Author: 2026-03-20 / Developer
 
 
 ## Outcomes & Retrospective

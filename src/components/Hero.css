@@ -1,0 +1,207 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+/* Marquee background */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6rem 0;
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+.hero__marquee-strip {
+  overflow: hidden;
+  width: 100%;
+}
+
+.hero__marquee-track {
+  display: flex;
+  gap: 8rem;
+  width: max-content;
+  animation: marquee 60s linear infinite;
+}
+
+.hero__marquee-strip--reverse .hero__marquee-track {
+  animation-direction: reverse;
+  animation-duration: 75s;
+}
+
+.hero__silhouette {
+  flex-shrink: 0;
+  width: 100px;
+  height: 80px;
+  color: var(--color-accent-1);
+  transform: scaleX(-1);
+}
+
+.hero__marquee-strip--reverse .hero__silhouette {
+  transform: scaleX(1);
+}
+
+.hero__silhouette svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Geometric decorations */
+.hero__geometric {
+  position: absolute;
+  pointer-events: none;
+}
+
+.hero__geometric--tri-1 {
+  top: 8%;
+  right: 8%;
+  width: 120px;
+  height: 120px;
+  border: 2px solid var(--color-accent-1);
+  opacity: 0.15;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  animation: pulse 6s ease-in-out infinite;
+}
+
+.hero__geometric--tri-2 {
+  bottom: 15%;
+  left: 5%;
+  width: 80px;
+  height: 80px;
+  border: 2px solid var(--color-accent-2);
+  opacity: 0.12;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  animation: pulse 8s ease-in-out infinite 2s;
+}
+
+.hero__geometric--line-1 {
+  top: 20%;
+  left: 10%;
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-1), transparent);
+  opacity: 0.2;
+  transform: rotate(-30deg);
+}
+
+.hero__geometric--line-2 {
+  bottom: 25%;
+  right: 5%;
+  width: 160px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-2), transparent);
+  opacity: 0.15;
+  transform: rotate(20deg);
+}
+
+/* Content */
+.hero__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+  padding: 0 var(--space-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero__tag {
+  font-family: var(--font-accent);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--color-accent-1);
+  padding: 0.4rem 1.2rem;
+  border: 1px solid var(--color-accent-1);
+  opacity: 0;
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+.hero__title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  opacity: 0;
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+}
+
+.hero__title-accent {
+  color: var(--color-accent-2);
+  display: block;
+}
+
+.hero__subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  color: var(--color-text-muted);
+  max-width: 55ch;
+  line-height: 1.7;
+  opacity: 0;
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+}
+
+.hero__actions {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+}
+
+/* Scroll hint */
+.hero__scroll-hint {
+  position: absolute;
+  bottom: var(--space-md);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-accent);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-text-muted);
+  opacity: 0;
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 40px;
+  background: var(--color-accent-1);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(1); opacity: 1; }
+  50% { transform: scaleY(0.5); opacity: 0.3; }
+}
+
+@media (max-width: 768px) {
+  .hero__silhouette {
+    width: 60px;
+    height: 48px;
+  }
+
+  .hero__geometric--tri-1,
+  .hero__geometric--line-1 {
+    display: none;
+  }
+
+  .hero__scroll-hint {
+    display: none;
+  }
+}

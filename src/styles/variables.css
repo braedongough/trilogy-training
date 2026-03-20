@@ -1,0 +1,27 @@
+:root {
+  /* Primary palette — derived from Trilogy Training logo */
+  --color-bg: #1A1A2E;
+  --color-bg-alt: #16213E;
+  --color-surface: #0F3460;
+  --color-accent-1: #00E5CC;
+  --color-accent-2: #FF2D78;
+  --color-text: #FFFFFF;
+  --color-text-muted: #A0A0B0;
+  --color-text-on-accent: #1A1A2E;
+
+  /* Typography */
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-accent: 'Space Mono', monospace;
+
+  /* Spacing scale (8px base) */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+
+  /* Layout */
+  --max-width: 1200px;
+  --header-height: 80px;
+}
