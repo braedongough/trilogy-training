@@ -1,0 +1,317 @@
+uid=1_0 RootWebArea "Home | Trilogy Training" url="https://www.trilogy-training.com/"
+  uid=1_1 ignored
+    uid=1_2 ignored
+      uid=1_3 generic
+        uid=1_4 generic
+          uid=1_5 region "top of page" focusable focused
+          uid=1_6 button "Skip to Main Content"
+            uid=1_7 StaticText "Skip to Main Content"
+              uid=1_8 InlineTextBox "Skip "
+              uid=1_8 InlineTextBox "to "
+              uid=1_8 InlineTextBox "Main "
+              uid=1_8 InlineTextBox "Content"
+          uid=1_9 generic
+            uid=1_10 generic
+              uid=1_11 generic
+                uid=1_12 generic
+                  uid=1_13 generic
+                  uid=1_14 generic
+          uid=1_15 generic
+            uid=1_16 generic
+              uid=1_17 banner
+                uid=1_18 generic
+                  uid=1_19 generic
+                    uid=1_20 generic
+                    uid=1_21 generic
+                  uid=1_22 generic
+                uid=1_23 generic
+                  uid=1_24 generic
+                    uid=1_25 ignored
+                      uid=1_26 generic description="STC logo image transparent.png"
+                        uid=1_27 link "Trilogy Training Logo_edited.png" url="https://www.trilogy-training.com/"
+                          uid=1_28 image "Trilogy Training Logo_edited.png" url="https://static.wixstatic.com/media/e30d1a_a8b6f644571b4fe696e2a94fb388294f~mv2.png/v1/crop/x_44,y_0,w_2098,h_2098/fill/w_376,h_376,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Trilogy%20Training%20Logo_edited.png"
+                      uid=1_29 generic description="STC text only transparent.png"
+                        uid=1_30 ignored
+                          uid=1_31 image "Tril Tray Text Large.png" url="https://static.wixstatic.com/media/e30d1a_8a97653c4a6146e1997f81731368b35e~mv2.png/v1/crop/x_25,y_147,w_1659,h_183/fill/w_1330,h_150,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Tril%20Tray%20Text%20Large.png"
+                      uid=1_32 generic description="Philosophy transparent.png"
+                        uid=1_33 ignored
+                          uid=1_34 image "Home page-1.png" url="https://static.wixstatic.com/media/e30d1a_ccf50ebae11c47b59df7be994215f5cd~mv2.png/v1/crop/x_0,y_190,w_1690,h_102/fill/w_1620,h_98,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Home%20page-1.png"
+                      uid=1_35 generic
+                        uid=1_36 navigation "Site"
+                          uid=1_37 list
+                            uid=1_38 listitem level="1"
+                              uid=1_39 link "Home" url="https://www.trilogy-training.com/"
+                                uid=1_40 ignored
+                                  uid=1_41 generic
+                                    uid=1_42 paragraph
+                                      uid=1_43 StaticText "Home"
+                                        uid=1_8 InlineTextBox "Home"
+                            uid=1_44 listitem level="1"
+                              uid=1_45 link "About" url="https://www.trilogy-training.com/about"
+                                uid=1_46 ignored
+                                  uid=1_47 generic
+                                    uid=1_48 paragraph
+                                      uid=1_49 StaticText "About"
+                                        uid=1_8 InlineTextBox "About"
+                            uid=1_50 listitem level="1"
+                              uid=1_51 link "Plans & Pricing" url="https://www.trilogy-training.com/plans-pricing-1"
+                                uid=1_52 ignored
+                                  uid=1_53 generic
+                                    uid=1_54 paragraph
+                                      uid=1_55 StaticText "Plans & Pricing"
+                                        uid=1_8 InlineTextBox "Plans & Pricing"
+                            uid=1_56 listitem level="1"
+                              uid=1_57 link "Shop" url="https://www.owayo.ie/store/trilogytraining"
+                                uid=1_58 ignored
+                                  uid=1_59 generic
+                                    uid=1_60 paragraph
+                                      uid=1_61 StaticText "Shop"
+                                        uid=1_8 InlineTextBox "Shop"
+                            uid=1_62 listitem level="1"
+                              uid=1_63 link "Training Plans" url="https://www.trainingpeaks.com/my-training-plans/trilogytraining"
+                                uid=1_64 ignored
+                                  uid=1_65 generic
+                                    uid=1_66 paragraph
+                                      uid=1_67 StaticText "Training Plans"
+                                        uid=1_8 InlineTextBox "Training Plans"
+                            uid=1_68 listitem level="1"
+                              uid=1_69 link "Training Camps" url="https://www.trilogy-training.com/training-camps"
+                                uid=1_70 ignored
+                                  uid=1_71 generic
+                                    uid=1_72 paragraph
+                                      uid=1_73 StaticText "Training Camps"
+                                        uid=1_8 InlineTextBox "Training Camps"
+                            uid=1_74 listitem level="1"
+                              uid=1_75 link "Contact" url="https://www.trilogy-training.com/contact"
+                                uid=1_76 ignored
+                                  uid=1_77 generic
+                                    uid=1_78 paragraph
+                                      uid=1_79 StaticText "Contact"
+                                        uid=1_8 InlineTextBox "Contact"
+              uid=1_80 main
+                uid=1_81 generic
+                  uid=1_82 generic
+                    uid=1_83 generic
+                      uid=1_84 generic
+                      uid=1_85 generic
+                        uid=1_86 generic
+                          uid=1_87 generic
+                            uid=1_88 ignored
+                              uid=1_89 generic
+                                uid=1_90 generic
+                                  uid=1_91 generic
+                                  uid=1_92 generic
+                                uid=1_93 generic
+                                  uid=1_94 ignored
+                                    uid=1_95 generic
+                                      uid=1_96 generic
+                                        uid=1_97 generic
+                                        uid=1_98 generic
+                                      uid=1_99 generic
+                                        uid=1_100 generic
+                                          uid=1_101 generic
+                                            uid=1_102 generic
+                                            uid=1_103 generic
+                                          uid=1_104 generic
+                                            uid=1_105 ignored
+                                              uid=1_106 generic
+                                                uid=1_107 generic
+                                                  uid=1_108 generic
+                                                  uid=1_109 generic
+                                                uid=1_110 generic
+                                                  uid=1_111 generic
+                                                uid=1_112 generic
+                                                  uid=1_113 generic
+                                                uid=1_114 generic
+                                                  uid=1_115 generic
+                                                    uid=1_116 generic
+                                                      uid=1_117 generic
+                                                      uid=1_118 generic
+                                                    uid=1_119 generic
+                                                      uid=1_120 ignored
+                                                        uid=1_121 generic
+                                                          uid=1_122 paragraph
+                                                            uid=1_123 StaticText "WE PROVIDE OUR ATHLETES WITH THE TOOLS TO ACHIEVE THEIR GOALS."
+                                                              uid=1_8 InlineTextBox "WE PROVIDE OUR ATHLETES WITH THE TOOLS "
+                                                              uid=1_8 InlineTextBox "TO ACHIEVE THEIR GOALS."
+                                                        uid=1_124 generic
+                                                          uid=1_125 paragraph
+                                                            uid=1_126 StaticText "​At Trilogy Training w"
+                                                              uid=1_8 InlineTextBox "​At Trilogy Training w"
+                                                            uid=1_127 StaticText "e offer personalised coaching services for triathletes and single discipline athletes across swim, bike and run.  "
+                                                              uid=1_8 InlineTextBox "e offer personalised coaching services for "
+                                                              uid=1_8 InlineTextBox "triathletes and single discipline athletes across swim, bike and "
+                                                              uid=1_8 InlineTextBox "run.  "
+                                                            uid=1_128 StaticText "Whether you’re a first time runner or a world class age group triathlete, we’re here to help you achieve your goals."
+                                                              uid=1_8 InlineTextBox "Whether you’re a first time runner or a world class age group "
+                                                              uid=1_8 InlineTextBox "triathlete, we’re here to help you achieve your goals."
+                                                        uid=1_129 generic
+                                                          uid=1_130 paragraph
+                                                            uid=1_131 StaticText "​We recognise that every person, goal and schedule is different, and how important it is to identify your specific needs and time commitments to make a plan work for you. Your training is an ongoing collaboration between you and your coach and through regular feedback we update and review your training, adjusting it to fit around your life, priorities and any curveballs that life may throw at you."
+                                                              uid=1_8 InlineTextBox "​We recognise that every person, goal and schedule is different, "
+                                                              uid=1_8 InlineTextBox "and how important it is to identify your specific needs and time "
+                                                              uid=1_8 InlineTextBox "commitments to make a plan work for you. Your training is an "
+                                                              uid=1_8 InlineTextBox "ongoing collaboration between you and your coach and through "
+                                                              uid=1_8 InlineTextBox "regular feedback we update and review your training, adjusting it "
+                                                              uid=1_8 InlineTextBox "to fit around your life, priorities and any curveballs that life may "
+                                                              uid=1_8 InlineTextBox "throw at you."
+                                                          uid=1_132 paragraph
+                                                            uid=1_133 StaticText "​"
+                                                              uid=1_8 InlineTextBox "​"
+                                                          uid=1_134 paragraph
+                                                            uid=1_135 StaticText "We look forward to you joining and following our community of athletes."
+                                                              uid=1_8 InlineTextBox "We look forward to you joining and following our community of "
+                                                              uid=1_8 InlineTextBox "athletes."
+                                                  uid=1_136 generic
+                                                    uid=1_137 generic
+                                                      uid=1_138 generic
+                                                      uid=1_139 generic
+                                                    uid=1_140 generic
+                                                      uid=1_141 ignored
+                                                        uid=1_142 generic description="WhatsApp Image 2024-07-06 at 14.56_edite"
+                                                          uid=1_143 ignored
+                                                            uid=1_144 image "WhatsApp Image 2024-07-06 at 14_edited_e" url="https://static.wixstatic.com/media/e30d1a_bbdd66b4f7c9408385c0832065f94942~mv2.jpg/v1/crop/x_11,y_0,w_1070,h_1309/fill/w_1070,h_1309,al_c,q_85,enc_avif,quality_auto/WhatsApp%20Image%202024-07-06%20at%2014_edited_e.jpg"
+                              uid=1_145 generic
+                                uid=1_146 generic
+                                  uid=1_147 generic
+                                  uid=1_148 generic
+                                uid=1_149 generic
+                                  uid=1_150 ignored
+                                    uid=1_151 generic
+                                      uid=1_152 generic
+                                        uid=1_153 generic
+                                        uid=1_154 generic
+                                      uid=1_155 generic
+                                        uid=1_156 generic
+                                          uid=1_157 generic
+                                            uid=1_158 generic
+                                            uid=1_159 generic
+                                          uid=1_160 generic
+                                            uid=1_161 ignored
+                                              uid=1_162 generic description="Testimonials-1.png"
+                                                uid=1_163 ignored
+                                                  uid=1_164 ignored
+                                    uid=1_165 region "Slideshow"
+                                      uid=1_166 button "Previous"
+                                        uid=1_167 image
+                                      uid=1_168 button "Next"
+                                        uid=1_169 image
+                                      uid=1_170 generic
+                                        uid=1_171 generic
+                                          uid=1_172 generic
+                                            uid=1_173 generic
+                                            uid=1_174 generic
+                                          uid=1_175 generic
+                                          uid=1_176 generic
+                                            uid=1_177 ignored
+                                              uid=1_178 generic
+                                                uid=1_179 generic
+                                              uid=1_180 generic
+                                                uid=1_181 paragraph
+                                                  uid=1_182 StaticText "Being coached by Adam gave me a clear, structured, personalised plan to follow, which enabled me to enjoy the training and fully trust that, if I followed his process, I'd get great results."
+                                                    uid=1_8 InlineTextBox "Being coached by Adam gave me a clear, structured, personalised plan to follow, which enabled me to enjoy the "
+                                                    uid=1_8 InlineTextBox "training and fully trust that, if I followed his process, I'd get great results."
+                                                uid=1_183 paragraph
+                                                  uid=1_184 StaticText " "
+                                                    uid=1_8 InlineTextBox " "
+                                                uid=1_185 paragraph
+                                                  uid=1_186 StaticText "I achieved a personal best race time only a few weeks after a ski injury and covid, thanks to Adam's knowledge and experience to adapt my training. He guided me through a new plan that challenged me within my limits and I wouldn't have had the same confidence and result without "
+                                                    uid=1_8 InlineTextBox "I achieved a personal best race time only a few weeks after a ski injury and covid, thanks to Adam's knowledge "
+                                                    uid=1_8 InlineTextBox "and experience to adapt my training. He guided me through a new plan that challenged me within my limits and I "
+                                                    uid=1_8 InlineTextBox "wouldn't have had the same confidence and result without "
+                                                  uid=1_187 StaticText "his coaching."
+                                                    uid=1_8 InlineTextBox "his coaching."
+                                                uid=1_188 paragraph
+                                                  uid=1_189 StaticText "​"
+                                                    uid=1_8 InlineTextBox "​"
+                                                uid=1_190 paragraph
+                                                  uid=1_191 StaticText "~ Kar"
+                                                    uid=1_8 InlineTextBox "~ Kar"
+                                                  uid=1_192 StaticText "ina ~"
+                                                    uid=1_8 InlineTextBox "ina ~"
+                                      uid=1_193 navigation "Slides"
+                                        uid=1_194 list
+                                          uid=1_195 listitem level="1"
+                                            uid=1_196 link "Karina" url="https://www.trilogy-training.com/#comp-kswwr9ct"
+                                          uid=1_197 listitem level="1"
+                                            uid=1_198 link "Joe" url="https://www.trilogy-training.com/#comp-li2rgs3y"
+                                          uid=1_199 listitem level="1"
+                                            uid=1_200 link "Philip" url="https://www.trilogy-training.com/#comp-lgnwt0z6"
+                                          uid=1_201 listitem level="1"
+                                            uid=1_202 link "Naomi" url="https://www.trilogy-training.com/#comp-li2rty4m"
+                                          uid=1_203 listitem level="1"
+                                            uid=1_204 link "Jason" url="https://www.trilogy-training.com/#comp-kswwr9dd"
+                              uid=1_205 generic
+                                uid=1_206 generic
+                                  uid=1_207 generic
+                                  uid=1_208 generic
+                                uid=1_209 generic
+                                  uid=1_210 ignored
+                                    uid=1_211 generic
+                                      uid=1_212 generic
+                                        uid=1_213 generic
+                                        uid=1_214 generic
+                                      uid=1_215 generic
+                                        uid=1_216 generic
+                                          uid=1_217 generic
+                                            uid=1_218 generic
+                                            uid=1_219 generic
+                                          uid=1_220 generic
+                                            uid=1_221 ignored
+                                              uid=1_222 generic
+                                                uid=1_223 generic
+                                                  uid=1_224 generic
+                                                  uid=1_225 generic
+                                                uid=1_226 generic
+                                                  uid=1_227 generic
+                                                    uid=1_228 generic
+                                                      uid=1_229 generic
+                                                      uid=1_230 generic
+                                                    uid=1_231 generic
+                                                      uid=1_232 ignored
+                                                        uid=1_233 generic
+                                                          uid=1_234 paragraph
+                                                            uid=1_235 link "labbett.coaching@gmail.com" url="mailto:labbett.coaching@gmail.com"
+                                                              uid=1_236 StaticText "labbett.coaching@gmail.com"
+                                                                uid=1_8 InlineTextBox "labbett.coaching@gmail.com"
+                                                        uid=1_237 generic
+                                                          uid=1_238 list "Social Bar"
+                                                            uid=1_239 listitem level="1"
+                                                              uid=1_240 link "LinkedIn" url="https://www.instagram.com/trilogy_training_/"
+                                                                uid=1_241 image "LinkedIn" url="https://static.wixstatic.com/media/11062b_cef3b719166a4815b446d4dcfcb6120d~mv2.png/v1/fill/w_52,h_52,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_cef3b719166a4815b446d4dcfcb6120d~mv2.png"
+                                                            uid=1_242 listitem level="1"
+                                                              uid=1_243 link "Facebook" url="https://www.facebook.com/trilogy.tri.training"
+                                                                uid=1_244 image "Facebook" url="https://static.wixstatic.com/media/23fd2a2be53141ed810f4d3dcdcd01fa.png/v1/fill/w_52,h_52,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/23fd2a2be53141ed810f4d3dcdcd01fa.png"
+                                                            uid=1_245 listitem level="1"
+                                                              uid=1_246 link "Twitter" url="https://twitter.com/trilogytrainin"
+                                                                uid=1_247 image "Twitter" url="https://static.wixstatic.com/media/11062b_36edc9a0843e4563836cd26e2f9e5c3a~mv2.png/v1/fill/w_52,h_52,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_36edc9a0843e4563836cd26e2f9e5c3a~mv2.png"
+                                    uid=1_248 generic description="Get in touch.png"
+                                      uid=1_249 ignored
+                                        uid=1_250 ignored
+                                    uid=1_251 generic description="Certified Coach Badge.jpg"
+                                      uid=1_252 ignored
+                                        uid=1_253 ignored
+              uid=1_254 generic
+                uid=1_255 ignored
+                  uid=1_256 ignored
+              uid=1_257 contentinfo
+                uid=1_258 generic
+                  uid=1_259 generic
+                uid=1_260 generic
+                  uid=1_261 generic
+                    uid=1_262 generic
+                  uid=1_263 generic
+                    uid=1_264 generic
+                      uid=1_265 ignored
+                        uid=1_266 generic
+                          uid=1_267 list "Social Bar"
+                            uid=1_268 listitem level="1"
+                              uid=1_269 link "LinkedIn" url="https://www.instagram.com/trilogy_training_/"
+                                uid=1_270 image "LinkedIn" url="https://static.wixstatic.com/media/11062b_cef3b719166a4815b446d4dcfcb6120d~mv2.png/v1/fill/w_40,h_40,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_cef3b719166a4815b446d4dcfcb6120d~mv2.png"
+                            uid=1_271 listitem level="1"
+                              uid=1_272 link "Facebook" url="https://www.facebook.com/trilogy.tri.training"
+                                uid=1_273 image "Facebook" url="https://static.wixstatic.com/media/23fd2a2be53141ed810f4d3dcdcd01fa.png/v1/fill/w_40,h_40,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/23fd2a2be53141ed810f4d3dcdcd01fa.png"
+                            uid=1_274 listitem level="1"
+                              uid=1_275 link "X " url="https://twitter.com/trilogytrainin"
+                                uid=1_276 image "X " url="https://static.wixstatic.com/media/11062b_36edc9a0843e4563836cd26e2f9e5c3a~mv2.png/v1/fill/w_40,h_40,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_36edc9a0843e4563836cd26e2f9e5c3a~mv2.png"
+          uid=1_277 region "bottom of page"
