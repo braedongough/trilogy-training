@@ -37,6 +37,10 @@ The design system is documented in `.agents/design-system.md`. Refer to it when:
 
 Do not introduce new colour values, font stacks, spacing values, or animation patterns without first checking the design system. If a new token or pattern is needed, add it to the design system document before using it.
 
+## Worktrees
+
+Git worktrees for this project live in `/Users/braedongough/code/trilogy-training-wt/`. When creating new worktrees, place them in that directory with a descriptive kebab-case name (e.g., `trilogy-training-wt/remove-country-references`).
+
 ## Key Audit Findings (from RESEARCH.md)
 
 The audit recommends rebuilding the site from scratch using a modern framework (Next.js or Astro). Critical issues include: no semantic headings (all rendered as images), no meta descriptions, inconsistent branding ("Simplicity Triathlon Coaching" vs "Trilogy Training"), no pricing shown, no clear CTAs, and dated visual design.
