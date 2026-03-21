@@ -1,9 +1,16 @@
+/* Combined header + pricing section — reduced top spacing */
+.section--plans-pricing {
+  padding-top: var(--space-md);
+  padding-bottom: var(--space-lg);
+}
+
 .plans-hero {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   gap: var(--space-xs);
+  margin-bottom: var(--space-sm);
 }
 
 .plans-hero__label {
@@ -27,12 +34,124 @@
   max-width: 50ch;
 }
 
-/* Feature Comparison */
-.compare {
+/* Pricing Section */
+.pricing {
   text-align: center;
 }
 
-.compare__label {
+/* Currency Toggle */
+.pricing__toggle {
+  display: inline-flex;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: var(--space-md);
+}
+
+.pricing__toggle-btn {
+  font-family: var(--font-accent);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  padding: 0.5rem 1.25rem;
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.pricing__toggle-btn--active {
+  background: var(--color-accent-1);
+  color: var(--color-text-on-accent);
+}
+
+/* Pricing Cards */
+.pricing__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.pricing__card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: var(--space-md) var(--space-sm);
+  clip-path: polygon(0 0, 100% 8px, 100% 100%, 0 calc(100% - 8px));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-sm);
+  transition: border-color 0.2s;
+}
+
+.pricing__card:hover {
+  border-color: var(--color-accent-1);
+}
+
+.pricing__card-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.pricing__card-desc {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 32ch;
+}
+
+.pricing__card-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  margin-top: auto;
+  padding-top: var(--space-sm);
+}
+
+.pricing__card-amount {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-accent-1);
+}
+
+.pricing__card-currency {
+  font-family: var(--font-accent);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.pricing__card-period {
+  font-family: var(--font-accent);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.pricing__card-custom {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-accent-1);
+}
+
+/* Single CTA below cards */
+.pricing__cta {
+  margin-top: var(--space-md);
+}
+
+/* Pre-made Plans Section */
+.premade {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.premade__label {
   font-family: var(--font-accent);
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -41,73 +160,24 @@
   margin-bottom: var(--space-xs);
 }
 
-.compare__title {
-  margin-bottom: var(--space-lg);
+.premade__title {
+  margin-bottom: var(--space-sm);
 }
 
-.compare__table-wrap {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.compare__table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
-  font-size: 0.9rem;
-}
-
-.compare__table thead th {
-  font-family: var(--font-heading);
-  font-size: 1rem;
-  font-weight: 600;
-  padding: var(--space-sm) var(--space-sm);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-  white-space: nowrap;
-}
-
-.compare__table thead th:first-child {
-  text-align: left;
-}
-
-.compare__table thead th:not(:first-child) {
-  text-align: center;
-}
-
-.compare__table thead th.compare__th--featured {
-  color: var(--color-accent-2);
-}
-
-.compare__table tbody td {
-  padding: 0.75rem var(--space-sm);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+.premade__desc {
   color: var(--color-text-muted);
-}
-
-.compare__table tbody td:first-child {
-  font-weight: 500;
-  color: var(--color-text);
-}
-
-.compare__table tbody td:not(:first-child) {
-  text-align: center;
-}
-
-.compare__check {
-  color: var(--color-accent-1);
-}
-
-.compare__dash {
-  color: rgba(255, 255, 255, 0.15);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: var(--space-md);
 }
 
 @media (max-width: 768px) {
-  .compare__table {
-    font-size: 0.8rem;
+  .section--plans-pricing {
+    padding-top: var(--space-md);
   }
 
-  .compare__table thead th,
-  .compare__table tbody td {
-    padding: 0.6rem 0.5rem;
+  .pricing__cards {
+    grid-template-columns: 1fr;
+    max-width: 400px;
   }
 }

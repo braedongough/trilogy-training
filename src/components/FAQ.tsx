@@ -16,7 +16,7 @@ const items: FAQItem[] = [
   {
     question: 'Can I pause my coaching?',
     answer:
-      'Life happens, we get it. You can pause your coaching subscription for up to 4 weeks per year with no penalty. Just give us a heads-up and we\u2019ll adjust your plan for when you return.',
+      'Absolutely, you can pause at any time. Just give us a heads-up and we\u2019ll pick things back up whenever you\u2019re ready. No extra cost, no penalty.',
   },
   {
     question: 'Do you coach complete beginners?',
@@ -26,17 +26,12 @@ const items: FAQItem[] = [
   {
     question: 'How do consultations work?',
     answer:
-      'Your free initial consultation is a 30-minute video call where we learn about your goals, experience, and lifestyle. There\u2019s zero pressure. It\u2019s simply a chance for us to understand what you\u2019re looking for and explain how we can help.',
+      'Your free initial consultation is a video call of up to 60 minutes where we learn about your goals, experience, and lifestyle. It\u2019s also a chance for you to get to know us and make sure you\u2019re happy that we\u2019d work well together. Zero pressure, just an open conversation.',
   },
   {
     question: 'What if I\u2019m training for a specific race?',
     answer:
       'Race-specific preparation is one of our specialities. We\u2019ll build a periodised plan working backwards from your race date, with key sessions, taper strategy, race-day pacing, and nutrition guidance all included.',
-  },
-  {
-    question: 'Can I switch plans?',
-    answer:
-      'Yes, you can upgrade or downgrade your plan at any time. Changes take effect at the start of your next billing cycle. We\u2019ll adjust your coaching approach to match your new plan immediately.',
   },
 ]
 

@@ -77,7 +77,7 @@ export function Contact() {
               </a>
 
               <a
-                href="https://www.facebook.com/trilogytraining"
+                href="https://www.facebook.com/trilogy.tri.training/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contact-info__item"

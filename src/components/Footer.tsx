@@ -38,7 +38,7 @@ export function Footer() {
             <a href="https://www.instagram.com/trilogy_training_/" className="footer__link" target="_blank" rel="noopener noreferrer">
               Instagram
             </a>
-            <a href="https://www.facebook.com/trilogytraining" className="footer__link" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.facebook.com/trilogy.tri.training/" className="footer__link" target="_blank" rel="noopener noreferrer">
               Facebook
             </a>
             <a href="mailto:info@trilogy-training.com" className="footer__link">
