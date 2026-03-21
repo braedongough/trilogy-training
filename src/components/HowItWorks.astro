@@ -1,0 +1,43 @@
+---
+import Section from './Section.astro';
+import './HowItWorks.css';
+
+const steps = [
+  {
+    num: '01',
+    title: 'Book a Free Call',
+    desc: 'Tell us about your goals, experience, and lifestyle. We\u2019ll discuss how personalised coaching can work for you.',
+  },
+  {
+    num: '02',
+    title: 'Get Your Plan',
+    desc: 'Receive a training programme built around your schedule, fitness level, and target events, delivered via TrainingPeaks.',
+  },
+  {
+    num: '03',
+    title: 'Train & Improve',
+    desc: 'Ongoing coaching, weekly adjustments, race strategy, and data-driven feedback to keep you progressing.',
+  },
+];
+---
+<Section background="alt" divider="angle-top" id="how-it-works">
+  <div class="hiw">
+    <p class="hiw__label">The Process</p>
+    <h2 class="hiw__title">How It Works</h2>
+
+    <div class="hiw__grid">
+      {steps.map((step, i) => (
+        <div class="hiw__card">
+          <div class="hiw__tri">
+            <span class="hiw__num">{step.num}</span>
+          </div>
+          <h3 class="hiw__card-title">{step.title}</h3>
+          <p class="hiw__card-desc">{step.desc}</p>
+          {i < steps.length - 1 && (
+            <div class="hiw__connector" aria-hidden="true"></div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</Section>

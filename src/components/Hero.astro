@@ -1,0 +1,73 @@
+---
+import Button from './Button.astro';
+import SwimmerSvg from '../assets/silhouettes/swimmer.svg?raw';
+import CyclistSvg from '../assets/silhouettes/cyclist.svg?raw';
+import RunnerSvg from '../assets/silhouettes/runner.svg?raw';
+import './Hero.css';
+
+const silhouettes = [SwimmerSvg, CyclistSvg, RunnerSvg];
+const items = [...silhouettes, ...silhouettes];
+---
+<section class="hero">
+  <div class="hero__bg">
+    <div class="hero__marquee-strip">
+      <div class="hero__marquee-track">
+        {items.map((svg) => (
+          <div class="hero__silhouette" set:html={svg} />
+        ))}
+        {items.map((svg) => (
+          <div class="hero__silhouette" set:html={svg} />
+        ))}
+      </div>
+    </div>
+    <div class="hero__marquee-strip hero__marquee-strip--reverse">
+      <div class="hero__marquee-track">
+        {items.map((svg) => (
+          <div class="hero__silhouette" set:html={svg} />
+        ))}
+        {items.map((svg) => (
+          <div class="hero__silhouette" set:html={svg} />
+        ))}
+      </div>
+    </div>
+    <div class="hero__marquee-strip">
+      <div class="hero__marquee-track">
+        {items.map((svg) => (
+          <div class="hero__silhouette" set:html={svg} />
+        ))}
+        {items.map((svg) => (
+          <div class="hero__silhouette" set:html={svg} />
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__geometric hero__geometric--tri-1"></div>
+  <div class="hero__geometric hero__geometric--tri-2"></div>
+  <div class="hero__geometric hero__geometric--line-1"></div>
+  <div class="hero__geometric hero__geometric--line-2"></div>
+
+  <div class="hero__content">
+    <p class="hero__tag">Personalised Endurance Coaching</p>
+    <h1 class="hero__title">
+      Train Smarter.<br />
+      <span class="hero__title-accent">Race Stronger.</span>
+    </h1>
+    <p class="hero__subtitle">
+      Personalised triathlon, running, cycling &amp; swimming coaching programmes built around your life.
+    </p>
+    <div class="hero__actions">
+      <Button href="/contact/" variant="primary" size="lg">
+        Book a Free Call
+      </Button>
+      <Button href="/plans/" variant="outline" size="lg">
+        Plans &amp; Pricing
+      </Button>
+    </div>
+  </div>
+
+  <div class="hero__scroll-hint">
+    <span>Scroll</span>
+    <div class="hero__scroll-line"></div>
+  </div>
+</section>

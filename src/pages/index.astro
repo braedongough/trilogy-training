@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import Section from '../components/Section.astro';
+import Stats from '../components/Stats';
+import Testimonials from '../components/Testimonials.astro';
+import WhyTrilogy from '../components/WhyTrilogy.astro';
+import CTABand from '../components/CTABand.astro';
+---
+<Layout
+  title="Trilogy Training | Personalised Endurance Coaching for Triathletes & Runners"
+  description="Personalised triathlon, running, swimming & cycling coaching from certified endurance coaches. Book your free consultation today."
+  canonicalPath="/"
+  ogTitle="Trilogy Training | Personalised Endurance Coaching"
+  ogDescription="Train smarter with personalised coaching from experienced endurance sport coaches."
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "Trilogy Training",
+          "url": "https://www.trilogy-training.com",
+          "logo": "https://www.trilogy-training.com/favicon.svg",
+          "sameAs": [
+            "https://www.instagram.com/trilogytraining",
+            "https://www.facebook.com/trilogytraining"
+          ],
+          "description": "Personalised endurance coaching for triathletes, runners, swimmers, and cyclists."
+        },
+        {
+          "@type": "SportsActivityLocation",
+          "name": "Trilogy Training",
+          "url": "https://www.trilogy-training.com",
+          "description": "Personalised endurance coaching for triathletes, runners, swimmers, and cyclists."
+        },
+        {
+          "@type": "Service",
+          "serviceType": "Endurance Coaching",
+          "provider": { "@type": "Organization", "name": "Trilogy Training" },
+          "description": "Personalised triathlon, running, swimming, and cycling coaching plans with certified coaches.",
+          "offers": [
+            { "@type": "Offer", "name": "Foundation Plan", "description": "Self-guided training plan with monthly check-ins" },
+            { "@type": "Offer", "name": "Performance Plan", "description": "Fully personalised coaching with weekly plan adjustments" },
+            { "@type": "Offer", "name": "Elite Plan", "description": "Premium coaching with daily communication and detailed session analysis" }
+          ]
+        },
+        {
+          "@type": "Person",
+          "name": "Adam Labbett",
+          "jobTitle": "Endurance Coach",
+          "worksFor": { "@type": "Organization", "name": "Trilogy Training" }
+        },
+        {
+          "@type": "Person",
+          "name": "Cameron Keast",
+          "jobTitle": "Endurance Coach",
+          "worksFor": { "@type": "Organization", "name": "Trilogy Training" }
+        }
+      ]
+    })} />
+  </Fragment>
+
+  <Hero />
+  <HowItWorks />
+  <Section background="surface" divider="angle-both" id="stats">
+    <Stats client:visible />
+  </Section>
+  <Testimonials />
+  <WhyTrilogy />
+  <CTABand />
+</Layout>

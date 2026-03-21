@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useSyncExternalStore } from 'react'
 import './ThemeSwitcher.css'
 
 const themes = [
@@ -8,13 +8,15 @@ const themes = [
   { name: 'earth', label: 'Earth', colors: ['#2ECC71', '#E67E22'] },
 ]
 
-export function ThemeSwitcher() {
-  const [active, setActive] = useState('default')
+function getSavedTheme() {
+  return localStorage.getItem('trilogy-theme') || 'default'
+}
 
-  useEffect(() => {
-    const saved = localStorage.getItem('trilogy-theme')
-    if (saved) setActive(saved)
-  }, [])
+const subscribeNoop = () => () => {}
+
+export default function ThemeSwitcher() {
+  const initialTheme = useSyncExternalStore(subscribeNoop, getSavedTheme, () => 'default')
+  const [active, setActive] = useState(initialTheme)
 
   function setTheme(name: string) {
     setActive(name)

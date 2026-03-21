@@ -1,0 +1,34 @@
+---
+import Section from './Section.astro';
+import './CoachProfile.css';
+
+interface Props {
+  name: string;
+  imageSrc: string;
+  credentials: string;
+  bio: string;
+  accent: 'accent-1' | 'accent-2';
+  reverse?: boolean;
+}
+
+const { name, imageSrc, credentials, bio, accent, reverse = false } = Astro.props;
+const sectionBg = reverse ? 'alt' : 'default';
+const sectionDivider = reverse ? 'angle-top' : 'none';
+const coachId = `coach-${name.split(' ')[0].toLowerCase()}`;
+---
+<Section background={sectionBg} divider={sectionDivider} id={coachId}>
+  <div class={`coach coach--${accent} ${reverse ? 'coach--reverse' : ''}`}>
+    <div class="coach__visual">
+      <div class="coach__photo-wrap">
+        <img src={imageSrc} alt={name} class="coach__photo" loading="lazy" />
+      </div>
+      <div class={`coach__stripe coach__stripe--${accent}`} aria-hidden="true"></div>
+    </div>
+
+    <div class="coach__info">
+      <h2 class="coach__name">{name}</h2>
+      <p class="coach__credentials" set:html={credentials} />
+      <p class="coach__bio">{bio}</p>
+    </div>
+  </div>
+</Section>

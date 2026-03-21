@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef, useCallback } from 'react'
 import { useInView } from '../hooks/useInView'
-import { Section } from './Section'
 import './Stats.css'
 
 const stats = [
@@ -43,29 +42,27 @@ function AnimatedNumber({ target, suffix, animate }: { target: number; suffix: s
   )
 }
 
-export function Stats() {
+export default function Stats() {
   const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.3 })
 
   return (
-    <Section background="surface" divider="angle-both" id="stats">
-      <div ref={ref} className={`stats ${inView ? 'stats--visible' : ''}`}>
-        <div className="stats__grid">
-          {stats.map((stat, i) => (
-            <div
-              key={stat.label}
-              className="stats__item"
-              style={{ animationDelay: `${0.1 * (i + 1)}s` }}
-            >
-              <AnimatedNumber
-                target={stat.value}
-                suffix={stat.suffix}
-                animate={inView}
-              />
-              <span className="stats__label">{stat.label}</span>
-            </div>
-          ))}
-        </div>
+    <div ref={ref} className={`stats ${inView ? 'stats--visible' : ''}`}>
+      <div className="stats__grid">
+        {stats.map((stat, i) => (
+          <div
+            key={stat.label}
+            className="stats__item"
+            style={{ animationDelay: `${0.1 * (i + 1)}s` }}
+          >
+            <AnimatedNumber
+              target={stat.value}
+              suffix={stat.suffix}
+              animate={inView}
+            />
+            <span className="stats__label">{stat.label}</span>
+          </div>
+        ))}
       </div>
-    </Section>
+    </div>
   )
 }

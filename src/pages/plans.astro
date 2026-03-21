@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import Button from '../components/Button.astro';
+import PricingSection from '../components/PricingSection';
+import FAQ from '../components/FAQ';
+import './Plans.css';
+---
+<Layout
+  title="Plans & Pricing | Trilogy Training | Find Your Perfect Coaching Plan"
+  description="Choose from Foundation, Performance, or Elite coaching plans. Personalised triathlon, running, and cycling training tailored to your goals."
+  canonicalPath="/plans/"
+  ogTitle="Plans & Pricing | Trilogy Training"
+  ogDescription="Choose from Foundation, Performance, or Elite coaching plans. Personalised training tailored to your goals."
+>
+  <Section background="default" class="section--plans-pricing">
+    <div class="plans-hero">
+      <p class="plans-hero__label">Coaching Plans</p>
+      <h1 class="plans-hero__title">Plans &amp; Pricing</h1>
+      <p class="plans-hero__subtitle">
+        Coaching tailored to you, not a one-size-fits-all package. Simple pricing, personalised coaching.
+      </p>
+    </div>
+
+    <PricingSection client:load />
+  </Section>
+
+  <Section background="surface" divider="angle-top">
+    <div class="premade">
+      <p class="premade__label">Off the Shelf</p>
+      <h2 class="premade__title">Pre-Made Training Plans</h2>
+      <p class="premade__desc">
+        Prefer a ready-made plan? Browse our library of structured training plans on TrainingPeaks, designed for athletes who want expert programming without one-to-one coaching.
+      </p>
+      <Button
+        href="https://www.trainingpeaks.com/my-training-plans/trilogytraining"
+        variant="outline"
+        size="lg"
+        external
+      >
+        Browse Plans on TrainingPeaks
+      </Button>
+    </div>
+  </Section>
+
+  <Section background="alt" divider="angle-top" id="faq">
+    <FAQ client:load />
+  </Section>
+</Layout>
