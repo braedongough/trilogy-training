@@ -27,7 +27,6 @@
 
 .hero__marquee-track {
   display: flex;
-  gap: 8rem;
   width: max-content;
   animation: marquee 60s linear infinite;
 }
@@ -41,6 +40,7 @@
   flex-shrink: 0;
   width: 100px;
   height: 80px;
+  margin-right: 8rem;
   color: var(--color-accent-1);
   transform: scaleX(-1);
 }
@@ -55,47 +55,46 @@
 }
 
 /* Geometric decorations */
-.hero__geometric {
+.hero__deco {
   position: absolute;
   pointer-events: none;
 }
 
-.hero__geometric--tri-1 {
+.hero__deco--tri-1 {
   top: 8%;
   right: 8%;
-  width: 120px;
-  height: 120px;
-  border: 2px solid var(--color-accent-1);
-  opacity: 0.15;
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  width: 90px;
+  height: 78px;
+  color: var(--color-accent-1);
+  opacity: 0.06;
   animation: pulse 6s ease-in-out infinite;
 }
 
-.hero__geometric--tri-2 {
+.hero__deco--tri-2 {
   bottom: 15%;
   left: 5%;
-  width: 80px;
-  height: 80px;
-  border: 2px solid var(--color-accent-2);
-  opacity: 0.12;
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  width: 60px;
+  height: 52px;
+  color: var(--color-accent-2);
+  opacity: 0.05;
   animation: pulse 8s ease-in-out infinite 2s;
 }
 
-.hero__geometric--line-1 {
+/* Diagonal accent lines */
+.hero__deco--line-1 {
   top: 20%;
   left: 10%;
-  width: 200px;
+  width: 80px;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--color-accent-1), transparent);
   opacity: 0.2;
   transform: rotate(-30deg);
 }
 
-.hero__geometric--line-2 {
+.hero__deco--line-2 {
   bottom: 25%;
   right: 5%;
-  width: 160px;
+  width: 65px;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--color-accent-2), transparent);
   opacity: 0.15;
@@ -113,7 +112,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-md);
-  animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeInUp 0.5s ease-out forwards;
 }
 
 .hero__tag {
@@ -124,16 +123,12 @@
   color: var(--color-accent-1);
   padding: 0.4rem 1.2rem;
   border: 1px solid var(--color-accent-1);
-  opacity: 0;
-  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
 }
 
 .hero__title {
   font-size: clamp(3rem, 8vw, 6rem);
   line-height: 0.95;
   letter-spacing: -0.03em;
-  opacity: 0;
-  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
 }
 
 .hero__title-accent {
@@ -146,8 +141,6 @@
   color: var(--color-text-muted);
   max-width: 55ch;
   line-height: 1.7;
-  opacity: 0;
-  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
 }
 
 .hero__actions {
@@ -155,8 +148,6 @@
   gap: var(--space-sm);
   flex-wrap: wrap;
   justify-content: center;
-  opacity: 0;
-  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
 }
 
 /* Scroll hint */
@@ -175,7 +166,7 @@
   letter-spacing: 0.2em;
   color: var(--color-text-muted);
   opacity: 0;
-  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+  animation: fadeInUp 0.5s ease-out 0.3s forwards;
 }
 
 .hero__scroll-line {
@@ -196,8 +187,8 @@
     height: 48px;
   }
 
-  .hero__geometric--tri-1,
-  .hero__geometric--line-1 {
+  .hero__deco--tri-1,
+  .hero__deco--line-1 {
     display: none;
   }
 
