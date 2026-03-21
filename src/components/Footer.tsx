@@ -46,19 +46,6 @@ export function Footer() {
             </a>
           </div>
 
-          <div className="footer__col">
-            <p className="footer__heading">Stay Updated</p>
-            <p className="footer__text">Get training tips and camp announcements.</p>
-            <form className="footer__newsletter" onSubmit={e => e.preventDefault()}>
-              <input
-                type="email"
-                placeholder="your@email.com"
-                className="footer__input"
-                aria-label="Email for newsletter"
-              />
-              <button type="submit" className="footer__submit">→</button>
-            </form>
-          </div>
         </div>
 
         <div className="footer__bottom">
