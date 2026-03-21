@@ -7,7 +7,7 @@ export function Contact() {
   return (
     <>
       {/* Hero */}
-      <Section background="default">
+      <Section background="default" className="section--page-header contact-hero-section">
         <div className="contact-hero">
           <p className="contact-hero__label">Get in Touch</p>
           <h1 className="contact-hero__title">Let's Talk</h1>
@@ -18,7 +18,7 @@ export function Contact() {
       </Section>
 
       {/* Form + Contact Info */}
-      <Section background="alt" divider="angle-top">
+      <Section background="alt" className="contact-form-section">
         <div className="contact-grid">
           <ContactForm />
 
@@ -27,28 +27,28 @@ export function Contact() {
 
             <div className="contact-info__items">
               <a
-                href="https://wa.me/41XXXXXXXXXX"
+                href="https://wa.me/447545017670"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contact-info__item"
               >
                 <span className="contact-info__item-icon">💬</span>
                 <span className="contact-info__item-text">
-                  <span className="contact-info__item-label">WhatsApp</span>
-                  WhatsApp Adam 🇨🇭
+                  <span className="contact-info__item-label">WhatsApp (UK)</span>
+                  +44 7545 017670
                 </span>
               </a>
 
               <a
-                href="https://wa.me/34XXXXXXXXXX"
+                href="https://wa.me/41767227296"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contact-info__item"
               >
                 <span className="contact-info__item-icon">💬</span>
                 <span className="contact-info__item-text">
-                  <span className="contact-info__item-label">WhatsApp</span>
-                  WhatsApp Cameron 🇪🇸
+                  <span className="contact-info__item-label">WhatsApp (CH)</span>
+                  +41 76 722 7296
                 </span>
               </a>
 
@@ -88,36 +88,6 @@ export function Contact() {
                   Trilogy Training
                 </span>
               </a>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* Coach Locations */}
-      <Section background="default" divider="angle-top">
-        <div className="contact-locations">
-          <div className="contact-locations__header">
-            <p className="contact-locations__label">Where We're Based</p>
-            <h2 className="contact-locations__title">Coaching from Two Corners of Europe</h2>
-          </div>
-
-          <div className="contact-locations__grid">
-            <div className="contact-locations__card contact-locations__card--adam">
-              <span className="contact-locations__card-flag">🇨🇭</span>
-              <h3 className="contact-locations__card-country">Switzerland</h3>
-              <p className="contact-locations__card-desc">
-                Based in the Swiss Alps — coaching athletes across Europe and beyond.
-              </p>
-              <div className="contact-locations__card-tri" aria-hidden="true" />
-            </div>
-
-            <div className="contact-locations__card contact-locations__card--cameron">
-              <span className="contact-locations__card-flag">🇪🇸</span>
-              <h3 className="contact-locations__card-country">Spain</h3>
-              <p className="contact-locations__card-desc">
-                Based on the Spanish coast — the perfect training environment year-round.
-              </p>
-              <div className="contact-locations__card-tri" aria-hidden="true" />
             </div>
           </div>
         </div>

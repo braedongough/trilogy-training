@@ -1,11 +1,9 @@
 .plans-hero {
-  min-height: 40vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   text-align: center;
-  gap: var(--space-sm);
+  gap: var(--space-xs);
 }
 
 .plans-hero__label {
@@ -14,7 +12,7 @@
   text-transform: uppercase;
   letter-spacing: 0.2em;
   color: var(--color-accent-1);
-  margin-bottom: var(--space-xs);
+  margin-bottom: 0;
 }
 
 .plans-hero__title {

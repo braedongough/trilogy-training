@@ -29,7 +29,7 @@ const principles = [
 export function About() {
   return (
     <>
-      <Section background="default" id="about-hero">
+      <Section background="default" id="about-hero" className="section--page-header">
         <div className="about-hero">
           <p className="about-hero__label">About Us</p>
           <h1 className="about-hero__title">Meet Your Coaches</h1>

@@ -1,7 +1,7 @@
 /* ── ContactForm ─────────────────────────────────────────── */
 
 .contact-form {
-  padding: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
   clip-path: polygon(16px 0, 100% 0, 100% 100%, 0 100%, 0 16px);
@@ -10,13 +10,13 @@
 .contact-form__fields {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: 0.75rem;
 }
 
 .contact-form__group {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.25rem;
 }
 
 .contact-form__label {
@@ -35,7 +35,7 @@
   color: var(--color-text);
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0.75rem 1rem;
+  padding: 0.6rem 1rem;
   outline: none;
   transition: border-color 0.3s;
   width: 100%;
@@ -70,7 +70,7 @@
 
 .contact-form__textarea {
   resize: vertical;
-  min-height: 120px;
+  min-height: 80px;
 }
 
 .contact-form__row {
@@ -80,7 +80,7 @@
 }
 
 .contact-form__submit {
-  margin-top: var(--space-xs);
+  margin-top: 0.25rem;
 }
 
 /* States */
