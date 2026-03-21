@@ -28,7 +28,7 @@ function renderCell(value: boolean | string) {
 export function Plans() {
   return (
     <>
-      <Section background="default">
+      <Section background="default" className="section--page-header">
         <div className="plans-hero">
           <p className="plans-hero__label">Coaching Plans</p>
           <h1 className="plans-hero__title">Plans &amp; Pricing</h1>

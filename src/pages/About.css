@@ -1,12 +1,10 @@
-/* About Hero */
+/* About Hero — compact page header */
 .about-hero {
-  min-height: 40vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   text-align: center;
-  gap: var(--space-sm);
+  gap: var(--space-xs);
 }
 
 .about-hero__label {
@@ -15,20 +13,20 @@
   text-transform: uppercase;
   letter-spacing: 0.2em;
   color: var(--color-accent-1);
-  margin-bottom: var(--space-xs);
+  margin-bottom: 0;
 }
 
 .about-hero__title {
-  font-size: clamp(2.5rem, 7vw, 5rem);
-  line-height: 0.95;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1;
   letter-spacing: -0.03em;
 }
 
 .about-hero__subtitle {
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
   color: var(--color-text-muted);
   max-width: 55ch;
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
 /* Philosophy section */

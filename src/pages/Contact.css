@@ -1,12 +1,18 @@
 /* ── Contact page ────────────────────────────────────────── */
 
+/* Tighter hero than default page-header to keep form in viewport */
+.contact-hero-section.section--page-header {
+  padding: var(--space-md) 0 var(--space-sm);
+}
+
 .contact-hero {
   text-align: center;
   max-width: 700px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  align-items: center;
+  gap: var(--space-xs);
 }
 
 .contact-hero__label {
@@ -18,17 +24,21 @@
 }
 
 .contact-hero__title {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  line-height: 0.95;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1;
   letter-spacing: -0.03em;
 }
 
 .contact-hero__subtitle {
-  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
   color: var(--color-text-muted);
-  line-height: 1.7;
-  max-width: 50ch;
-  margin: 0 auto;
+  line-height: 1.6;
+  max-width: 55ch;
+}
+
+/* Reduce top padding on form section to keep it in viewport */
+.contact-form-section {
+  padding-top: var(--space-md);
 }
 
 /* Two-column layout */
@@ -101,106 +111,8 @@
   color: var(--color-text-muted);
 }
 
-/* Coach locations */
-.contact-locations__header {
-  text-align: center;
-  margin-bottom: var(--space-md);
-}
-
-.contact-locations__label {
-  font-family: var(--font-accent);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--color-accent-1);
-  margin-bottom: var(--space-xs);
-}
-
-.contact-locations__title {
-  font-size: 1.75rem;
-}
-
-.contact-locations__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-md);
-}
-
-.contact-locations__card {
-  position: relative;
-  padding: var(--space-md);
-  padding-top: calc(var(--space-md) + 4px);
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  clip-path: polygon(16px 0, 100% 0, 100% 100%, 0 100%, 0 16px);
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  overflow: hidden;
-}
-
-.contact-locations__card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-}
-
-.contact-locations__card--adam::before {
-  background: var(--color-accent-1);
-}
-
-.contact-locations__card--cameron::before {
-  background: var(--color-accent-2);
-}
-
-.contact-locations__card-flag {
-  font-size: 2rem;
-}
-
-.contact-locations__card-country {
-  font-family: var(--font-heading);
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-
-.contact-locations__card-desc {
-  font-size: 0.95rem;
-  color: var(--color-text-muted);
-  line-height: 1.7;
-}
-
-/* Triangle decoration */
-.contact-locations__card-tri {
-  position: absolute;
-  bottom: var(--space-sm);
-  right: var(--space-sm);
-  width: 40px;
-  height: 40px;
-  opacity: 0.08;
-  pointer-events: none;
-}
-
-.contact-locations__card--adam .contact-locations__card-tri {
-  border: 2px solid var(--color-accent-1);
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-}
-
-.contact-locations__card--cameron .contact-locations__card-tri {
-  border: 2px solid var(--color-accent-2);
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-}
-
 @media (max-width: 768px) {
   .contact-grid {
     grid-template-columns: 1fr;
-  }
-
-  .contact-locations__grid {
-    grid-template-columns: 1fr;
-    max-width: 500px;
-    margin: 0 auto;
   }
 }
