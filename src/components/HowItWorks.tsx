@@ -10,7 +10,7 @@ const steps = [
   {
     num: '02',
     title: 'Get Your Plan',
-    desc: 'Receive a training programme built around your schedule, fitness level, and target events \u2014 delivered via TrainingPeaks.',
+    desc: 'Receive a training programme built around your schedule, fitness level, and target events, delivered via TrainingPeaks.',
   },
   {
     num: '03',

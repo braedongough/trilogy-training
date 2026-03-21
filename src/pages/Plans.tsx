@@ -33,7 +33,7 @@ export function Plans() {
           <p className="plans-hero__label">Coaching Plans</p>
           <h1 className="plans-hero__title">Plans &amp; Pricing</h1>
           <p className="plans-hero__subtitle">
-            Find the perfect coaching plan for your goals — from self-guided training to fully personalised elite coaching.
+            Find the perfect coaching plan for your goals, from self-guided training to fully personalised elite coaching.
           </p>
         </div>
       </Section>

@@ -67,7 +67,7 @@ export function PricingCards() {
         <p className="pricing__label">Coaching Plans</p>
         <h2 className="pricing__title">Simple, Transparent Pricing</h2>
         <p className="pricing__subtitle">
-          Every plan includes personalised coaching — no templates, no generic advice. Choose the level of support that fits your goals.
+          Every plan includes personalised coaching. No templates, no generic advice. Choose the level of support that fits your goals.
         </p>
 
         <div className="pricing__grid">

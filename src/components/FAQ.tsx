@@ -16,7 +16,7 @@ const items: FAQItem[] = [
   {
     question: 'Can I pause my coaching?',
     answer:
-      'Life happens \u2014 we get it. You can pause your coaching subscription for up to 4 weeks per year with no penalty. Just give us a heads-up and we\u2019ll adjust your plan for when you return.',
+      'Life happens, we get it. You can pause your coaching subscription for up to 4 weeks per year with no penalty. Just give us a heads-up and we\u2019ll adjust your plan for when you return.',
   },
   {
     question: 'Do you coach complete beginners?',
@@ -26,7 +26,7 @@ const items: FAQItem[] = [
   {
     question: 'How do consultations work?',
     answer:
-      'Your free initial consultation is a 30-minute video call where we learn about your goals, experience, and lifestyle. There\u2019s zero pressure \u2014 it\u2019s simply a chance for us to understand what you\u2019re looking for and explain how we can help.',
+      'Your free initial consultation is a 30-minute video call where we learn about your goals, experience, and lifestyle. There\u2019s zero pressure. It\u2019s simply a chance for us to understand what you\u2019re looking for and explain how we can help.',
   },
   {
     question: 'What if I\u2019m training for a specific race?',
