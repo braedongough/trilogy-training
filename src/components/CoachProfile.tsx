@@ -1,12 +1,11 @@
+import type { ReactNode } from 'react'
 import { Section } from './Section'
 import './CoachProfile.css'
 
 type CoachProfileProps = {
   name: string
   imageSrc: string
-  location: string
-  flag: string
-  credentials: string
+  credentials: ReactNode
   bio: string
   accent: 'accent-1' | 'accent-2'
   reverse?: boolean
@@ -15,8 +14,6 @@ type CoachProfileProps = {
 export function CoachProfile({
   name,
   imageSrc,
-  location,
-  flag,
   credentials,
   bio,
   accent,
@@ -33,7 +30,6 @@ export function CoachProfile({
         </div>
 
         <div className="coach__info">
-          <p className={`coach__label coach__label--${accent}`}>{flag} {location}</p>
           <h2 className="coach__name">{name}</h2>
           <p className="coach__credentials">{credentials}</p>
           <p className="coach__bio">{bio}</p>

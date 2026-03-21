@@ -22,7 +22,7 @@ const principles = [
   {
     icon: '▽',
     title: 'Long-Term Thinking',
-    desc: "We're not interested in quick fixes. We build sustainable fitness that develops over months and years — so you keep improving season after season.",
+    desc: "We're not interested in quick fixes. We build sustainable fitness that develops over months and years, so you keep improving season after season.",
   },
 ]
 
@@ -34,7 +34,7 @@ export function About() {
           <p className="about-hero__label">About Us</p>
           <h1 className="about-hero__title">Meet Your Coaches</h1>
           <p className="about-hero__subtitle">
-            Personalised endurance coaching from Switzerland &amp; Spain — two coaches, one shared philosophy: training that fits your life.
+            Two coaches, one shared philosophy: training that fits your life.
           </p>
         </div>
       </Section>
@@ -42,20 +42,16 @@ export function About() {
       <CoachProfile
         name="Adam Labbett"
         imageSrc="/images/coaches/adam.jpg"
-        location="Switzerland"
-        flag="🇨🇭"
-        credentials="Endurance Sport Coaching Institute certified, Ironman U Certified Coach"
-        bio="With over a decade of experience in endurance sport, Adam specialises in building training programmes that fit around busy lifestyles. His approach combines data-driven planning with a deep understanding of each athlete's individual needs — whether you're targeting your first sprint triathlon or chasing an Ironman PB. Adam believes that consistency, communication, and trust are the foundations of great coaching."
+        credentials={<>Endurance Sport Coaching Institute certified,<br />Ironman U Certified Coach</>}
+        bio="Originally from the UK and now based in Switzerland, Adam has over a decade of experience in endurance sport. He specialises in building training programmes that fit around busy lifestyles, combining data-driven planning with a deep understanding of each athlete's individual needs, whether you're targeting your first sprint triathlon or chasing an Ironman PB. Adam believes that consistency, communication, and trust are the foundations of great coaching."
         accent="accent-1"
       />
 
       <CoachProfile
         name="Cameron Keast"
         imageSrc="/images/coaches/cameron.jpg"
-        location="Spain"
-        flag="🇪🇸"
         credentials="Sport Science degree from Edinburgh University"
-        bio="Cameron brings a sport science background and a passion for helping athletes unlock their potential. Based in the heart of Spain's cycling and running paradise, he works with athletes of all levels — from complete beginners to experienced competitors. Cameron's coaching philosophy centres on progressive overload, smart recovery, and making training something you look forward to every day."
+        bio="Originally from the UK and now based in Spain, Cameron brings a sport science background and a passion for helping athletes unlock their potential. He works with athletes of all levels, from complete beginners to experienced competitors. Cameron's coaching philosophy centres on progressive overload, smart recovery, and making training something you look forward to every day."
         accent="accent-2"
         reverse
       />

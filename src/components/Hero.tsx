@@ -51,7 +51,7 @@ export function Hero() {
           <span className="hero__title-accent">Race Stronger.</span>
         </h1>
         <p className="hero__subtitle">
-          Expert coaching from Switzerland &amp; Spain — triathlon, running, cycling &amp; swimming programmes built around your life.
+          Personalised triathlon, running, cycling &amp; swimming coaching programmes built around your life.
         </p>
         <div className="hero__actions">
           <Button href="/contact/" variant="primary" size="lg">

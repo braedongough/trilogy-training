@@ -152,7 +152,7 @@ export function ContactForm() {
         </div>
 
         {status === 'error' && (
-          <p className="contact-form__error">Something went wrong — please try again or email us directly.</p>
+          <p className="contact-form__error">Something went wrong. Please try again or email us directly.</p>
         )}
       </form>
     </div>
