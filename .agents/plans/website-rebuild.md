@@ -14,19 +14,19 @@ To see it working: from the repository root, run `npm run dev` to launch the dev
 
 ## Progress
 
-- [ ] Milestone 1: Project scaffolding, design system, and layout shell
-- [ ] Milestone 2: Homepage with hero animation, testimonials, and CTA sections
-- [ ] Milestone 3: About page with coach profiles
-- [ ] Milestone 4: Plans & Pricing page with tiered pricing cards
-- [ ] Milestone 5: Training Camps page
-- [ ] Milestone 6: Contact page with lead-generation form
-- [ ] Milestone 7: SEO, meta tags, structured data, favicon, and final polish
-- [ ] Milestone 8: Build validation, accessibility audit, and deployment-readiness check
+- [x] Milestone 1: Project scaffolding, design system, and layout shell
+- [x] Milestone 2: Homepage with hero animation, testimonials, and CTA sections
+- [x] Milestone 3: About page with coach profiles
+- [x] Milestone 4: Plans & Pricing page with tiered pricing cards
+- [ ] ~~Milestone 5: Training Camps page~~ — REMOVED
+- [x] Milestone 6: Contact page with lead-generation form
+- [x] Milestone 7: SEO, meta tags, structured data, favicon, and final polish
+- [x] Milestone 8: Build validation, accessibility audit, and deployment-readiness check
 
 
 ## Surprises & Discoveries
 
-None yet — this section will be updated as implementation proceeds.
+- Vite's dev server defaults to `appType: 'spa'`, which serves the root `index.html` for all unmatched routes. This caused every page to render as the homepage during development. Fixed by setting `appType: 'mpa'` in `vite.config.ts`. Additionally, MPA mode requires trailing slashes on internal links (`/about/` not `/about`) to resolve to `about/index.html`. All nav links, CTA buttons, and footer links were updated accordingly.
 
 
 ## Decision Log
@@ -59,10 +59,41 @@ None yet — this section will be updated as implementation proceeds.
   Rationale: Adam explicitly said he doesn't care about keeping the badge. His certifications (Endurance Sport Coaching Institute, Ironman U Certified Coach) will be mentioned in his bio text.
   Date/Author: 2026-03-20 / Plan author
 
+- Decision: Remove Training Camps page (Milestone 5) from the initial rebuild. The camps page, related components (Gallery.tsx, NotifyForm.tsx), and /camps route have been removed entirely.
+  Rationale: The camps page will be rebuilt later as a separate effort. The site now has four pages: Home, About, Plans & Pricing, and Contact.
+  Date/Author: 2026-03-20 / Developer
+
+- Decision: Re-add "Shop" external link to top-level navigation and footer, linking to https://www.owayo.ie/store/trilogytraining (opens in new tab).
+  Rationale: The original Wix site included a Shop nav link to the owayo.ie store. This preserves that functionality as an external redirect rather than an internal page.
+  Date/Author: 2026-03-20 / Developer
+
+- Decision: Set `appType: 'mpa'` in `vite.config.ts` and use trailing slashes on all internal links (e.g. `/about/` instead of `/about`).
+  Rationale: Vite's default SPA fallback was routing all pages to the root `index.html`, causing every page to render as the homepage. MPA mode disables that fallback. Trailing slashes are required so the dev server resolves `/about/` to `about/index.html`.
+  Date/Author: 2026-03-20 / Developer
+
+- Decision: Use real coach photos in circular frames with accent-coloured ring borders instead of geometric triangle avatars with initials.
+  Rationale: Real photos build trust and credibility. Photos are served from `/images/coaches/adam.jpg` and `/images/coaches/cameron.jpg`. The circular frame uses `border-radius: 50%` with a 4px padding ring in each coach's accent colour (cyan for Adam, pink for Cameron). Bio text is justified for clean edges.
+  Date/Author: 2026-03-20 / Developer
+
 
 ## Outcomes & Retrospective
 
-Not yet applicable — will be filled as milestones complete.
+### Milestone 8 — Build Validation (2026-03-21)
+
+- `npm run build` completes successfully, producing `dist/` with 4 HTML entry points (index, about, plans, contact) plus hashed CSS/JS assets.
+- All static assets (favicon.svg, og-image.png, og-image.svg, robots.txt, sitemap.xml) are copied to `dist/`.
+- `.gitignore` excludes `node_modules/` and `dist/`.
+- Lighthouse desktop scores: Accessibility **95**, Best Practices **100**, SEO **100**.
+- Lighthouse mobile scores: Accessibility **95**, Best Practices **100**, SEO **100**.
+- Two accessibility issues fixed during validation:
+  - CTA band subtitle colour changed from `rgba(255,255,255,0.85)` to `#fff` to meet WCAG contrast requirements on the pink background.
+  - Footer headings changed from `<h4>` to `<p>` elements (styled the same) to fix heading-order skip.
+- All pages verified responsive at 375px (mobile), 768px (tablet implied by CSS), and 1440px (desktop).
+- Contact form captures all required fields: Name, Email, Phone, training interest, goals, referral source.
+- Theme switcher persists across pages via `localStorage` with early-load script preventing colour flash.
+- Every page has a CTA section driving toward `/contact/`.
+- Sticky header with "Book a Free Call" button present on all pages.
+- All navigation links work across pages.
 
 
 ## Context and Orientation

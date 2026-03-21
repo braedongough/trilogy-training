@@ -1,0 +1,115 @@
+.plans-hero {
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-sm);
+}
+
+.plans-hero__label {
+  font-family: var(--font-accent);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-accent-1);
+  margin-bottom: var(--space-xs);
+}
+
+.plans-hero__title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.1;
+}
+
+.plans-hero__subtitle {
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 50ch;
+}
+
+/* Feature Comparison */
+.compare {
+  text-align: center;
+}
+
+.compare__label {
+  font-family: var(--font-accent);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-accent-1);
+  margin-bottom: var(--space-xs);
+}
+
+.compare__title {
+  margin-bottom: var(--space-lg);
+}
+
+.compare__table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.compare__table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.compare__table thead th {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: var(--space-sm) var(--space-sm);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
+}
+
+.compare__table thead th:first-child {
+  text-align: left;
+}
+
+.compare__table thead th:not(:first-child) {
+  text-align: center;
+}
+
+.compare__table thead th.compare__th--featured {
+  color: var(--color-accent-2);
+}
+
+.compare__table tbody td {
+  padding: 0.75rem var(--space-sm);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: var(--color-text-muted);
+}
+
+.compare__table tbody td:first-child {
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.compare__table tbody td:not(:first-child) {
+  text-align: center;
+}
+
+.compare__check {
+  color: var(--color-accent-1);
+}
+
+.compare__dash {
+  color: rgba(255, 255, 255, 0.15);
+}
+
+@media (max-width: 768px) {
+  .compare__table {
+    font-size: 0.8rem;
+  }
+
+  .compare__table thead th,
+  .compare__table tbody td {
+    padding: 0.6rem 0.5rem;
+  }
+}

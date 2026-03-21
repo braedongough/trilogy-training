@@ -1,0 +1,14 @@
+[data-theme="warm"] {
+  --color-accent-1: #FFB800;
+  --color-accent-2: #FF4500;
+}
+
+[data-theme="cool"] {
+  --color-accent-1: #7B68EE;
+  --color-accent-2: #00CED1;
+}
+
+[data-theme="earth"] {
+  --color-accent-1: #2ECC71;
+  --color-accent-2: #E67E22;
+}

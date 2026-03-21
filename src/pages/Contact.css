@@ -1,0 +1,206 @@
+/* ── Contact page ────────────────────────────────────────── */
+
+.contact-hero {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.contact-hero__label {
+  font-family: var(--font-accent);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-accent-1);
+}
+
+.contact-hero__title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.contact-hero__subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  max-width: 50ch;
+  margin: 0 auto;
+}
+
+/* Two-column layout */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: var(--space-md);
+  align-items: start;
+}
+
+/* Direct contact sidebar */
+.contact-info {
+  padding: var(--space-md);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.contact-info__heading {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.contact-info__items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contact-info__item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: 0.95rem;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.contact-info__item:hover {
+  border-color: rgba(0, 229, 204, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.contact-info__item-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  width: 2rem;
+  text-align: center;
+}
+
+.contact-info__item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.contact-info__item-label {
+  font-family: var(--font-accent);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-text-muted);
+}
+
+/* Coach locations */
+.contact-locations__header {
+  text-align: center;
+  margin-bottom: var(--space-md);
+}
+
+.contact-locations__label {
+  font-family: var(--font-accent);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-accent-1);
+  margin-bottom: var(--space-xs);
+}
+
+.contact-locations__title {
+  font-size: 1.75rem;
+}
+
+.contact-locations__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.contact-locations__card {
+  position: relative;
+  padding: var(--space-md);
+  padding-top: calc(var(--space-md) + 4px);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  clip-path: polygon(16px 0, 100% 0, 100% 100%, 0 100%, 0 16px);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  overflow: hidden;
+}
+
+.contact-locations__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.contact-locations__card--adam::before {
+  background: var(--color-accent-1);
+}
+
+.contact-locations__card--cameron::before {
+  background: var(--color-accent-2);
+}
+
+.contact-locations__card-flag {
+  font-size: 2rem;
+}
+
+.contact-locations__card-country {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.contact-locations__card-desc {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+/* Triangle decoration */
+.contact-locations__card-tri {
+  position: absolute;
+  bottom: var(--space-sm);
+  right: var(--space-sm);
+  width: 40px;
+  height: 40px;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.contact-locations__card--adam .contact-locations__card-tri {
+  border: 2px solid var(--color-accent-1);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.contact-locations__card--cameron .contact-locations__card-tri {
+  border: 2px solid var(--color-accent-2);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-locations__grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}

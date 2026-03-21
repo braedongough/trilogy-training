@@ -1,0 +1,45 @@
+.theme-switcher {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.theme-switcher__label {
+  font-family: var(--font-accent);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+}
+
+.theme-switcher__swatches {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.theme-switcher__swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  background: var(--color-bg-alt);
+  display: flex;
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s;
+  padding: 0;
+}
+
+.theme-switcher__swatch span {
+  flex: 1;
+  height: 100%;
+}
+
+.theme-switcher__swatch:hover {
+  transform: scale(1.15);
+}
+
+.theme-switcher__swatch--active {
+  border-color: var(--color-text);
+  transform: scale(1.1);
+}

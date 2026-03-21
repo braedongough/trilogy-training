@@ -1,0 +1,55 @@
+.cta-band {
+  position: relative;
+  background: var(--color-accent-2);
+  padding: var(--space-xl) var(--space-md);
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Triangle pattern background */
+.cta-band__pattern {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  pointer-events: none;
+}
+
+.cta-band__tri {
+  width: 60px;
+  height: 60px;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.cta-band__tri:nth-child(even) {
+  clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Content */
+.cta-band__content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.cta-band__headline {
+  color: #fff;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  line-height: 1.1;
+}
+
+.cta-band__subtitle {
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 50ch;
+}
