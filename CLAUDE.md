@@ -26,6 +26,17 @@ This project uses a structured "ExecPlan" format defined in `.agents/PLANS.md`. 
 - Follow the skeleton and formatting rules in PLANS.md exactly
 - Plans are living documents — update them as work proceeds
 
+## Design System
+
+The design system is documented in `.agents/design-system.md`. Refer to it when:
+- Creating or modifying any UI component, page, or section
+- Choosing colours, typography, spacing, or layout patterns
+- Adding animations or interactive elements
+- Working with the theme system or adding new themes
+- Making accessibility decisions (contrast, heading hierarchy, alt text)
+
+Do not introduce new colour values, font stacks, spacing values, or animation patterns without first checking the design system. If a new token or pattern is needed, add it to the design system document before using it.
+
 ## Key Audit Findings (from RESEARCH.md)
 
 The audit recommends rebuilding the site from scratch using a modern framework (Next.js or Astro). Critical issues include: no semantic headings (all rendered as images), no meta descriptions, inconsistent branding ("Simplicity Triathlon Coaching" vs "Trilogy Training"), no pricing shown, no clear CTAs, and dated visual design.
