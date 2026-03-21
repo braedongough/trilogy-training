@@ -10,9 +10,10 @@ Items that must be resolved before deploying to production.
 
 ## High Priority
 
-- [ ] **WhatsApp numbers** — Replace masked phone numbers with real ones.
-  `src/pages/Contact.tsx:30` → `https://wa.me/41XXXXXXXXXX` (Adam, Switzerland)
-  `src/pages/Contact.tsx:43` → `https://wa.me/34XXXXXXXXXX` (Cameron, Spain)
+- [x] **WhatsApp numbers** — Replace masked phone numbers with real ones. *(Done)*
+
+- [ ] **Email address** — Create the `info@trilogy-training.com` email address.
+  Used in `src/pages/Contact.tsx` and `src/components/Footer.tsx`.
 
 ## Legal / Compliance
 
