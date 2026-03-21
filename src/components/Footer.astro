@@ -1,0 +1,61 @@
+---
+import ThemeSwitcher from './ThemeSwitcher';
+import './Footer.css';
+
+const sitemapLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about/', label: 'About' },
+  { href: '/plans/', label: 'Plans & Pricing' },
+  { href: '/contact/', label: 'Contact' },
+  { href: 'https://www.owayo.ie/store/trilogytraining', label: 'Shop' },
+];
+
+const currentYear = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="footer__geometric"></div>
+  <div class="footer__inner">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <span class="footer__logo-tri">TRI</span>
+          <span class="footer__logo-logy">LOGY</span>
+        </div>
+        <p class="footer__tagline">
+          Personalised endurance coaching for athletes worldwide.
+        </p>
+        <ThemeSwitcher client:load />
+      </div>
+
+      <div class="footer__col">
+        <p class="footer__heading">Pages</p>
+        {sitemapLinks.map(link => (
+          <a href={link.href} class="footer__link">{link.label}</a>
+        ))}
+      </div>
+
+      <div class="footer__col">
+        <p class="footer__heading">Connect</p>
+        <a href="https://www.instagram.com/trilogy_training_/" class="footer__link" target="_blank" rel="noopener noreferrer">
+          Instagram
+        </a>
+        <a href="https://www.facebook.com/trilogy.tri.training/" class="footer__link" target="_blank" rel="noopener noreferrer">
+          Facebook
+        </a>
+        <a href="mailto:info@trilogy-training.com" class="footer__link">
+          Email Us
+        </a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__copy">
+        &copy; {currentYear} Trilogy Training. All rights reserved.
+      </p>
+      <div class="footer__legal">
+        <a href="#" class="footer__link">Privacy Policy</a>
+        <a href="#" class="footer__link">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>

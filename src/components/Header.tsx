@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useSyncExternalStore } from 'react'
 import { Button } from './Button'
 import './Header.css'
 
@@ -10,9 +10,16 @@ const navLinks: { href: string; label: string; external?: boolean }[] = [
   { href: 'https://www.owayo.ie/store/trilogytraining', label: 'Shop', external: true },
 ]
 
-export function Header() {
+function getPathname() {
+  return window.location.pathname.replace(/\/index\.html$/, '/').replace(/\/$/, '') || '/'
+}
+
+const subscribeNoop = () => () => {}
+
+export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const currentPath = useSyncExternalStore(subscribeNoop, getPathname, () => '/')
 
   useEffect(() => {
     function onScroll() {
@@ -21,8 +28,6 @@ export function Header() {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
-
-  const currentPath = window.location.pathname.replace(/\/index\.html$/, '/').replace(/\/$/, '') || '/'
 
   return (
     <header className={`header ${scrolled ? 'header--scrolled' : ''}`}>

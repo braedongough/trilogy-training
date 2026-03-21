@@ -1,0 +1,45 @@
+---
+import Section from './Section.astro';
+import './WhyTrilogy.css';
+
+const reasons = [
+  {
+    icon: '\u25C6',
+    title: 'Truly Personalised',
+    desc: 'No templates. Every plan is built from scratch based on your goals, schedule, and current fitness. As your life changes, your plan adapts.',
+  },
+  {
+    icon: '\u25B2',
+    title: 'Certified & Experienced',
+    desc: 'Endurance Sport Coaching Institute and Ironman U certified coaches with 15+ years of combined experience across triathlon, running, and cycling.',
+  },
+  {
+    icon: '\u25C7',
+    title: 'Data-Driven Progress',
+    desc: 'Regular performance analysis using TrainingPeaks metrics. We track what matters and adjust your training based on real data, not guesswork.',
+  },
+  {
+    icon: '\u25BD',
+    title: 'Life-First Coaching',
+    desc: 'Training should enhance your life, not consume it. We build plans around your work, family, and commitments, not the other way around.',
+  },
+];
+---
+<Section background="alt" divider="angle-top" id="why-trilogy">
+  <div class="why">
+    <p class="why__label">The Difference</p>
+    <h2 class="why__title">Why Trilogy Training</h2>
+
+    <div class="why__grid">
+      {reasons.map((r) => (
+        <div class="why__card">
+          <div class="why__icon-wrap">
+            <span class="why__icon">{r.icon}</span>
+          </div>
+          <h3 class="why__card-title">{r.title}</h3>
+          <p class="why__card-desc">{r.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</Section>

@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Section } from './Section'
 import './FAQ.css'
 
 type FAQItem = {
@@ -35,7 +34,7 @@ const items: FAQItem[] = [
   },
 ]
 
-export function FAQ() {
+export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   function toggle(index: number) {
@@ -43,34 +42,32 @@ export function FAQ() {
   }
 
   return (
-    <Section background="alt" divider="angle-top" id="faq">
-      <div className="faq">
-        <p className="faq__label">Common Questions</p>
-        <h2 className="faq__title">Frequently Asked Questions</h2>
+    <div className="faq">
+      <p className="faq__label">Common Questions</p>
+      <h2 className="faq__title">Frequently Asked Questions</h2>
 
-        <div className="faq__list">
-          {items.map((item, i) => (
-            <div
-              key={item.question}
-              className={`faq__item${openIndex === i ? ' faq__item--open' : ''}`}
+      <div className="faq__list">
+        {items.map((item, i) => (
+          <div
+            key={item.question}
+            className={`faq__item${openIndex === i ? ' faq__item--open' : ''}`}
+          >
+            <button
+              className="faq__trigger"
+              onClick={() => toggle(i)}
+              aria-expanded={openIndex === i}
             >
-              <button
-                className="faq__trigger"
-                onClick={() => toggle(i)}
-                aria-expanded={openIndex === i}
-              >
-                {item.question}
-                <span className="faq__icon" aria-hidden="true">+</span>
-              </button>
-              <div className="faq__body">
-                <div className="faq__body-inner">
-                  <p className="faq__answer">{item.answer}</p>
-                </div>
+              {item.question}
+              <span className="faq__icon" aria-hidden="true">+</span>
+            </button>
+            <div className="faq__body">
+              <div className="faq__body-inner">
+                <p className="faq__answer">{item.answer}</p>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-    </Section>
+    </div>
   )
 }

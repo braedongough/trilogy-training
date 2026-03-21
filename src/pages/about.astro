@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import CoachProfile from '../components/CoachProfile.astro';
+import CTABand from '../components/CTABand.astro';
+import './About.css';
+
+const principles = [
+  {
+    icon: '\u25C6',
+    title: 'Built Around You',
+    desc: 'Every training plan starts with a conversation about your life, not just your fitness. We design around your work schedule, family commitments, and personal goals.',
+  },
+  {
+    icon: '\u25B2',
+    title: 'Communication First',
+    desc: "Coaching isn't a one-way street. We provide regular check-ins, detailed session feedback, and are always available when you need guidance or motivation.",
+  },
+  {
+    icon: '\u25C7',
+    title: 'Science Meets Experience',
+    desc: 'We combine evidence-based training methodology with years of real-world coaching experience. Every session has a purpose, and every plan has a structure.',
+  },
+  {
+    icon: '\u25BD',
+    title: 'Long-Term Thinking',
+    desc: "We're not interested in quick fixes. We build sustainable fitness that develops over months and years, so you keep improving season after season.",
+  },
+];
+---
+<Layout
+  title="About Us | Trilogy Training | Meet Your Coaches"
+  description="Meet Adam Labbett and Cameron Keast, certified endurance coaches. Learn about our personalised coaching philosophy."
+  canonicalPath="/about/"
+  ogTitle="About Us | Trilogy Training | Meet Your Coaches"
+  ogDescription="Meet Adam Labbett and Cameron Keast, certified endurance coaches. Learn about our personalised coaching philosophy."
+>
+  <Section background="default" id="about-hero" class="section--page-header">
+    <div class="about-hero">
+      <p class="about-hero__label">About Us</p>
+      <h1 class="about-hero__title">Meet Your Coaches</h1>
+      <p class="about-hero__subtitle">
+        Two coaches, one shared philosophy: training that fits your life.
+      </p>
+    </div>
+  </Section>
+
+  <CoachProfile
+    name="Adam Labbett"
+    imageSrc="/images/coaches/adam.jpg"
+    credentials="Endurance Sport Coaching Institute certified,<br />Ironman U Certified Coach"
+    bio="Originally from the UK and now based in Switzerland, Adam has over a decade of experience in endurance sport. He specialises in building training programmes that fit around busy lifestyles, combining data-driven planning with a deep understanding of each athlete's individual needs, whether you're targeting your first sprint triathlon or chasing an Ironman PB. Adam believes that consistency, communication, and trust are the foundations of great coaching."
+    accent="accent-1"
+  />
+
+  <CoachProfile
+    name="Cameron Keast"
+    imageSrc="/images/coaches/cameron.jpg"
+    credentials="Sport Science degree from Edinburgh University"
+    bio="Originally from the UK and now based in Spain, Cameron brings a sport science background and a passion for helping athletes unlock their potential. He works with athletes of all levels, from complete beginners to experienced competitors. Cameron's coaching philosophy centres on progressive overload, smart recovery, and making training something you look forward to every day."
+    accent="accent-2"
+    reverse
+  />
+
+  <Section background="surface" divider="angle-top" id="philosophy">
+    <div class="phil">
+      <p class="phil__label">What We Believe</p>
+      <h2 class="phil__title">Our Philosophy</h2>
+
+      <div class="phil__grid">
+        {principles.map((p) => (
+          <div class="phil__card">
+            <div class="phil__icon-wrap">
+              <span class="phil__icon">{p.icon}</span>
+            </div>
+            <h3 class="phil__card-title">{p.title}</h3>
+            <p class="phil__card-desc">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  <CTABand
+    headline="Find out if we're the right fit"
+    subtitle="Book a free consultation to discuss your goals and see how personalised coaching can work for you."
+    buttonText="Book a Free Call"
+    buttonHref="/contact/"
+  />
+</Layout>

@@ -1,0 +1,20 @@
+---
+import './Section.css';
+
+interface Props {
+  id?: string;
+  background?: 'default' | 'alt' | 'surface' | 'accent-1' | 'accent-2';
+  divider?: 'angle-top' | 'angle-bottom' | 'angle-both' | 'none';
+  class?: string;
+}
+
+const { id, background = 'default', divider = 'none', class: className = '' } = Astro.props;
+---
+<section
+  id={id}
+  class={`section section--bg-${background} section--divider-${divider} ${className}`}
+>
+  <div class="section__inner">
+    <slot />
+  </div>
+</section>

@@ -1,0 +1,33 @@
+---
+import Button from './Button.astro';
+import './CTABand.css';
+
+interface Props {
+  headline?: string;
+  subtitle?: string;
+  buttonText?: string;
+  buttonHref?: string;
+}
+
+const {
+  headline = 'Ready to Take Your Training to the Next Level?',
+  subtitle = 'Book a free consultation and discover how personalised coaching can transform your performance.',
+  buttonText = 'Book Your Free Consultation',
+  buttonHref = '/contact/',
+} = Astro.props;
+---
+<section class="cta-band">
+  <div class="cta-band__pattern" aria-hidden="true">
+    {Array.from({ length: 12 }).map(() => (
+      <div class="cta-band__tri"></div>
+    ))}
+  </div>
+
+  <div class="cta-band__content">
+    <h2 class="cta-band__headline">{headline}</h2>
+    <p class="cta-band__subtitle">{subtitle}</p>
+    <Button href={buttonHref} variant="secondary" size="lg">
+      {buttonText}
+    </Button>
+  </div>
+</section>

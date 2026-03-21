@@ -17,20 +17,34 @@ To see it working: from the repository root, run `npm run dev` to launch the Ast
 ## Progress
 
 - [x] (2026-03-21 13:40Z) Audited and revised the migration plan to address Astro SSR safety, footer static conversion details, CSS deletion sequencing, and validation gates.
-- [ ] Milestone 1: Astro project scaffolding and configuration
-- [ ] Milestone 2: Layout, shared components, and design system
-- [ ] Milestone 3: Migrate all four pages
-- [ ] Milestone 4: Interactive islands (Header, FAQ, ContactForm, Stats, ThemeSwitcher)
-- [ ] Milestone 5: SEO, meta tags, View Transitions, and final polish
-- [ ] Milestone 6: Build validation and deployment-readiness check
+- [x] (2026-03-21 20:13Z) Milestone 1: Astro project scaffolding and configuration
+- [x] (2026-03-21 20:19Z) Milestone 2: Layout, shared components, and design system
+- [x] (2026-03-21 20:19Z) Milestone 3: Migrate all four pages
+- [x] (2026-03-21 20:20Z) Milestone 4: Interactive islands (Header, FAQ, ContactForm, Stats, ThemeSwitcher, PricingSection)
+- [x] (2026-03-21 20:20Z) Milestone 5: SEO, meta tags, View Transitions, and final polish
+- [x] (2026-03-21 20:23Z) Milestone 6: Build validation and deployment-readiness check
 
 
 ## Surprises & Discoveries
 
-Not yet applicable — will be filled as work proceeds.
+- The Plans page pricing section uses `useState` for currency toggling (CHF/EUR/GBP), making it interactive. The original plan classified PricingCards as static. Solution: extracted the pricing section into a new `PricingSection.tsx` React island with `client:load`.
+- FAQ and Stats components imported the React `Section` component, which was converted to Astro. Since Astro components cannot be used inside React, the Section wrapper was removed from these React components and the wrapping was moved to the Astro page files instead.
+- Astro v6 uses `ClientRouter` (not `ViewTransitions`) as the import name from `astro:transitions`.
+- ESLint's `react-hooks/set-state-in-effect` rule flagged SSR-safe `setState` calls in `useEffect` for Header and ThemeSwitcher. Resolved by using `useSyncExternalStore` with server fallbacks instead.
+- The `.astro/` auto-generated directory needed to be added to ESLint's `globalIgnores` to avoid false errors on Astro's type declarations.
+- React `FormEvent` is deprecated in React 19 types; used `React.FormEvent` namespace form instead.
+- Astro v6 installed as `^6.0.8` and `@astrojs/react` as `^5.0.1` (plan estimated `^5.x` and `^4.x` respectively).
 
 
 ## Decision Log
+
+- Decision: Extract pricing currency toggle into a new `PricingSection.tsx` React island.
+  Rationale: The Plans page pricing section uses `useState` for currency toggling, which requires React state. Rather than making the entire Plans page a React island, the interactive pricing section was extracted into its own component (`PricingSection.tsx`) and rendered with `client:load`.
+  Date/Author: 2026-03-21 / Implementation
+
+- Decision: Use `useSyncExternalStore` instead of `useEffect` + `setState` for SSR-safe browser API access in Header and ThemeSwitcher.
+  Rationale: ESLint's `react-hooks/set-state-in-effect` rule (React 19) flags synchronous `setState` in effects. `useSyncExternalStore` provides an SSR-safe way to read browser APIs (location, localStorage) with a server fallback value, avoiding the lint error and the flash of default state.
+  Date/Author: 2026-03-21 / Implementation
 
 - Decision: Keep interactive components as React (.tsx) and use Astro's `client:` directives rather than rewriting them in vanilla JS.
   Rationale: The interactive components (Header, FAQ, ContactForm, Stats, ThemeSwitcher) use React state and effects. Rewriting them in vanilla JS would be a full rewrite with risk of subtle bugs. Astro's `@astrojs/react` integration lets us keep these components unchanged and ship React only for the islands that need it. The React runtime is only loaded on pages that use interactive islands, and tree-shaking keeps the bundle small.
@@ -59,7 +73,15 @@ Not yet applicable — will be filled as work proceeds.
 
 ## Outcomes & Retrospective
 
-Not yet applicable — will be filled as milestones complete.
+- All 6 milestones completed in a single session.
+- `npm run lint`, `npm run check`, and `npm run build` all pass with 0 errors.
+- 4 pages built: `/`, `/about/`, `/plans/`, `/contact/` — each with unique title, description, canonical URL, OG tags, and exactly 1 `<h1>`.
+- JSON-LD structured data present on homepage.
+- View Transitions enabled via `ClientRouter` with theme persistence across navigations.
+- Total JS: ~217KB (down from ~239KB). The React runtime (181KB) is the dominant cost, loaded for Header and ThemeSwitcher islands present on every page. Per-component island JS totals ~36KB. Static components (Hero, HowItWorks, Testimonials, WhyTrilogy, CTABand, CoachProfile, Section, Button, Footer) ship zero JS.
+- The 60% JS reduction target was not met because the React runtime is still needed for islands on every page. To achieve that target, Header and ThemeSwitcher would need to be rewritten in vanilla JS — a future consideration.
+- Build time: ~600ms for all 4 pages.
+- `robots.txt` and `sitemap.xml` present in `dist/`.
 
 
 ## Context and Orientation

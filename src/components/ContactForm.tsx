@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react'
+import { useState } from 'react'
 import { Button } from './Button'
 import './ContactForm.css'
 
@@ -24,10 +24,10 @@ const referralOptions = [
   'Other',
 ]
 
-export function ContactForm() {
+export default function ContactForm() {
   const [status, setStatus] = useState<FormStatus>('idle')
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setStatus('submitting')
 
