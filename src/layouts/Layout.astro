@@ -59,6 +59,11 @@ const siteUrl = 'https://www.trilogy-training.com';
       (function() {
         var theme = localStorage.getItem('trilogy-theme');
         if (theme) document.documentElement.setAttribute('data-theme', theme);
+        // Prevent smooth scroll from animating scroll restoration on hard refresh
+        document.documentElement.style.scrollBehavior = 'auto';
+        window.addEventListener('load', function() {
+          document.documentElement.style.scrollBehavior = '';
+        });
       })();
       document.addEventListener('astro:after-swap', function() {
         var theme = localStorage.getItem('trilogy-theme');

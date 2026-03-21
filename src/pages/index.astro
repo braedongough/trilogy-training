@@ -2,8 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import HowItWorks from '../components/HowItWorks.astro';
-import Section from '../components/Section.astro';
-import Stats from '../components/Stats';
 import Testimonials from '../components/Testimonials.astro';
 import WhyTrilogy from '../components/WhyTrilogy.astro';
 import CTABand from '../components/CTABand.astro';
@@ -65,9 +63,6 @@ import CTABand from '../components/CTABand.astro';
 
   <Hero />
   <HowItWorks />
-  <Section background="surface" divider="angle-both" id="stats">
-    <Stats client:visible />
-  </Section>
   <Testimonials />
   <WhyTrilogy />
   <CTABand />
