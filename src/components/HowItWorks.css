@@ -33,12 +33,6 @@
   align-items: center;
   gap: var(--space-sm);
   clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-.hiw--visible .hiw__card {
-  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .hiw__tri {

@@ -27,14 +27,14 @@ export function Footer() {
           </div>
 
           <div className="footer__col">
-            <h4 className="footer__heading">Pages</h4>
+            <p className="footer__heading">Pages</p>
             {sitemapLinks.map(link => (
               <a key={link.href} href={link.href} className="footer__link">{link.label}</a>
             ))}
           </div>
 
           <div className="footer__col">
-            <h4 className="footer__heading">Connect</h4>
+            <p className="footer__heading">Connect</p>
             <a href="https://www.instagram.com/trilogy_training_/" className="footer__link" target="_blank" rel="noopener noreferrer">
               Instagram
             </a>
@@ -47,7 +47,7 @@ export function Footer() {
           </div>
 
           <div className="footer__col">
-            <h4 className="footer__heading">Stay Updated</h4>
+            <p className="footer__heading">Stay Updated</p>
             <p className="footer__text">Get training tips and camp announcements.</p>
             <form className="footer__newsletter" onSubmit={e => e.preventDefault()}>
               <input

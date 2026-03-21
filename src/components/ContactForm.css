@@ -119,16 +119,6 @@
   margin-top: var(--space-xs);
 }
 
-/* Animation */
-.contact-form {
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-.contact-form--visible {
-  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
 @media (max-width: 768px) {
   .contact-form__row {
     grid-template-columns: 1fr;

@@ -20,8 +20,8 @@ To see it working: from the repository root, run `npm run dev` to launch the dev
 - [x] Milestone 4: Plans & Pricing page with tiered pricing cards
 - [ ] ~~Milestone 5: Training Camps page~~ — REMOVED
 - [x] Milestone 6: Contact page with lead-generation form
-- [ ] Milestone 7: SEO, meta tags, structured data, favicon, and final polish
-- [ ] Milestone 8: Build validation, accessibility audit, and deployment-readiness check
+- [x] Milestone 7: SEO, meta tags, structured data, favicon, and final polish
+- [x] Milestone 8: Build validation, accessibility audit, and deployment-readiness check
 
 
 ## Surprises & Discoveries
@@ -78,7 +78,22 @@ To see it working: from the repository root, run `npm run dev` to launch the dev
 
 ## Outcomes & Retrospective
 
-Not yet applicable — will be filled as milestones complete.
+### Milestone 8 — Build Validation (2026-03-21)
+
+- `npm run build` completes successfully, producing `dist/` with 4 HTML entry points (index, about, plans, contact) plus hashed CSS/JS assets.
+- All static assets (favicon.svg, og-image.png, og-image.svg, robots.txt, sitemap.xml) are copied to `dist/`.
+- `.gitignore` excludes `node_modules/` and `dist/`.
+- Lighthouse desktop scores: Accessibility **95**, Best Practices **100**, SEO **100**.
+- Lighthouse mobile scores: Accessibility **95**, Best Practices **100**, SEO **100**.
+- Two accessibility issues fixed during validation:
+  - CTA band subtitle colour changed from `rgba(255,255,255,0.85)` to `#fff` to meet WCAG contrast requirements on the pink background.
+  - Footer headings changed from `<h4>` to `<p>` elements (styled the same) to fix heading-order skip.
+- All pages verified responsive at 375px (mobile), 768px (tablet implied by CSS), and 1440px (desktop).
+- Contact form captures all required fields: Name, Email, Phone, training interest, goals, referral source.
+- Theme switcher persists across pages via `localStorage` with early-load script preventing colour flash.
+- Every page has a CTA section driving toward `/contact/`.
+- Sticky header with "Book a Free Call" button present on all pages.
+- All navigation links work across pages.
 
 
 ## Context and Orientation

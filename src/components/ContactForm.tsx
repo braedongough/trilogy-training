@@ -1,5 +1,4 @@
 import { useState, type FormEvent } from 'react'
-import { useInView } from '../hooks/useInView'
 import { Button } from './Button'
 import './ContactForm.css'
 
@@ -26,7 +25,6 @@ const referralOptions = [
 ]
 
 export function ContactForm() {
-  const { ref, inView } = useInView<HTMLDivElement>()
   const [status, setStatus] = useState<FormStatus>('idle')
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -53,7 +51,7 @@ export function ContactForm() {
 
   if (status === 'success') {
     return (
-      <div ref={ref} className={`contact-form ${inView ? 'contact-form--visible' : ''}`}>
+      <div className="contact-form">
         <div className="contact-form__success">
           <span className="contact-form__success-icon">▲</span>
           <h3 className="contact-form__success-title">Message Sent!</h3>
@@ -66,7 +64,7 @@ export function ContactForm() {
   }
 
   return (
-    <div ref={ref} className={`contact-form ${inView ? 'contact-form--visible' : ''}`}>
+    <div className="contact-form">
       <form onSubmit={handleSubmit} className="contact-form__fields">
         <div className="contact-form__row">
           <div className="contact-form__group">

@@ -1,4 +1,3 @@
-import { useInView } from '../hooks/useInView'
 import { Section } from './Section'
 import './WhyTrilogy.css'
 
@@ -26,20 +25,17 @@ const reasons = [
 ]
 
 export function WhyTrilogy() {
-  const { ref, inView } = useInView<HTMLDivElement>()
-
   return (
     <Section background="alt" divider="angle-top" id="why-trilogy">
-      <div ref={ref} className={`why ${inView ? 'why--visible' : ''}`}>
+      <div className="why">
         <p className="why__label">The Difference</p>
         <h2 className="why__title">Why Trilogy Training</h2>
 
         <div className="why__grid">
-          {reasons.map((r, i) => (
+          {reasons.map((r) => (
             <div
               key={r.title}
               className="why__card"
-              style={{ animationDelay: `${0.12 * (i + 1)}s` }}
             >
               <div className="why__icon-wrap">
                 <span className="why__icon">{r.icon}</span>

@@ -39,8 +39,6 @@
   flex-direction: column;
   gap: var(--space-sm);
   text-align: left;
-  opacity: 0;
-  transform: translateY(30px);
   transition: border-color 0.3s, background 0.3s;
 }
 
@@ -52,32 +50,13 @@
 .pricing__card--featured {
   border-color: var(--color-accent-2);
   background: rgba(255, 45, 120, 0.04);
-  transform: translateY(30px) scale(1.03);
+  transform: scale(1.03);
   position: relative;
 }
 
 .pricing__card--featured:hover {
   border-color: var(--color-accent-2);
   background: rgba(255, 45, 120, 0.06);
-}
-
-.pricing--visible .pricing__card {
-  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.pricing--visible .pricing__card--featured {
-  animation: fadeInUpFeatured 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes fadeInUpFeatured {
-  from {
-    opacity: 0;
-    transform: translateY(40px) scale(1.03);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1.03);
-  }
 }
 
 .pricing__badge {
@@ -167,10 +146,6 @@
   }
 
   .pricing__card--featured {
-    transform: translateY(30px) scale(1);
-  }
-
-  .pricing--visible .pricing__card--featured {
-    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transform: none;
   }
 }

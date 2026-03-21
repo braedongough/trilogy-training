@@ -16,24 +16,12 @@
   letter-spacing: 0.2em;
   color: var(--color-accent-1);
   margin-bottom: var(--space-xs);
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-.about-hero--visible .about-hero__label {
-  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
 }
 
 .about-hero__title {
   font-size: clamp(2.5rem, 7vw, 5rem);
   line-height: 0.95;
   letter-spacing: -0.03em;
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-.about-hero--visible .about-hero__title {
-  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
 }
 
 .about-hero__subtitle {
@@ -41,12 +29,6 @@
   color: var(--color-text-muted);
   max-width: 55ch;
   line-height: 1.7;
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-.about-hero--visible .about-hero__subtitle {
-  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
 }
 
 /* Philosophy section */
@@ -82,18 +64,12 @@
   flex-direction: column;
   gap: 0.75rem;
   clip-path: polygon(16px 0, 100% 0, 100% 100%, 0 100%, 0 16px);
-  opacity: 0;
-  transform: translateY(30px);
   transition: border-color 0.3s, background 0.3s;
 }
 
 .phil__card:hover {
   border-color: rgba(0, 229, 204, 0.15);
   background: rgba(255, 255, 255, 0.03);
-}
-
-.phil--visible .phil__card {
-  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .phil__icon-wrap {

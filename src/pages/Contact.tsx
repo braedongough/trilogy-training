@@ -1,11 +1,8 @@
-import { useInView } from '../hooks/useInView'
 import { Section } from '../components/Section'
 import { ContactForm } from '../components/ContactForm'
 import './Contact.css'
 
 export function Contact() {
-  const { ref: infoRef, inView: infoInView } = useInView<HTMLDivElement>()
-  const { ref: locRef, inView: locInView } = useInView<HTMLDivElement>()
 
   return (
     <>
@@ -25,10 +22,7 @@ export function Contact() {
         <div className="contact-grid">
           <ContactForm />
 
-          <div
-            ref={infoRef}
-            className={`contact-info ${infoInView ? 'contact-info--visible' : ''}`}
-          >
+          <div className="contact-info">
             <h2 className="contact-info__heading">Prefer to reach out directly?</h2>
 
             <div className="contact-info__items">
@@ -101,7 +95,7 @@ export function Contact() {
 
       {/* Coach Locations */}
       <Section background="default" divider="angle-top">
-        <div ref={locRef} className={`contact-locations ${locInView ? 'contact-locations--visible' : ''}`}>
+        <div className="contact-locations">
           <div className="contact-locations__header">
             <p className="contact-locations__label">Where We're Based</p>
             <h2 className="contact-locations__title">Coaching from Two Corners of Europe</h2>

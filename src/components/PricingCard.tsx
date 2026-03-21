@@ -1,4 +1,3 @@
-import { useInView } from '../hooks/useInView'
 import { Section } from './Section'
 import { Button } from './Button'
 import './PricingCard.css'
@@ -62,11 +61,9 @@ const tiers: Tier[] = [
 ]
 
 export function PricingCards() {
-  const { ref, inView } = useInView<HTMLDivElement>()
-
   return (
     <Section background="default" id="pricing">
-      <div ref={ref} className={`pricing ${inView ? 'pricing--visible' : ''}`}>
+      <div className="pricing">
         <p className="pricing__label">Coaching Plans</p>
         <h2 className="pricing__title">Simple, Transparent Pricing</h2>
         <p className="pricing__subtitle">
@@ -74,11 +71,10 @@ export function PricingCards() {
         </p>
 
         <div className="pricing__grid">
-          {tiers.map((tier, i) => (
+          {tiers.map((tier) => (
             <div
               key={tier.name}
               className={`pricing__card${tier.featured ? ' pricing__card--featured' : ''}`}
-              style={{ animationDelay: `${0.15 * (i + 1)}s` }}
             >
               {tier.featured && <span className="pricing__badge">Most Popular</span>}
               <h3 className="pricing__tier">{tier.name}</h3>

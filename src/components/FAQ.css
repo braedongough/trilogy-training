@@ -29,16 +29,10 @@
   border-bottom: none;
   background: rgba(255, 255, 255, 0.02);
   clip-path: polygon(12px 0, 100% 0, 100% 100%, 0 100%, 0 12px);
-  opacity: 0;
-  transform: translateY(30px);
 }
 
 .faq__item:last-child {
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.faq--visible .faq__item {
-  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .faq__trigger {

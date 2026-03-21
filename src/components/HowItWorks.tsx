@@ -1,4 +1,3 @@
-import { useInView } from '../hooks/useInView'
 import { Section } from './Section'
 import './HowItWorks.css'
 
@@ -21,11 +20,9 @@ const steps = [
 ]
 
 export function HowItWorks() {
-  const { ref, inView } = useInView<HTMLDivElement>()
-
   return (
     <Section background="alt" divider="angle-top" id="how-it-works">
-      <div ref={ref} className={`hiw ${inView ? 'hiw--visible' : ''}`}>
+      <div className="hiw">
         <p className="hiw__label">The Process</p>
         <h2 className="hiw__title">How It Works</h2>
 
@@ -34,7 +31,6 @@ export function HowItWorks() {
             <div
               key={step.num}
               className="hiw__card"
-              style={{ animationDelay: `${0.15 * (i + 1)}s` }}
             >
               <div className="hiw__tri">
                 <span className="hiw__num">{step.num}</span>

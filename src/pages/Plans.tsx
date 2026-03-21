@@ -1,4 +1,3 @@
-import { useInView } from '../hooks/useInView'
 import { Section } from '../components/Section'
 import { PricingCards } from '../components/PricingCard'
 import { FAQ } from '../components/FAQ'
@@ -27,13 +26,10 @@ function renderCell(value: boolean | string) {
 }
 
 export function Plans() {
-  const heroView = useInView<HTMLDivElement>()
-  const compareView = useInView<HTMLDivElement>()
-
   return (
     <>
       <Section background="default">
-        <div ref={heroView.ref} className="plans-hero">
+        <div className="plans-hero">
           <p className="plans-hero__label">Coaching Plans</p>
           <h1 className="plans-hero__title">Plans &amp; Pricing</h1>
           <p className="plans-hero__subtitle">
@@ -45,7 +41,7 @@ export function Plans() {
       <PricingCards />
 
       <Section background="surface" divider="angle-top">
-        <div ref={compareView.ref} className={`compare ${compareView.inView ? 'compare--visible' : ''}`}>
+        <div className="compare">
           <p className="compare__label">At a Glance</p>
           <h2 className="compare__title">Compare Plans</h2>
 

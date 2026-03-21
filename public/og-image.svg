@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#1A1A2E"/>
+
+  <!-- Decorative triangle pattern -->
+  <polygon points="100,500 200,320 300,500" fill="none" stroke="#00E5CC" stroke-width="2" opacity="0.3"/>
+  <polygon points="900,100 1000,300 800,300" fill="none" stroke="#FF2D78" stroke-width="2" opacity="0.3"/>
+  <polygon points="1000,450 1100,280 1150,450" fill="none" stroke="#00E5CC" stroke-width="1.5" opacity="0.2"/>
+  <polygon points="50,150 120,30 190,150" fill="none" stroke="#FF2D78" stroke-width="1.5" opacity="0.2"/>
+
+  <!-- Logo triangle -->
+  <polygon points="600,120 680,260 520,260" fill="none" stroke="#00E5CC" stroke-width="3"/>
+  <polygon points="600,140 660,250 540,250" fill="none" stroke="#FF2D78" stroke-width="2"/>
+  <polygon points="600,160 640,240 560,240" fill="#00E5CC" opacity="0.8"/>
+
+  <!-- TRILOGY text -->
+  <text x="600" y="350" text-anchor="middle" font-family="'Space Grotesk', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="72">
+    <tspan fill="#FF2D78">TRI</tspan><tspan fill="#00E5CC">LOGY</tspan>
+  </text>
+
+  <!-- TRAINING text -->
+  <text x="600" y="410" text-anchor="middle" font-family="'Space Grotesk', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="48" fill="#00E5CC" letter-spacing="12">
+    TRAINING
+  </text>
+
+  <!-- Tagline -->
+  <text x="600" y="480" text-anchor="middle" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-weight="400" font-size="24" fill="#A0A0B0">
+    Personalised Endurance Coaching
+  </text>
+
+  <!-- Accent line -->
+  <line x1="450" y1="520" x2="750" y2="520" stroke="#FF2D78" stroke-width="2" opacity="0.6"/>
+</svg>

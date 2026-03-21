@@ -1,4 +1,3 @@
-import { useInView } from '../hooks/useInView'
 import { Section } from './Section'
 import './Testimonials.css'
 
@@ -30,11 +29,9 @@ const testimonials = [
 ]
 
 export function Testimonials() {
-  const { ref, inView } = useInView<HTMLDivElement>()
-
   return (
     <Section background="default" id="testimonials">
-      <div ref={ref} className={`testi ${inView ? 'testi--visible' : ''}`}>
+      <div className="testi">
         <p className="testi__label">Athletes Speaking</p>
         <h2 className="testi__title">What Our Athletes Say</h2>
 
@@ -43,7 +40,6 @@ export function Testimonials() {
             <blockquote
               key={i}
               className="testi__card"
-              style={{ animationDelay: `${0.12 * (i + 1)}s` }}
             >
               <div className="testi__quote-mark" aria-hidden="true">&ldquo;</div>
               <p className="testi__text">{t.quote}</p>

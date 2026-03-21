@@ -1,4 +1,3 @@
-import { useInView } from '../hooks/useInView'
 import { Section } from '../components/Section'
 import { CoachProfile } from '../components/CoachProfile'
 import { CTABand } from '../components/CTABand'
@@ -28,13 +27,10 @@ const principles = [
 ]
 
 export function About() {
-  const heroRef = useInView<HTMLDivElement>()
-  const philRef = useInView<HTMLDivElement>()
-
   return (
     <>
       <Section background="default" id="about-hero">
-        <div ref={heroRef.ref} className={`about-hero ${heroRef.inView ? 'about-hero--visible' : ''}`}>
+        <div className="about-hero">
           <p className="about-hero__label">About Us</p>
           <h1 className="about-hero__title">Meet Your Coaches</h1>
           <p className="about-hero__subtitle">
@@ -65,16 +61,15 @@ export function About() {
       />
 
       <Section background="surface" divider="angle-top" id="philosophy">
-        <div ref={philRef.ref} className={`phil ${philRef.inView ? 'phil--visible' : ''}`}>
+        <div className="phil">
           <p className="phil__label">What We Believe</p>
           <h2 className="phil__title">Our Philosophy</h2>
 
           <div className="phil__grid">
-            {principles.map((p, i) => (
+            {principles.map((p) => (
               <div
                 key={p.title}
                 className="phil__card"
-                style={{ animationDelay: `${0.12 * (i + 1)}s` }}
               >
                 <div className="phil__icon-wrap">
                   <span className="phil__icon">{p.icon}</span>

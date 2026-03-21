@@ -1,4 +1,3 @@
-import { useInView } from '../hooks/useInView'
 import { Section } from './Section'
 import './CoachProfile.css'
 
@@ -23,11 +22,9 @@ export function CoachProfile({
   accent,
   reverse = false,
 }: CoachProfileProps) {
-  const { ref, inView } = useInView<HTMLDivElement>()
-
   return (
     <Section background={reverse ? 'alt' : 'default'} divider={reverse ? 'angle-top' : 'none'} id={`coach-${name.split(' ')[0].toLowerCase()}`}>
-      <div ref={ref} className={`coach coach--${accent} ${inView ? 'coach--visible' : ''} ${reverse ? 'coach--reverse' : ''}`}>
+      <div className={`coach coach--${accent} ${reverse ? 'coach--reverse' : ''}`}>
         <div className="coach__visual">
           <div className="coach__photo-wrap">
             <img src={imageSrc} alt={name} className="coach__photo" loading="lazy" />

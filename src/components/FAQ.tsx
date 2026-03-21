@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useInView } from '../hooks/useInView'
 import { Section } from './Section'
 import './FAQ.css'
 
@@ -42,7 +41,6 @@ const items: FAQItem[] = [
 ]
 
 export function FAQ() {
-  const { ref, inView } = useInView<HTMLDivElement>()
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   function toggle(index: number) {
@@ -51,7 +49,7 @@ export function FAQ() {
 
   return (
     <Section background="alt" divider="angle-top" id="faq">
-      <div ref={ref} className={`faq ${inView ? 'faq--visible' : ''}`}>
+      <div className="faq">
         <p className="faq__label">Common Questions</p>
         <h2 className="faq__title">Frequently Asked Questions</h2>
 
@@ -60,7 +58,6 @@ export function FAQ() {
             <div
               key={item.question}
               className={`faq__item${openIndex === i ? ' faq__item--open' : ''}`}
-              style={{ animationDelay: `${0.1 * (i + 1)}s` }}
             >
               <button
                 className="faq__trigger"
