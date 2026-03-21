@@ -21,7 +21,7 @@ export function Footer() {
               <span className="footer__logo-logy">LOGY</span>
             </div>
             <p className="footer__tagline">
-              Personalised endurance coaching from Switzerland &amp; Spain.
+              Personalised endurance coaching for athletes worldwide.
             </p>
             <ThemeSwitcher />
           </div>

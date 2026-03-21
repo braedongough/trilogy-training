@@ -20,7 +20,7 @@ const reasons = [
   {
     icon: '▽',
     title: 'Life-First Coaching',
-    desc: 'Training should enhance your life, not consume it. We build plans around your work, family, and commitments — not the other way around.',
+    desc: 'Training should enhance your life, not consume it. We build plans around your work, family, and commitments, not the other way around.',
   },
 ]
 

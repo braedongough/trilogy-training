@@ -24,7 +24,7 @@ const testimonials = [
     quote:
       "What sets Trilogy apart is the communication. I never feel like I\u2019m just getting a cookie-cutter plan. Every session has a purpose, and my coach explains the \u2018why\u2019 behind each workout.",
     name: 'Laura D.',
-    event: 'Age Group Podium \u2014 Ironman Switzerland',
+    event: 'Age Group Podium, Ironman Switzerland',
   },
 ]
 
