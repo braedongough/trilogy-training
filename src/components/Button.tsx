@@ -5,14 +5,23 @@ type ButtonProps = {
   variant?: 'primary' | 'secondary' | 'outline'
   size?: 'sm' | 'md' | 'lg'
   href?: string
+  external?: boolean
   onClick?: () => void
 }
 
-export function Button({ children, variant = 'primary', size = 'md', href, onClick }: ButtonProps) {
+export function Button({ children, variant = 'primary', size = 'md', href, external, onClick }: ButtonProps) {
   const className = `btn btn--${variant} btn--${size}`
 
   if (href) {
-    return <a href={href} className={className}>{children}</a>
+    return (
+      <a
+        href={href}
+        className={className}
+        {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      >
+        {children}
+      </a>
+    )
   }
 
   return <button className={className} onClick={onClick}>{children}</button>

@@ -10,15 +10,16 @@ After this change, a visitor landing on the Plans page will immediately understa
 
 ## Progress
 
-- [ ] Rewrite `src/pages/Plans.tsx` with new page structure
-- [ ] Rewrite `src/pages/Plans.css` with styles for new layout
-- [ ] Update FAQ content in `src/components/FAQ.tsx` to remove tier-specific questions
-- [ ] Remove or repurpose `src/components/PricingCard.tsx` and `src/components/PricingCard.css`
-- [ ] Verify build passes and visually inspect
+- [x] Rewrite `src/pages/Plans.tsx` with new page structure
+- [x] Rewrite `src/pages/Plans.css` with styles for new layout
+- [x] Update FAQ content in `src/components/FAQ.tsx`: delete "Can I switch plans?", update pause policy, update consultation details
+- [x] Remove or repurpose `src/components/PricingCard.tsx` and `src/components/PricingCard.css`
+- [x] Rename Hero button to "Plans & Pricing" and Header nav link to "Pricing"
+- [x] Verify build passes and visually inspect
 
 ## Surprises & Discoveries
 
-(None yet.)
+- The `Button` component didn't support `target="_blank"` for external links. Added an `external` prop that applies `target="_blank"` and `rel="noopener noreferrer"` when set. Used by the TrainingPeaks link.
 
 ## Decision Log
 
@@ -62,9 +63,17 @@ The currency toggle is a small pill-shaped control with two segments (CHF | EUR)
 
 **3. Pre-made plans section.** A single section with surface background and angle-top divider. Brief copy explaining that for athletes who prefer ready-made training plans, Adam has a library on TrainingPeaks. A button links out to `https://www.trainingpeaks.com/my-training-plans/trilogytraining` (opens in new tab). This uses an outline button variant.
 
-**4. FAQ section.** Keep the existing FAQ component but update two questions: remove the "Can I switch plans?" question (no longer relevant), and update "Can I pause my coaching?" to not reference "subscription". Keep the remaining questions as they are relevant.
+**4. FAQ section.** Keep the existing FAQ component and make these changes:
+- Delete the "Can I switch plans?" question entirely (no longer relevant with the new pricing model).
+- Update "Can I pause my coaching?" — new answer: you can pause at any time, just give a heads up, no extra cost or penalty. Remove the "up to 4 weeks per year" limitation and "subscription" language.
+- Update "How do consultations work?" — the initial call is up to 60 minutes (not 30), and emphasise that it's also for the athlete to make sure they're happy with the coaches and feel they could work well together and collaborate effectively.
+- Keep the remaining questions as-is: "What platform do you use for training plans?", "Do you coach complete beginners?", "What if I'm training for a specific race?"
 
 **5. CTA band.** Keep the existing CTABand component, update the headline and subtitle to focus on getting in touch to discuss tailored coaching.
+
+**6. Cross-page updates.**
+- In `src/components/Hero.tsx`, rename the "View Plans" button text to "Plans & Pricing" (keep the `/plans/` href).
+- In `src/components/Header.tsx`, rename the nav link label from "Plans" to "Pricing" (keep the `/plans/` href).
 
 **What gets removed:** The entire feature comparison table (the `compare` section and its CSS), the `PricingCards` component import. The `PricingCard.tsx` and `PricingCard.css` files can be deleted since they are no longer used anywhere.
 
@@ -76,8 +85,10 @@ All commands run from the repository root `/Users/braedongough/code/trilogy-trai
 2. Rewrite `src/pages/Plans.css` removing all comparison table styles and adding styles for the new pricing cards, currency toggle, and pre-made plans section.
 3. Edit `src/components/FAQ.tsx` to update question content.
 4. Delete `src/components/PricingCard.tsx` and `src/components/PricingCard.css`.
-5. Run `npm run build` to verify TypeScript compilation and production build.
-6. Run `npm run dev` and visually inspect in browser.
+5. In `src/components/Hero.tsx`, change "View Plans" button text to "Plans & Pricing".
+6. In `src/components/Header.tsx`, change the "Plans" nav label to "Pricing".
+7. Run `npm run build` to verify TypeScript compilation and production build.
+8. Run `npm run dev` and visually inspect in browser.
 
 ## Validation and Acceptance
 
@@ -85,7 +96,7 @@ After running `npm run build`, the build should complete with zero errors. The P
 
 ## Idempotence and Recovery
 
-All changes are file edits and deletions within the source tree. Running the steps multiple times produces the same result. If something goes wrong, `git checkout -- src/pages/Plans.tsx src/pages/Plans.css src/components/FAQ.tsx src/components/PricingCard.tsx src/components/PricingCard.css` restores the originals.
+All changes are file edits and deletions within the source tree. Running the steps multiple times produces the same result. If something goes wrong, `git checkout -- src/pages/Plans.tsx src/pages/Plans.css src/components/FAQ.tsx src/components/PricingCard.tsx src/components/PricingCard.css src/components/Hero.tsx src/components/Header.tsx` restores the originals.
 
 ## Interfaces and Dependencies
 

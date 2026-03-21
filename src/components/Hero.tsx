@@ -58,7 +58,7 @@ export function Hero() {
             Book a Free Call
           </Button>
           <Button href="/plans/" variant="outline" size="lg">
-            View Plans
+            Plans &amp; Pricing
           </Button>
         </div>
       </div>
