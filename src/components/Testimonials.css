@@ -15,14 +15,19 @@
   margin-bottom: var(--space-lg);
 }
 
-.testi__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-md);
+.testi__carousel {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.testi__track {
+  position: relative;
+  min-height: 320px;
 }
 
 .testi__card {
-  position: relative;
+  position: absolute;
+  inset: 0;
   padding: var(--space-md);
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -31,7 +36,14 @@
   flex-direction: column;
   gap: var(--space-sm);
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%);
-  transition: border-color 0.3s;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.testi__card--active {
+  opacity: 1;
+  visibility: visible;
 }
 
 .testi__card:hover {
@@ -97,8 +109,60 @@
   color: var(--color-accent-2);
 }
 
+/* Controls */
+.testi__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.testi__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: border-color 0.3s, color 0.3s;
+}
+
+.testi__arrow:hover {
+  border-color: var(--color-accent-1);
+  color: var(--color-accent-1);
+}
+
+.testi__dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.testi__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.testi__dot--active {
+  background: var(--color-accent-1);
+  border-color: var(--color-accent-1);
+}
+
+.testi__dot:hover {
+  border-color: var(--color-accent-1);
+}
+
 @media (max-width: 768px) {
-  .testi__grid {
-    grid-template-columns: 1fr;
+  .testi__track {
+    min-height: 420px;
   }
 }

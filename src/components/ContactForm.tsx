@@ -55,6 +55,7 @@ const trainingOptions = [
   'Triathlon',
   'Ironman',
   'Marathon',
+  'Running Event',
   'Cycling Event',
   'Swimming Event',
   'General Fitness',
@@ -248,11 +249,10 @@ export default function ContactForm() {
         </div>
 
         <div className="contact-form__group">
-          <label className="contact-form__label" htmlFor="cf-goals">Tell us about your goals *</label>
+          <label className="contact-form__label" htmlFor="cf-goals">Tell us about your goals</label>
           <textarea
             id="cf-goals"
             name="goals"
-            required
             className="contact-form__textarea"
             placeholder="Your upcoming races, current fitness level, what you want to achieve..."
           />

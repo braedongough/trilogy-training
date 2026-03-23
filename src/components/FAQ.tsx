@@ -10,7 +10,7 @@ const items: FAQItem[] = [
   {
     question: 'What platform do you use for training plans?',
     answer:
-      'We deliver all training plans via TrainingPeaks, the industry-standard platform for endurance coaching. You\u2019ll be able to see your workouts on your phone, sync them to your watch, and track your progress over time.',
+      'We deliver all training plans via TrainingPeaks, the industry-standard platform for endurance coaching. You\u2019ll be able to see your workouts on your phone, sync them to your watch, and track your progress over time. That said, if you already use a different platform and prefer to stick with it, we\u2019re always happy to work with whatever suits you best.',
   },
   {
     question: 'Can I pause my coaching?',

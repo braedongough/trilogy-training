@@ -40,22 +40,121 @@ const testimonials = [
     <p class="testi__label">Athletes Speaking</p>
     <h2 class="testi__title">What Our Athletes Say</h2>
 
-    <div class="testi__grid">
-      {testimonials.map((t) => (
-        <blockquote class="testi__card">
-          <div class="testi__quote-mark" aria-hidden="true">&ldquo;</div>
-          <p class="testi__text">{t.quote}</p>
-          <footer class="testi__footer">
-            <div class="testi__avatar">
-              {t.name.charAt(0)}
-            </div>
-            <div>
-              <cite class="testi__name">{t.name}</cite>
-              <span class="testi__event">{t.event}</span>
-            </div>
-          </footer>
-        </blockquote>
-      ))}
+    <div class="testi__carousel" aria-roledescription="carousel" aria-label="Testimonials">
+      <div class="testi__track">
+        {testimonials.map((t, i) => (
+          <blockquote
+            class={`testi__card ${i === 0 ? 'testi__card--active' : ''}`}
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`Testimonial ${i + 1} of ${testimonials.length}`}
+            data-index={i}
+          >
+            <div class="testi__quote-mark" aria-hidden="true">&ldquo;</div>
+            <p class="testi__text">{t.quote}</p>
+            <footer class="testi__footer">
+              <div class="testi__avatar">
+                {t.name.charAt(0)}
+              </div>
+              <div>
+                <cite class="testi__name">{t.name}</cite>
+                <span class="testi__event">{t.event}</span>
+              </div>
+            </footer>
+          </blockquote>
+        ))}
+      </div>
+
+      <div class="testi__controls">
+        <button class="testi__arrow testi__arrow--prev" aria-label="Previous testimonial">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M13 4L7 10L13 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <div class="testi__dots">
+          {testimonials.map((_, i) => (
+            <button
+              class={`testi__dot ${i === 0 ? 'testi__dot--active' : ''}`}
+              aria-label={`Go to testimonial ${i + 1}`}
+              data-dot={i}
+            />
+          ))}
+        </div>
+
+        <button class="testi__arrow testi__arrow--next" aria-label="Next testimonial">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 </Section>
+
+<script>
+  function initCarousel() {
+    const carousel = document.querySelector('.testi__carousel');
+    if (!carousel) {
+      return;
+    }
+
+    const cards = carousel.querySelectorAll<HTMLElement>('.testi__card');
+    const dots = carousel.querySelectorAll<HTMLElement>('.testi__dot');
+    const prevBtn = carousel.querySelector('.testi__arrow--prev');
+    const nextBtn = carousel.querySelector('.testi__arrow--next');
+    const total = cards.length;
+    let current = 0;
+    let timer: ReturnType<typeof setTimeout>;
+
+    function scheduleNext() {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        goTo(current + 1);
+        scheduleNext();
+      }, 6000);
+    }
+
+    function stopAutoplay() {
+      clearTimeout(timer);
+    }
+
+    function goTo(index: number) {
+      current = ((index % total) + total) % total;
+
+      cards.forEach((card, i) => {
+        card.classList.toggle('testi__card--active', i === current);
+      });
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('testi__dot--active', i === current);
+      });
+    }
+
+    prevBtn?.addEventListener('click', () => {
+      goTo(current - 1);
+      scheduleNext();
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      goTo(current + 1);
+      scheduleNext();
+    });
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        goTo(Number(dot.dataset.dot));
+        scheduleNext();
+      });
+    });
+
+    carousel.addEventListener('mouseenter', stopAutoplay);
+    carousel.addEventListener('mouseleave', scheduleNext);
+
+    goTo(0);
+    scheduleNext();
+  }
+
+  initCarousel();
+  document.addEventListener('astro:after-swap', initCarousel);
+</script>

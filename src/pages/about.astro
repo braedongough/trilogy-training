@@ -14,7 +14,7 @@ const principles = [
   {
     icon: '\u25B2',
     title: 'Communication First',
-    desc: "Coaching isn't a one-way street. We provide regular check-ins, detailed session feedback, and are always available when you need guidance or motivation.",
+    desc: "Coaching isn't a one-way street. The best results come from genuine collaboration between coach and athlete, so we prioritise open dialogue, regular check-ins, and shared decision-making to keep your training aligned with how you're feeling and performing.",
   },
   {
     icon: '\u25C7',
@@ -48,15 +48,25 @@ const principles = [
   <CoachProfile
     name="Adam Labbett"
     imageSrc="/images/coaches/adam.jpg"
-    credentials="Endurance Sport Coaching Institute certified,<br />Ironman U Certified Coach"
     bio="Originally from the UK and now based in Switzerland, Adam has over a decade of experience in endurance sport. He specialises in building training programmes that fit around busy lifestyles, combining data-driven planning with a deep understanding of each athlete's individual needs, whether you're targeting your first sprint triathlon or chasing an Ironman PB. Adam believes that consistency, communication, and trust are the foundations of great coaching."
     accent="accent-1"
+    careerHighs={[
+      'World Duathlon AG Champion',
+      'European Duathlon AG Champion',
+      'Ironman Copenhagen AG Winner with a time of 8:36',
+      'Top 10 overall Ironman South American Championships (3rd in AG)',
+      'Racing the Ironman World Championships in Hawaii',
+      'Training in New Zealand for 6 months',
+    ]}
+    careerLows={[
+      'Getting hypothermia at Powerman Zoffingen Long Distance Duathlon World Championships',
+      'Breaking wrist on the bike at Ironman Copenhagen (despite continuing on to win the race)',
+    ]}
   />
 
   <CoachProfile
     name="Cameron Keast"
     imageSrc="/images/coaches/cameron.jpg"
-    credentials="Sport Science degree from Edinburgh University"
     bio="Originally from the UK and now based in Spain, Cameron brings a sport science background and a passion for helping athletes unlock their potential. He works with athletes of all levels, from complete beginners to experienced competitors. Cameron's coaching philosophy centres on progressive overload, smart recovery, and making training something you look forward to every day."
     accent="accent-2"
     reverse
