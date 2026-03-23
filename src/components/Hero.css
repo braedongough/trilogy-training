@@ -29,6 +29,7 @@
   display: flex;
   width: max-content;
   animation: marquee 60s linear infinite;
+  will-change: transform;
 }
 
 .hero__marquee-strip--reverse .hero__marquee-track {

@@ -50,10 +50,12 @@ const siteUrl = 'https://www.trilogy-training.com';
     <meta name="twitter:title" content={ogTitle || title} />
     <meta name="twitter:description" content={ogDescription || description} />
     <meta name="twitter:image" content={`${siteUrl}/og-image.png`} />
-    <!-- Google Fonts -->
+    <!-- Google Fonts (non-render-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" /></noscript>
     <ClientRouter />
     <slot name="head" />
   </head>
@@ -62,11 +64,6 @@ const siteUrl = 'https://www.trilogy-training.com';
       (function() {
         var theme = localStorage.getItem('trilogy-theme');
         if (theme) document.documentElement.setAttribute('data-theme', theme);
-        // Prevent smooth scroll from animating scroll restoration on hard refresh
-        document.documentElement.style.scrollBehavior = 'auto';
-        window.addEventListener('load', function() {
-          document.documentElement.style.scrollBehavior = '';
-        });
       })();
       document.addEventListener('astro:after-swap', function() {
         var theme = localStorage.getItem('trilogy-theme');

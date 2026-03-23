@@ -75,3 +75,20 @@ const items = [...silhouettes, ...silhouettes];
     <div class="hero__scroll-line"></div>
   </div>
 </section>
+
+<script>
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    const tracks = hero.querySelectorAll<HTMLElement>('.hero__marquee-track');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const isVisible = entries[0].isIntersecting;
+        tracks.forEach((track) => {
+          track.style.animationPlayState = isVisible ? 'running' : 'paused';
+        });
+      },
+      { threshold: 0 }
+    );
+    observer.observe(hero);
+  }
+</script>

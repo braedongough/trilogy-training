@@ -151,8 +151,19 @@ const testimonials = [
     carousel.addEventListener('mouseenter', stopAutoplay);
     carousel.addEventListener('mouseleave', scheduleNext);
 
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          scheduleNext();
+        } else {
+          stopAutoplay();
+        }
+      },
+      { threshold: 0 }
+    );
+    observer.observe(carousel);
+
     goTo(0);
-    scheduleNext();
   }
 
   initCarousel();
