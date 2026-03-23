@@ -73,6 +73,147 @@
   min-height: 80px;
 }
 
+/* ── Phone field with country selector ───────────────────── */
+
+.contact-form__phone-wrapper {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+}
+
+.contact-form__country-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.6rem 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: none;
+  color: var(--color-text);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.3s, background 0.2s;
+  flex-shrink: 0;
+}
+
+.contact-form__country-btn:hover {
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.contact-form__phone-wrapper:focus-within .contact-form__country-btn {
+  border-color: var(--color-accent-1);
+}
+
+.contact-form__country-flag {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.contact-form__country-dial {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.contact-form__country-chevron {
+  font-size: 0.55rem;
+  color: var(--color-accent-1);
+  margin-left: 0.1rem;
+}
+
+.contact-form__phone-input {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.6rem 1rem;
+  outline: none;
+  transition: border-color 0.3s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.contact-form__phone-input:focus {
+  border-color: var(--color-accent-1);
+}
+
+.contact-form__phone-input::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.6;
+}
+
+.contact-form__phone-dropdown {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  z-index: 100;
+  width: 280px;
+  background: var(--color-bg);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.contact-form__phone-search {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.6rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  outline: none;
+}
+
+.contact-form__phone-search::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.5;
+}
+
+.contact-form__phone-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 220px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+
+.contact-form__phone-option {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.55rem 1rem;
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s;
+}
+
+.contact-form__phone-option:hover,
+.contact-form__phone-option--active {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.contact-form__option-name {
+  flex: 1;
+}
+
+.contact-form__option-dial {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
 .contact-form__row {
   display: grid;
   grid-template-columns: 1fr 1fr;
