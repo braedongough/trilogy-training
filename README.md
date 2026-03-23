@@ -1,6 +1,6 @@
 # Trilogy Training
 
-The website for [Trilogy Training](https://www.trilogy-training.com/) — personalised endurance coaching for triathletes, runners, swimmers, and cyclists, run by coaches Adam Labbett (Switzerland) and Cameron Keast (Spain).
+The website for [Trilogy Training](https://www.trilogy-training.com/) — personalised endurance coaching for triathletes, runners, swimmers, and cyclists, run by coaches Adam Labbett and Cameron Keast (Spain).
 
 ## Tech Stack
 
