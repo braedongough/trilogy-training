@@ -1,5 +1,5 @@
 ---
-import ThemeSwitcher from './ThemeSwitcher';
+import ThemeSwitcher from './ThemeSwitcher.astro';
 import './Footer.css';
 
 const sitemapLinks = [
@@ -24,7 +24,7 @@ const currentYear = new Date().getFullYear();
         <p class="footer__tagline">
           Personalised endurance coaching for athletes worldwide.
         </p>
-        <ThemeSwitcher client:load />
+        <ThemeSwitcher />
       </div>
 
       <div class="footer__col">

@@ -1,5 +1,6 @@
 ---
-import Header from '../components/Header';
+import { ClientRouter } from 'astro:transitions';
+import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/reset.css';
 import '../styles/variables.css';
@@ -52,6 +53,7 @@ const siteUrl = 'https://www.trilogy-training.com';
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
     <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" /></noscript>
+    <ClientRouter />
     <slot name="head" />
   </head>
   <body>
@@ -60,9 +62,13 @@ const siteUrl = 'https://www.trilogy-training.com';
         var theme = localStorage.getItem('trilogy-theme');
         if (theme) document.documentElement.setAttribute('data-theme', theme);
       })();
+      document.addEventListener('astro:after-swap', function() {
+        var theme = localStorage.getItem('trilogy-theme');
+        if (theme) document.documentElement.setAttribute('data-theme', theme);
+      });
     </script>
     <div class="layout">
-      <Header client:load />
+      <Header />
       <main class="layout__main">
         <slot />
       </main>

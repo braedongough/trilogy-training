@@ -1,0 +1,56 @@
+---
+import './ThemeSwitcher.css';
+
+const themes = [
+  { name: 'default', label: 'Original', colors: ['#00E5CC', '#FF2D78'] },
+  { name: 'warm', label: 'Warm', colors: ['#FFB800', '#FF4500'] },
+  { name: 'cool', label: 'Cool', colors: ['#7B68EE', '#00CED1'] },
+  { name: 'earth', label: 'Earth', colors: ['#2ECC71', '#E67E22'] },
+];
+---
+<div class="theme-switcher" id="theme-switcher">
+  <span class="theme-switcher__label">Theme</span>
+  <div class="theme-switcher__swatches">
+    {themes.map(t => (
+      <button
+        class={`theme-switcher__swatch ${t.name === 'default' ? 'theme-switcher__swatch--active' : ''}`}
+        aria-label={`Switch to ${t.label} theme`}
+        title={t.label}
+        data-theme-name={t.name}
+      >
+        <span style={`background:${t.colors[0]}`}></span>
+        <span style={`background:${t.colors[1]}`}></span>
+      </button>
+    ))}
+  </div>
+</div>
+
+<script>
+  const switcher = document.getElementById('theme-switcher');
+  if (switcher) {
+    const saved = localStorage.getItem('trilogy-theme') || 'default';
+    const swatches = switcher.querySelectorAll<HTMLButtonElement>('.theme-switcher__swatch');
+
+    swatches.forEach(swatch => {
+      if (swatch.dataset.themeName === saved) {
+        swatch.classList.add('theme-switcher__swatch--active');
+      } else {
+        swatch.classList.remove('theme-switcher__swatch--active');
+      }
+
+      swatch.addEventListener('click', () => {
+        const name = swatch.dataset.themeName!;
+        swatches.forEach(s => s.classList.remove('theme-switcher__swatch--active'));
+        swatch.classList.add('theme-switcher__swatch--active');
+
+        if (name === 'default') {
+          document.documentElement.removeAttribute('data-theme');
+          localStorage.removeItem('trilogy-theme');
+        } else {
+          document.documentElement.setAttribute('data-theme', name);
+          localStorage.setItem('trilogy-theme', name);
+        }
+      });
+    });
+  }
+</script>
