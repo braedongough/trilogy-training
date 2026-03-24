@@ -22,7 +22,6 @@
 
 .testi__track {
   position: relative;
-  min-height: 480px;
 }
 
 .testi__card {
@@ -162,9 +161,4 @@
   border-color: var(--color-accent-1);
 }
 
-@media (max-width: 768px) {
-  .testi__track {
-    min-height: 560px;
-  }
-}
 

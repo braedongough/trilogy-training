@@ -100,12 +100,36 @@ const testimonials = [
     }
 
     const cards = carousel.querySelectorAll<HTMLElement>('.testi__card');
+    const track = carousel.querySelector<HTMLElement>('.testi__track');
     const dots = carousel.querySelectorAll<HTMLElement>('.testi__dot');
     const prevBtn = carousel.querySelector('.testi__arrow--prev');
     const nextBtn = carousel.querySelector('.testi__arrow--next');
     const total = cards.length;
     let current = 0;
     let timer: ReturnType<typeof setTimeout>;
+
+    function syncTrackHeight() {
+      if (!track) {
+        return;
+      }
+      // Temporarily make all cards visible (but not laid out) to measure their natural heights
+      let maxHeight = 0;
+      cards.forEach((card) => {
+        const prevVisibility = card.style.visibility;
+        const prevOpacity = card.style.opacity;
+        card.style.visibility = 'hidden';
+        card.style.opacity = '0';
+        card.style.display = 'flex';
+        maxHeight = Math.max(maxHeight, card.scrollHeight);
+        card.style.visibility = prevVisibility;
+        card.style.opacity = prevOpacity;
+        card.style.display = '';
+      });
+      track.style.minHeight = `${maxHeight}px`;
+    }
+
+    syncTrackHeight();
+    window.addEventListener('resize', syncTrackHeight);
 
     function scheduleNext() {
       clearTimeout(timer);
