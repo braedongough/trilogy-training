@@ -22,12 +22,14 @@
 
 .testi__track {
   position: relative;
-  min-height: 320px;
+  min-height: 480px;
 }
 
 .testi__card {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   padding: var(--space-md);
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -109,7 +111,6 @@
   color: var(--color-accent-2);
 }
 
-/* Controls */
 .testi__controls {
   display: flex;
   align-items: center;
@@ -163,6 +164,7 @@
 
 @media (max-width: 768px) {
   .testi__track {
-    min-height: 420px;
+    min-height: 560px;
   }
 }
+

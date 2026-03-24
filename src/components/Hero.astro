@@ -5,38 +5,73 @@ import CyclistSvg from '../assets/silhouettes/cyclist.svg?raw';
 import RunnerSvg from '../assets/silhouettes/runner.svg?raw';
 import './Hero.css';
 
-const silhouettes = [SwimmerSvg, CyclistSvg, RunnerSvg];
-const items = [...silhouettes, ...silhouettes];
+/**
+ * Extract the inner content and viewBox from a raw SVG string
+ * so we can define it once as a <symbol> and reuse with <use>.
+ */
+function extractSvgParts(raw: string) {
+  const viewBoxMatch = raw.match(/viewBox="([^"]+)"/);
+  const fillMatch = raw.match(/fill="([^"]+)"/);
+  // Extract everything between the opening <svg ...> and closing </svg>
+  const innerMatch = raw.match(/<svg[^>]*>([\s\S]*)<\/svg>/);
+  return {
+    viewBox: viewBoxMatch?.[1] ?? '0 0 100 100',
+    fill: fillMatch?.[1] ?? 'currentColor',
+    inner: innerMatch?.[1]?.trim() ?? '',
+  };
+}
+
+const swimmer = extractSvgParts(SwimmerSvg);
+const cyclist = extractSvgParts(CyclistSvg);
+const runner = extractSvgParts(RunnerSvg);
+
+const symbols = [
+  { id: 'sil-swimmer', ...swimmer },
+  { id: 'sil-cyclist', ...cyclist },
+  { id: 'sil-runner', ...runner },
+];
+
+// Pattern: swimmer, cyclist, runner × 2 = 6 items per set, duplicated for seamless marquee
+const itemIds = ['sil-swimmer', 'sil-cyclist', 'sil-runner', 'sil-swimmer', 'sil-cyclist', 'sil-runner'];
 ---
 <section class="hero">
+  {/* Hidden SVG sprite — each silhouette defined once */}
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    {symbols.map(({ id, viewBox, inner }) => (
+      <symbol id={id} viewBox={viewBox} fill="currentColor">
+        <Fragment set:html={inner} />
+      </symbol>
+    ))}
+  </svg>
+
   <div class="hero__bg">
     <div class="hero__marquee-strip">
       <div class="hero__marquee-track">
-        {items.map((svg) => (
-          <div class="hero__silhouette" set:html={svg} />
+        {itemIds.map((id) => (
+          <svg class="hero__silhouette" aria-hidden="true"><use href={`#${id}`} /></svg>
         ))}
-        {items.map((svg) => (
-          <div class="hero__silhouette" set:html={svg} />
+        {itemIds.map((id) => (
+          <svg class="hero__silhouette" aria-hidden="true"><use href={`#${id}`} /></svg>
         ))}
       </div>
     </div>
     <div class="hero__marquee-strip hero__marquee-strip--reverse">
       <div class="hero__marquee-track">
-        {items.map((svg) => (
-          <div class="hero__silhouette" set:html={svg} />
+        {itemIds.map((id) => (
+          <svg class="hero__silhouette" aria-hidden="true"><use href={`#${id}`} /></svg>
         ))}
-        {items.map((svg) => (
-          <div class="hero__silhouette" set:html={svg} />
+        {itemIds.map((id) => (
+          <svg class="hero__silhouette" aria-hidden="true"><use href={`#${id}`} /></svg>
         ))}
       </div>
     </div>
     <div class="hero__marquee-strip">
       <div class="hero__marquee-track">
-        {items.map((svg) => (
-          <div class="hero__silhouette" set:html={svg} />
+        {itemIds.map((id) => (
+          <svg class="hero__silhouette" aria-hidden="true"><use href={`#${id}`} /></svg>
         ))}
-        {items.map((svg) => (
-          <div class="hero__silhouette" set:html={svg} />
+        {itemIds.map((id) => (
+          <svg class="hero__silhouette" aria-hidden="true"><use href={`#${id}`} /></svg>
         ))}
       </div>
     </div>
