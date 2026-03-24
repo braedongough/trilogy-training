@@ -50,11 +50,6 @@
   transform: scaleX(1);
 }
 
-.hero__silhouette svg {
-  width: 100%;
-  height: 100%;
-}
-
 /* Geometric decorations */
 .hero__deco {
   position: absolute;

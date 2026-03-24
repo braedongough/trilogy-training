@@ -1,5 +1,4 @@
 ---
-import { ClientRouter } from 'astro:transitions';
 import Header from '../components/Header';
 import Footer from '../components/Footer.astro';
 import '../styles/reset.css';
@@ -26,9 +25,6 @@ const siteUrl = 'https://www.trilogy-training.com';
     <meta charset="UTF-8" />
     <style is:inline>
       :root { background-color: #1A1A2E; color-scheme: dark; }
-      ::view-transition-group(root) { background-color: #1A1A2E; }
-      ::view-transition-old(root) { animation: none; }
-      ::view-transition-new(root) { animation: none; }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -56,7 +52,6 @@ const siteUrl = 'https://www.trilogy-training.com';
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
     <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" /></noscript>
-    <ClientRouter />
     <slot name="head" />
   </head>
   <body>
@@ -65,12 +60,6 @@ const siteUrl = 'https://www.trilogy-training.com';
         var theme = localStorage.getItem('trilogy-theme');
         if (theme) document.documentElement.setAttribute('data-theme', theme);
       })();
-      document.addEventListener('astro:after-swap', function() {
-        var theme = localStorage.getItem('trilogy-theme');
-        if (theme) {
-          document.documentElement.setAttribute('data-theme', theme);
-        }
-      });
     </script>
     <div class="layout">
       <Header client:load />
