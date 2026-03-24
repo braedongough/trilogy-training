@@ -26,16 +26,16 @@ const steps = [
     <h2 class="hiw__title">How It Works</h2>
 
     <div class="hiw__grid">
-      {steps.map((step, i) => (
+      {steps.map((step) => (
         <div class="hiw__card">
           <div class="hiw__tri">
+            <svg class="hiw__tri-svg" viewBox="0 0 64 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <polygon points="32,1 63,55 1,55" stroke="var(--color-accent-2)" stroke-width="2" fill="rgba(255,45,120,0.08)" />
+            </svg>
             <span class="hiw__num">{step.num}</span>
           </div>
           <h3 class="hiw__card-title">{step.title}</h3>
           <p class="hiw__card-desc">{step.desc}</p>
-          {i < steps.length - 1 && (
-            <div class="hiw__connector" aria-hidden="true"></div>
-          )}
         </div>
       ))}
     </div>

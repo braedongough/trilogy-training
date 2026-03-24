@@ -8,7 +8,7 @@
   text-transform: uppercase;
   letter-spacing: 0.2em;
   color: var(--color-accent-1);
-  margin-bottom: var(--space-xs);
+  margin-bottom: 0.25rem;
 }
 
 .hiw__title {
@@ -37,28 +37,18 @@
 
 .hiw__tri {
   width: 64px;
-  height: 64px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
 }
 
-.hiw__tri::before {
-  content: '';
+.hiw__tri-svg {
   position: absolute;
   inset: 0;
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  border: 2px solid var(--color-accent-2);
-  background: transparent;
-}
-
-.hiw__tri::after {
-  content: '';
-  position: absolute;
-  inset: 4px;
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  background: rgba(255, 45, 120, 0.08);
+  width: 100%;
+  height: 100%;
 }
 
 .hiw__num {
@@ -81,23 +71,6 @@
   font-size: 0.95rem;
   color: var(--color-text-muted);
   line-height: 1.7;
-}
-
-.hiw__connector {
-  display: none;
-}
-
-@media (min-width: 769px) {
-  .hiw__connector {
-    display: block;
-    position: absolute;
-    right: -1.5rem;
-    top: 50%;
-    width: 2rem;
-    height: 2px;
-    background: linear-gradient(90deg, var(--color-accent-1), var(--color-accent-2));
-    transform: translateY(-50%);
-  }
 }
 
 @media (max-width: 768px) {
