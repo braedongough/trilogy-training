@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-lg);
-  align-items: center;
+  align-items: start;
 }
 
 .coach--reverse {
@@ -103,12 +103,10 @@
   text-align: justify;
 }
 
-/* Career sections */
-.coach__career {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-  margin-top: var(--space-xs);
+/* Career sections — direct grid children, flow into second row */
+.coach__career-section {
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--color-border, rgba(255,255,255,0.08));
 }
 
 .coach__career-heading {
@@ -116,7 +114,7 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .coach__career-heading--accent-1 {
@@ -144,7 +142,7 @@
   position: relative;
 }
 
-.coach__career-item::before {
+.coach__career-item--high::before {
   content: '\25B2';
   position: absolute;
   left: 0;
@@ -153,8 +151,12 @@
   color: var(--color-accent-1);
 }
 
-.coach__career-section:last-child .coach__career-item::before {
+.coach__career-item--low::before {
   content: '\25BD';
+  position: absolute;
+  left: 0;
+  font-size: 0.5rem;
+  top: 0.35rem;
   color: var(--color-accent-2);
 }
 
@@ -181,7 +183,7 @@
     max-width: 100%;
   }
 
-  .coach__career {
+  .coach__career-section {
     text-align: left;
   }
 

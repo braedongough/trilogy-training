@@ -16,7 +16,6 @@ const { name, imageSrc, bio, accent, reverse = false, careerHighs = [], careerLo
 const sectionBg = reverse ? 'alt' : 'default';
 const sectionDivider = reverse ? 'angle-top' : 'none';
 const coachId = `coach-${name.split(' ')[0].toLowerCase()}`;
-const hasCareerSection = careerHighs.length > 0 || careerLows.length > 0;
 ---
 <Section background={sectionBg} divider={sectionDivider} id={coachId}>
   <div class={`coach coach--${accent} ${reverse ? 'coach--reverse' : ''}`}>
@@ -30,31 +29,28 @@ const hasCareerSection = careerHighs.length > 0 || careerLows.length > 0;
     <div class="coach__info">
       <h2 class="coach__name">{name}</h2>
       <p class="coach__bio">{bio}</p>
-
-      {hasCareerSection && (
-        <div class="coach__career">
-          {careerHighs.length > 0 && (
-            <div class="coach__career-section">
-              <h3 class={`coach__career-heading coach__career-heading--${accent}`}>Career Highs</h3>
-              <ul class="coach__career-list">
-                {careerHighs.map((item) => (
-                  <li class="coach__career-item">{item}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-          {careerLows.length > 0 && (
-            <div class="coach__career-section">
-              <h3 class={`coach__career-heading coach__career-heading--${accent}`}>Career Lows</h3>
-              <ul class="coach__career-list">
-                {careerLows.map((item) => (
-                  <li class="coach__career-item">{item}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-      )}
     </div>
+
+    {careerHighs.length > 0 && (
+      <div class={`coach__career-section coach__career-section--${accent}`}>
+        <h3 class={`coach__career-heading coach__career-heading--${accent}`}>Career Highs</h3>
+        <ul class="coach__career-list">
+          {careerHighs.map((item) => (
+            <li class="coach__career-item coach__career-item--high">{item}</li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {careerLows.length > 0 && (
+      <div class={`coach__career-section coach__career-section--${accent}`}>
+        <h3 class={`coach__career-heading coach__career-heading--${accent}`}>Career Lows</h3>
+        <ul class="coach__career-list">
+          {careerLows.map((item) => (
+            <li class="coach__career-item coach__career-item--low">{item}</li>
+          ))}
+        </ul>
+      </div>
+    )}
   </div>
 </Section>

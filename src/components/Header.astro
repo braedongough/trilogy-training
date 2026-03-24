@@ -57,27 +57,29 @@ function isActive(href: string) {
 </header>
 
 <script>
-  const header = document.getElementById('site-header');
-  const burger = document.getElementById('header-burger');
-  const nav = document.getElementById('header-nav');
-
-  if (header) {
-    window.addEventListener('scroll', () => {
-      header.classList.toggle('header--scrolled', window.scrollY > 20);
-    }, { passive: true });
+  function updateScrolled() {
+    document.getElementById('site-header')?.classList.toggle('header--scrolled', window.scrollY > 20);
   }
 
-  if (burger && nav) {
-    burger.addEventListener('click', () => {
-      const open = burger.classList.toggle('header__burger--open');
-      nav.classList.toggle('header__nav--open', open);
-    });
-
-    nav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        burger.classList.remove('header__burger--open');
-        nav.classList.remove('header__nav--open');
+  function initHeader() {
+    updateScrolled();
+    const burger = document.getElementById('header-burger');
+    const nav = document.getElementById('header-nav');
+    if (burger && nav) {
+      burger.addEventListener('click', () => {
+        const open = burger.classList.toggle('header__burger--open');
+        nav.classList.toggle('header__nav--open', open);
       });
-    });
+      nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          burger.classList.remove('header__burger--open');
+          nav.classList.remove('header__nav--open');
+        });
+      });
+    }
   }
+
+  window.addEventListener('scroll', updateScrolled, { passive: true });
+  document.addEventListener('astro:page-load', initHeader);
+  initHeader();
 </script>
