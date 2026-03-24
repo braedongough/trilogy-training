@@ -1,0 +1,83 @@
+---
+import Button from './Button.astro';
+import './Header.css';
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about/', label: 'About' },
+  { href: '/plans/', label: 'Pricing' },
+  { href: '/contact/', label: 'Contact' },
+  { href: 'https://www.owayo.ie/store/trilogytraining', label: 'Shop', external: true },
+];
+
+const raw = Astro.url.pathname.replace(/\/index\.html$/, '/');
+const currentPath = raw.endsWith('/') && raw !== '/' ? raw.slice(0, -1) : raw;
+
+function isActive(href: string) {
+  const normHref = href.endsWith('/') && href !== '/' ? href.slice(0, -1) : href;
+  return currentPath === normHref || (normHref !== '/' && currentPath.startsWith(normHref));
+}
+---
+<header class="header" id="site-header">
+  <div class="header__inner">
+    <a href="/" class="header__logo">
+      <span class="header__logo-tri">TRI</span>
+      <span class="header__logo-logy">LOGY</span>
+      <span class="header__logo-training">TRAINING</span>
+    </a>
+
+    <button
+      class="header__burger"
+      id="header-burger"
+      aria-label="Toggle menu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="header__nav" id="header-nav">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class={`header__link ${!link.external && isActive(link.href) ? 'header__link--active' : ''}`}
+          {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="header__cta">
+      <Button href="/contact/" variant="primary" size="sm">
+        Book a Free Call
+      </Button>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('site-header');
+  const burger = document.getElementById('header-burger');
+  const nav = document.getElementById('header-nav');
+
+  if (header) {
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('header--scrolled', window.scrollY > 20);
+    }, { passive: true });
+  }
+
+  if (burger && nav) {
+    burger.addEventListener('click', () => {
+      const open = burger.classList.toggle('header__burger--open');
+      nav.classList.toggle('header__nav--open', open);
+    });
+
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        burger.classList.remove('header__burger--open');
+        nav.classList.remove('header__nav--open');
+      });
+    });
+  }
+</script>
