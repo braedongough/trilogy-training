@@ -18,8 +18,8 @@
 }
 
 .theme-switcher__swatch {
-  width: 28px;
-  height: 28px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 2px solid transparent;
   cursor: pointer;
@@ -28,6 +28,8 @@
   overflow: hidden;
   transition: border-color 0.2s, transform 0.2s;
   padding: 0;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .theme-switcher__swatch span {
