@@ -25,32 +25,39 @@ const themes = [
   </div>
 </div>
 
-<script>
-  const switcher = document.getElementById('theme-switcher');
-  if (switcher) {
-    const saved = localStorage.getItem('trilogy-theme') || 'default';
-    const swatches = switcher.querySelectorAll<HTMLButtonElement>('.theme-switcher__swatch');
+<script is:inline>
+  function initThemeSwitcher() {
+    var switcher = document.getElementById('theme-switcher');
+    if (!switcher) return;
 
-    swatches.forEach(swatch => {
+    var saved = 'default';
+    try { saved = localStorage.getItem('trilogy-theme') || 'default'; } catch (e) {}
+
+    var swatches = switcher.querySelectorAll('.theme-switcher__swatch');
+
+    swatches.forEach(function(swatch) {
       if (swatch.dataset.themeName === saved) {
         swatch.classList.add('theme-switcher__swatch--active');
       } else {
         swatch.classList.remove('theme-switcher__swatch--active');
       }
 
-      swatch.addEventListener('click', () => {
-        const name = swatch.dataset.themeName!;
-        swatches.forEach(s => s.classList.remove('theme-switcher__swatch--active'));
+      swatch.addEventListener('click', function() {
+        var name = swatch.dataset.themeName;
+        swatches.forEach(function(s) { s.classList.remove('theme-switcher__swatch--active'); });
         swatch.classList.add('theme-switcher__swatch--active');
 
         if (name === 'default') {
           document.documentElement.removeAttribute('data-theme');
-          localStorage.removeItem('trilogy-theme');
+          try { localStorage.removeItem('trilogy-theme'); } catch (e) {}
         } else {
           document.documentElement.setAttribute('data-theme', name);
-          localStorage.setItem('trilogy-theme', name);
+          try { localStorage.setItem('trilogy-theme', name); } catch (e) {}
         }
       });
     });
   }
+
+  initThemeSwitcher();
+  document.addEventListener('astro:page-load', initThemeSwitcher);
 </script>

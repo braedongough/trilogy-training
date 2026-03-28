@@ -59,12 +59,16 @@ const siteUrl = 'https://www.trilogy-training.com';
   <body>
     <script is:inline>
       (function() {
-        var theme = localStorage.getItem('trilogy-theme');
-        if (theme) document.documentElement.setAttribute('data-theme', theme);
+        try {
+          var theme = localStorage.getItem('trilogy-theme');
+          if (theme) document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {}
       })();
       document.addEventListener('astro:after-swap', function() {
-        var theme = localStorage.getItem('trilogy-theme');
-        if (theme) document.documentElement.setAttribute('data-theme', theme);
+        try {
+          var theme = localStorage.getItem('trilogy-theme');
+          if (theme) document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {}
       });
     </script>
     <div class="layout">
