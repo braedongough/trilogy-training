@@ -20,15 +20,14 @@
   margin: 0 auto;
 }
 
+/* Stack every card in one grid cell so the track is always as tall as the tallest card */
 .testi__track {
-  position: relative;
+  display: grid;
 }
 
 .testi__card {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  grid-area: 1 / 1;
+  position: relative;
   padding: var(--space-md);
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);

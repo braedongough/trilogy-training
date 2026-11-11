@@ -93,43 +93,26 @@ const testimonials = [
 </Section>
 
 <script>
+  // The ClientRouter swaps in a fresh homepage on every visit, so the carousel
+  // is set up on each page load and the previous one's autoplay is torn down.
+  let timer: ReturnType<typeof setTimeout>;
+  let observer: IntersectionObserver | undefined;
+
   function initCarousel() {
+    clearTimeout(timer);
+    observer?.disconnect();
+
     const carousel = document.querySelector('.testi__carousel');
     if (!carousel) {
       return;
     }
 
     const cards = carousel.querySelectorAll<HTMLElement>('.testi__card');
-    const track = carousel.querySelector<HTMLElement>('.testi__track');
     const dots = carousel.querySelectorAll<HTMLElement>('.testi__dot');
     const prevBtn = carousel.querySelector('.testi__arrow--prev');
     const nextBtn = carousel.querySelector('.testi__arrow--next');
     const total = cards.length;
     let current = 0;
-    let timer: ReturnType<typeof setTimeout>;
-
-    function syncTrackHeight() {
-      if (!track) {
-        return;
-      }
-      // Temporarily make all cards visible (but not laid out) to measure their natural heights
-      let maxHeight = 0;
-      cards.forEach((card) => {
-        const prevVisibility = card.style.visibility;
-        const prevOpacity = card.style.opacity;
-        card.style.visibility = 'hidden';
-        card.style.opacity = '0';
-        card.style.display = 'flex';
-        maxHeight = Math.max(maxHeight, card.scrollHeight);
-        card.style.visibility = prevVisibility;
-        card.style.opacity = prevOpacity;
-        card.style.display = '';
-      });
-      track.style.minHeight = `${maxHeight}px`;
-    }
-
-    syncTrackHeight();
-    window.addEventListener('resize', syncTrackHeight);
 
     function scheduleNext() {
       clearTimeout(timer);
@@ -175,7 +158,7 @@ const testimonials = [
     carousel.addEventListener('mouseenter', stopAutoplay);
     carousel.addEventListener('mouseleave', scheduleNext);
 
-    const observer = new IntersectionObserver(
+    observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
           scheduleNext();
@@ -190,5 +173,5 @@ const testimonials = [
     goTo(0);
   }
 
-  initCarousel();
+  document.addEventListener('astro:page-load', initCarousel);
 </script>
