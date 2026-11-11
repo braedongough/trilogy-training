@@ -5,6 +5,7 @@
 }
 
 .legal-hero__label {
+  margin-inline: auto;
   font-family: var(--font-accent);
   font-size: 0.875rem;
   text-transform: uppercase;
@@ -24,6 +25,7 @@
 }
 
 .legal-hero__subtitle {
+  margin-inline: auto;
   font-family: var(--font-body);
   font-size: clamp(1rem, 1.2vw, 1.125rem);
   color: var(--color-text-muted);

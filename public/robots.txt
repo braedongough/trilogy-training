@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.trilogy-training.com/sitemap.xml
+Sitemap: https://trilogy-training.com/sitemap.xml

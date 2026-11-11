@@ -80,6 +80,6 @@ function isActive(href: string) {
   }
 
   window.addEventListener('scroll', updateScrolled, { passive: true });
+  // astro:page-load also fires on the first load, so this is the only place initHeader runs
   document.addEventListener('astro:page-load', initHeader);
-  initHeader();
 </script>

@@ -1,6 +1,8 @@
 .hero {
   position: relative;
-  min-height: 100vh;
+  /* Fill the visible screen below the fixed header; svh excludes mobile browser toolbars */
+  min-height: calc(100vh - var(--header-height));
+  min-height: calc(100svh - var(--header-height));
   display: flex;
   align-items: center;
   justify-content: center;

@@ -100,7 +100,7 @@
   color: var(--color-text-muted);
   line-height: 1.8;
   max-width: 55ch;
-  text-align: justify;
+  text-align: left;
 }
 
 /* Career sections — direct grid children, flow into second row */

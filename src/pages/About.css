@@ -35,6 +35,7 @@
 }
 
 .phil__label {
+  margin-inline: auto;
   font-family: var(--font-accent);
   font-size: 0.75rem;
   text-transform: uppercase;

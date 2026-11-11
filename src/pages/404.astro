@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import Button from '../components/Button.astro';
+import './Legal.css';
+---
+<Layout
+  title="Page Not Found | Trilogy Training"
+  description="The page you were looking for doesn't exist."
+  canonicalPath="/"
+>
+  <Section background="default" class="section--page-header">
+    <div class="legal-hero">
+      <p class="legal-hero__label">404</p>
+      <h1 class="legal-hero__title">Page Not Found</h1>
+      <p class="legal-hero__subtitle">
+        This page doesn't exist or has moved. Try one of these instead.
+      </p>
+      <div class="not-found__actions">
+        <Button href="/" variant="primary" size="lg">Home</Button>
+        <Button href="/plans/" variant="outline" size="lg">Plans &amp; Pricing</Button>
+      </div>
+    </div>
+  </Section>
+</Layout>
+
+<style>
+  .not-found__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    justify-content: center;
+    margin-top: var(--space-md);
+  }
+</style>

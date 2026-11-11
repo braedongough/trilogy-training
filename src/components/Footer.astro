@@ -7,7 +7,7 @@ const sitemapLinks = [
   { href: '/about/', label: 'About' },
   { href: '/plans/', label: 'Plans & Pricing' },
   { href: '/contact/', label: 'Contact' },
-  { href: 'https://www.owayo.ie/store/trilogytraining', label: 'Shop' },
+  { href: 'https://www.owayo.ie/store/trilogytraining', label: 'Shop', external: true },
 ];
 
 const currentYear = new Date().getFullYear();
@@ -27,7 +27,13 @@ const currentYear = new Date().getFullYear();
       <div class="footer__col">
         <p class="footer__heading">Pages</p>
         {sitemapLinks.map(link => (
-          <a href={link.href} class="footer__link">{link.label}</a>
+          <a
+            href={link.href}
+            class="footer__link"
+            {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          >
+            {link.label}
+          </a>
         ))}
       </div>
 
