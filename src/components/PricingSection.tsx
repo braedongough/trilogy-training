@@ -7,12 +7,12 @@ type Currency = 'CHF' | 'EUR' | 'GBP'
 const currencies: Currency[] = ['CHF', 'EUR', 'GBP']
 
 const prices = {
-  single: { CHF: 70, EUR: 75, GBP: 70 },
-  multi: { CHF: 100, EUR: 105, GBP: 100 },
+  single: { CHF: 95, EUR: 100, GBP: 85 },
+  multi: { CHF: 185, EUR: 200, GBP: 170 },
 }
 
 export default function PricingSection() {
-  const [currency, setCurrency] = useState<Currency>('CHF')
+  const [currency, setCurrency] = useState<Currency>('EUR')
 
   return (
     <div className="pricing">
