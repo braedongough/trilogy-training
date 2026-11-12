@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
-import ContactForm from '../components/ContactForm';
+import ContactForm from '../components/ContactForm.astro';
 import './Contact.css';
 ---
 <Layout
@@ -23,7 +23,7 @@ import './Contact.css';
 
   <Section background="alt" class="contact-form-section">
     <div class="contact-grid">
-      <ContactForm client:load />
+      <ContactForm panel />
 
       <div class="contact-info">
         <h2 class="contact-info__heading">Prefer to reach out directly?</h2>

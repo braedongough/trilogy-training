@@ -10,9 +10,9 @@
   --color-text-on-accent: #1A1A2E;
 
   /* Typography */
-  --font-heading: 'Space Grotesk', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-accent: 'Space Mono', monospace;
+  --font-heading: var(--font-space-grotesk), sans-serif;
+  --font-body: var(--font-inter), sans-serif;
+  --font-accent: var(--font-space-mono), monospace;
 
   /* Spacing scale (8px base) */
   --space-xs: 0.5rem;

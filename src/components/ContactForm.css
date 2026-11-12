@@ -1,6 +1,10 @@
 /* ── ContactForm ─────────────────────────────────────────── */
 
-.contact-form {
+/*
+ * Colours and fonts read --cf-* custom properties, falling back to the site
+ * tokens, so a design direction can restyle the form from a parent element.
+ */
+.contact-form--panel {
   padding: var(--space-sm) var(--space-md);
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -20,21 +24,25 @@
 }
 
 .contact-form__label {
-  font-family: var(--font-accent);
+  font-family: var(--cf-label-font, var(--font-accent));
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: var(--color-accent-1);
+  color: var(--cf-accent, var(--color-accent-1));
+}
+
+.contact-form [hidden] {
+  display: none;
 }
 
 .contact-form__input,
 .contact-form__select,
 .contact-form__textarea {
-  font-family: var(--font-body);
+  font-family: var(--cf-font, var(--font-body));
   font-size: 0.95rem;
-  color: var(--color-text);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--cf-text, var(--color-text));
+  background: var(--cf-field-bg, rgba(255, 255, 255, 0.05));
+  border: 1px solid var(--cf-field-border, rgba(255, 255, 255, 0.1));
   padding: 0.6rem 1rem;
   outline: none;
   transition: border-color 0.3s;
@@ -45,18 +53,18 @@
 .contact-form__input:focus,
 .contact-form__select:focus,
 .contact-form__textarea:focus {
-  border-color: var(--color-accent-1);
+  border-color: var(--cf-accent, var(--color-accent-1));
 }
 
 .contact-form__input::placeholder,
 .contact-form__textarea::placeholder {
-  color: var(--color-text-muted);
+  color: var(--cf-muted, var(--color-text-muted));
   opacity: 0.6;
 }
 
 .contact-form__select {
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2300E5CC' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='2' fill='none'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   padding-right: 2.5rem;
@@ -64,8 +72,8 @@
 }
 
 .contact-form__select option {
-  background: var(--color-bg);
-  color: var(--color-text);
+  background: var(--cf-menu-bg, var(--color-bg));
+  color: var(--cf-text, var(--color-text));
 }
 
 .contact-form__textarea {
@@ -86,10 +94,10 @@
   align-items: center;
   gap: 0.35rem;
   padding: 0.6rem 0.75rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--cf-field-bg, rgba(255, 255, 255, 0.05));
+  border: 1px solid var(--cf-field-border, rgba(255, 255, 255, 0.1));
   border-right: none;
-  color: var(--color-text);
+  color: var(--cf-text, var(--color-text));
   cursor: pointer;
   white-space: nowrap;
   transition: border-color 0.3s, background 0.2s;
@@ -97,11 +105,11 @@
 }
 
 .contact-form__country-btn:hover {
-  background: rgba(255, 255, 255, 0.09);
+  background: var(--cf-hover, rgba(255, 255, 255, 0.09));
 }
 
 .contact-form__phone-wrapper:focus-within .contact-form__country-btn {
-  border-color: var(--color-accent-1);
+  border-color: var(--cf-accent, var(--color-accent-1));
 }
 
 .contact-form__country-flag {
@@ -110,23 +118,23 @@
 }
 
 .contact-form__country-dial {
-  font-family: var(--font-body);
+  font-family: var(--cf-font, var(--font-body));
   font-size: 0.9rem;
-  color: var(--color-text);
+  color: var(--cf-text, var(--color-text));
 }
 
 .contact-form__country-chevron {
   font-size: 0.55rem;
-  color: var(--color-accent-1);
+  color: var(--cf-accent, var(--color-accent-1));
   margin-left: 0.1rem;
 }
 
 .contact-form__phone-input {
-  font-family: var(--font-body);
+  font-family: var(--cf-font, var(--font-body));
   font-size: 0.95rem;
-  color: var(--color-text);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--cf-text, var(--color-text));
+  background: var(--cf-field-bg, rgba(255, 255, 255, 0.05));
+  border: 1px solid var(--cf-field-border, rgba(255, 255, 255, 0.1));
   padding: 0.6rem 1rem;
   outline: none;
   transition: border-color 0.3s;
@@ -135,11 +143,11 @@
 }
 
 .contact-form__phone-input:focus {
-  border-color: var(--color-accent-1);
+  border-color: var(--cf-accent, var(--color-accent-1));
 }
 
 .contact-form__phone-input::placeholder {
-  color: var(--color-text-muted);
+  color: var(--cf-muted, var(--color-text-muted));
   opacity: 0.6;
 }
 
@@ -149,8 +157,8 @@
   left: 0;
   z-index: 100;
   width: 280px;
-  background: var(--color-bg);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--cf-menu-bg, var(--color-bg));
+  border: 1px solid var(--cf-field-border, rgba(255, 255, 255, 0.12));
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 
@@ -159,17 +167,17 @@
   width: 100%;
   box-sizing: border-box;
   padding: 0.6rem 1rem;
-  font-family: var(--font-body);
+  font-family: var(--cf-font, var(--font-body));
   font-size: 0.9rem;
-  color: var(--color-text);
-  background: rgba(255, 255, 255, 0.05);
+  color: var(--cf-text, var(--color-text));
+  background: var(--cf-field-bg, rgba(255, 255, 255, 0.05));
   border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--cf-field-border, rgba(255, 255, 255, 0.1));
   outline: none;
 }
 
 .contact-form__phone-search::placeholder {
-  color: var(--color-text-muted);
+  color: var(--cf-muted, var(--color-text-muted));
   opacity: 0.5;
 }
 
@@ -191,8 +199,8 @@
   padding: 0.55rem 1rem;
   background: transparent;
   border: none;
-  color: var(--color-text);
-  font-family: var(--font-body);
+  color: var(--cf-text, var(--color-text));
+  font-family: var(--cf-font, var(--font-body));
   font-size: 0.9rem;
   cursor: pointer;
   text-align: left;
@@ -201,7 +209,7 @@
 
 .contact-form__phone-option:hover,
 .contact-form__phone-option--active {
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--cf-hover, rgba(255, 255, 255, 0.06));
 }
 
 .contact-form__option-name {
@@ -209,7 +217,7 @@
 }
 
 .contact-form__option-dial {
-  color: var(--color-text-muted);
+  color: var(--cf-muted, var(--color-text-muted));
   font-size: 0.85rem;
   opacity: 0.7;
 }
@@ -217,7 +225,7 @@
 .contact-form__row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-sm);
+  gap: var(--cf-gap, 1rem);
 }
 
 .contact-form__submit {
@@ -231,8 +239,8 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: var(--space-sm);
-  padding: var(--space-lg) var(--space-md);
+  gap: 1rem;
+  padding: 4rem 2rem;
 }
 
 .contact-form__success-icon {
@@ -240,24 +248,24 @@
 }
 
 .contact-form__success-title {
-  font-family: var(--font-heading);
+  font-family: var(--cf-heading-font, var(--font-heading));
   font-size: 1.5rem;
   font-weight: 600;
 }
 
 .contact-form__success-text {
-  color: var(--color-text-muted);
+  color: var(--cf-muted, var(--color-text-muted));
   line-height: 1.7;
   max-width: 40ch;
 }
 
 .contact-form__error {
-  font-family: var(--font-accent);
+  font-family: var(--cf-label-font, var(--font-accent));
   font-size: 0.75rem;
-  color: var(--color-accent-2);
+  color: var(--cf-error, var(--color-accent-2));
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  margin-top: var(--space-xs);
+  margin-top: 0.5rem;
 }
 
 @media (max-width: 768px) {

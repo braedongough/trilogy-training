@@ -60,7 +60,7 @@ Themes swap only `--color-accent-1` and `--color-accent-2`. The dark foundation,
 
 ## Typography
 
-Three typefaces, each with a distinct role. All are free Google Fonts loaded via `<link>` tags in each HTML entry file.
+Three typefaces, each with a distinct role. All are free fonts that Astro downloads and self-hosts at build time: they are declared in `astro.config.mjs` (`fonts`) and loaded with `<Font>` in `src/layouts/Layout.astro`. Do not add `<link>` tags to third-party font hosts.
 
 | Token            | Typeface       | Weights      | Role                                       |
 |------------------|----------------|--------------|---------------------------------------------|
@@ -181,6 +181,8 @@ All shared keyframes are defined in `src/styles/animations.css`.
 ### Animation Rules
 
 - All animations are CSS-only — no animation libraries.
+- The site ships no UI framework. Interactive pieces (FAQ, currency switch, contact form, carousel) are native elements or small scripts in `src/scripts/`; keep it that way rather than adding a framework for one widget.
+- Page content (copy, prices, coaches, FAQs) lives in `src/data/site.ts`, not in components.
 - Scroll-triggered animations use the `useInView` custom hook wrapping `IntersectionObserver`.
 - The hero marquee is pure CSS (`@keyframes` + `animation`), not JavaScript-driven.
 - Prefer `transform` and `opacity` for animations (GPU-composited, no layout thrashing).

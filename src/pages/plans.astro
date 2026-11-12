@@ -2,8 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
 import Button from '../components/Button.astro';
-import PricingSection from '../components/PricingSection';
-import FAQ from '../components/FAQ';
+import PricingSection from '../components/PricingSection.astro';
+import FAQ from '../components/FAQ.astro';
+import { premade, trainingPeaksUrl } from '../data/site';
 import './Plans.css';
 ---
 <Layout
@@ -22,28 +23,26 @@ import './Plans.css';
       </p>
     </div>
 
-    <PricingSection client:load />
+    <PricingSection />
   </Section>
 
   <Section background="surface" divider="angle-top">
     <div class="premade">
-      <p class="premade__label">Off the Shelf</p>
-      <h2 class="premade__title">Pre-Made Training Plans</h2>
-      <p class="premade__desc">
-        Prefer a ready-made plan? Browse our library of structured training plans on TrainingPeaks, designed for athletes who want expert programming without one-to-one coaching.
-      </p>
+      <p class="premade__label">{premade.label}</p>
+      <h2 class="premade__title">{premade.title}</h2>
+      <p class="premade__desc">{premade.desc}</p>
       <Button
-        href="https://www.trainingpeaks.com/my-training-plans/trilogytraining"
+        href={trainingPeaksUrl}
         variant="outline"
         size="lg"
         external
       >
-        Browse Plans on TrainingPeaks
+        {premade.cta}
       </Button>
     </div>
   </Section>
 
   <Section background="alt" divider="angle-top" id="faq">
-    <FAQ client:load />
+    <FAQ />
   </Section>
 </Layout>

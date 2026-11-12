@@ -37,21 +37,22 @@
 }
 
 .faq__trigger {
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-sm);
   padding: var(--space-sm) var(--space-md);
-  background: none;
-  border: none;
   color: var(--color-text);
   font-family: var(--font-heading);
   font-size: 1.05rem;
   font-weight: 600;
-  text-align: left;
   cursor: pointer;
+  list-style: none;
   transition: color 0.2s;
+}
+
+.faq__trigger::-webkit-details-marker {
+  display: none;
 }
 
 .faq__trigger:hover {
@@ -71,22 +72,25 @@
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.faq__item--open .faq__icon {
+.faq__item[open] .faq__icon {
   transform: rotate(45deg);
 }
 
-.faq__body {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.faq__item--open .faq__body {
-  grid-template-rows: 1fr;
-}
-
-.faq__body-inner {
+/* Animate the open/close where the browser supports it; elsewhere it snaps */
+.faq__item::details-content {
+  block-size: 0;
   overflow: hidden;
+  transition: block-size 0.35s cubic-bezier(0.16, 1, 0.3, 1), content-visibility 0.35s allow-discrete;
+}
+
+.faq__item[open]::details-content {
+  block-size: auto;
+}
+
+@supports (interpolate-size: allow-keywords) {
+  .faq__item {
+    interpolate-size: allow-keywords;
+  }
 }
 
 .faq__answer {

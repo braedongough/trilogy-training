@@ -1,0 +1,42 @@
+---
+import Button from './Button.astro';
+import { contactHref, currencies, defaultCurrency, plans } from '../data/site';
+---
+<div class="pricing" data-pricing>
+  <div class="pricing__toggle" role="group" aria-label="Currency">
+    {currencies.map((c) => (
+      <button type="button" class="pricing__toggle-btn" data-currency={c} aria-pressed={c === defaultCurrency ? 'true' : 'false'}>
+        {c}
+      </button>
+    ))}
+  </div>
+
+  <div class="pricing__cards">
+    {plans.map((plan) => (
+      <div class="pricing__card">
+        <h3 class="pricing__card-name">{plan.name}</h3>
+        <p class="pricing__card-desc">{plan.desc}</p>
+        <p class="pricing__card-price">
+          {plan.prices ? (
+            <>
+              <span class="pricing__card-amount" data-prices={JSON.stringify(plan.prices)}>{plan.prices[defaultCurrency]}</span>
+              <span class="pricing__card-currency" data-currency-label>{defaultCurrency}</span>
+              <span class="pricing__card-period">/ month</span>
+            </>
+          ) : (
+            <span class="pricing__card-custom">Let's talk</span>
+          )}
+        </p>
+      </div>
+    ))}
+  </div>
+
+  <div class="pricing__cta">
+    <Button href={contactHref} variant="primary" size="lg">Get in Touch</Button>
+  </div>
+</div>
+
+<script>
+  import { initCurrencySwitch } from '../scripts/currency';
+  document.querySelectorAll<HTMLElement>('[data-pricing]').forEach(initCurrencySwitch);
+</script>

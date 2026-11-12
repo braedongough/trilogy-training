@@ -5,7 +5,7 @@ Items that must be resolved before deploying to production.
 ## Critical
 
 - [ ] **Formspree endpoint** — Replace placeholder form ID with a real one.
-  `src/components/ContactForm.tsx:37` → `https://formspree.io/f/placeholder`
+  `src/data/site.ts` (`formspreeEndpoint`)
   Create a free form at https://formspree.io and swap in the real ID.
 
 ## High Priority

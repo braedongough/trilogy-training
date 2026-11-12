@@ -3,6 +3,11 @@
 @import './themes.css';
 @import './animations.css';
 
+/* Cross-fade between pages in browsers with cross-document view transitions */
+@view-transition {
+  navigation: auto;
+}
+
 body {
   font-family: var(--font-body);
   background-color: var(--color-bg);

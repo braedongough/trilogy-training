@@ -1,18 +1,17 @@
 ---
+import { Image } from 'astro:assets';
 import Section from './Section.astro';
+import type { Coach } from '../data/site';
 import './CoachProfile.css';
 
 interface Props {
-  name: string;
-  imageSrc: string;
-  bio: string;
+  coach: Coach;
   accent: 'accent-1' | 'accent-2';
   reverse?: boolean;
-  careerHighs?: string[];
-  careerLows?: string[];
 }
 
-const { name, imageSrc, bio, accent, reverse = false, careerHighs = [], careerLows = [] } = Astro.props;
+const { coach, accent, reverse = false } = Astro.props;
+const { name, bio, careerHighs, careerLows } = coach;
 const sectionBg = reverse ? 'alt' : 'default';
 const sectionDivider = reverse ? 'angle-top' : 'none';
 const coachId = `coach-${name.split(' ')[0].toLowerCase()}`;
@@ -21,7 +20,8 @@ const coachId = `coach-${name.split(' ')[0].toLowerCase()}`;
   <div class={`coach coach--${accent} ${reverse ? 'coach--reverse' : ''}`}>
     <div class="coach__visual">
       <div class="coach__photo-wrap">
-        <img src={imageSrc} alt={name} class="coach__photo" loading="lazy" />
+        {/* Shown in a 172px circle; 360px wide covers 2x screens */}
+        <Image src={coach.photo} alt={name} class="coach__photo" width={360} sizes="172px" format="avif" quality={60} loading={reverse ? 'lazy' : 'eager'} />
       </div>
       <div class={`coach__stripe coach__stripe--${accent}`} aria-hidden="true"></div>
     </div>

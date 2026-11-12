@@ -1,5 +1,5 @@
 ---
-import { ClientRouter } from 'astro:transitions';
+import { Font } from 'astro:assets';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/reset.css';
@@ -21,7 +21,7 @@ const { title, description, canonicalPath, ogTitle, ogDescription } = Astro.prop
 const siteUrl = 'https://trilogy-training.com';
 ---
 <!DOCTYPE html>
-<html lang="en" transition:animate="none">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <style is:inline>
@@ -47,29 +47,18 @@ const siteUrl = 'https://trilogy-training.com';
     <meta name="twitter:title" content={ogTitle || title} />
     <meta name="twitter:description" content={ogDescription || description} />
     <meta name="twitter:image" content={`${siteUrl}/og-image.png`} />
-    <!-- Google Fonts (non-render-blocking) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" /></noscript>
-    <ClientRouter />
+    {/* Self-hosted fonts: the two used above the fold are preloaded */}
+    <Font cssVariable="--font-space-grotesk" preload />
+    <Font cssVariable="--font-inter" preload />
+    <Font cssVariable="--font-space-mono" />
     <slot name="head" />
   </head>
   <body>
     <script is:inline>
-      (function() {
-        try {
-          var theme = localStorage.getItem('trilogy-theme');
-          if (theme) document.documentElement.setAttribute('data-theme', theme);
-        } catch (e) {}
-      })();
-      document.addEventListener('astro:after-swap', function() {
-        try {
-          var theme = localStorage.getItem('trilogy-theme');
-          if (theme) document.documentElement.setAttribute('data-theme', theme);
-        } catch (e) {}
-      });
+      try {
+        var theme = localStorage.getItem('trilogy-theme');
+        if (theme) document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
     </script>
     <div class="layout">
       <Header />

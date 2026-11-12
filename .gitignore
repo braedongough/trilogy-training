@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Astro's generated types and build caches
+.astro
+# Amp orb runtime files
+.amp

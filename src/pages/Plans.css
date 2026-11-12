@@ -60,7 +60,7 @@
   transition: background 0.2s, color 0.2s;
 }
 
-.pricing__toggle-btn--active {
+.pricing__toggle-btn[aria-pressed="true"] {
   background: var(--color-accent-1);
   color: var(--color-text-on-accent);
 }

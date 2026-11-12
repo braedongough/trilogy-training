@@ -1,0 +1,121 @@
+---
+import {
+  countries,
+  defaultCountry,
+  formspreeEndpoint,
+  referralOptions,
+  trainingOptions,
+} from '../data/site';
+import './ContactForm.css';
+
+interface Props {
+  /** Draw the current site's angled panel around the form. */
+  panel?: boolean;
+}
+
+const { panel = false } = Astro.props;
+const initial = countries.find((c) => c.name === defaultCountry)!;
+---
+<div class:list={['contact-form', { 'contact-form--panel': panel }]} data-contact-form>
+  <div class="contact-form__success" data-cf-success hidden tabindex="-1">
+    <span class="contact-form__success-icon" aria-hidden="true">▲</span>
+    <h3 class="contact-form__success-title">Message Sent!</h3>
+    <p class="contact-form__success-text">
+      Thanks for reaching out. We'll get back to you within 24 hours to discuss your goals.
+    </p>
+  </div>
+
+  <form class="contact-form__fields" action={formspreeEndpoint} method="post" data-cf-form>
+    <div class="contact-form__row">
+      <div class="contact-form__group">
+        <label class="contact-form__label" for="cf-name">Name *</label>
+        <input id="cf-name" name="name" type="text" required autocomplete="name" class="contact-form__input" placeholder="Your name" />
+      </div>
+      <div class="contact-form__group">
+        <label class="contact-form__label" for="cf-email">Email *</label>
+        <input id="cf-email" name="email" type="email" required autocomplete="email" class="contact-form__input" placeholder="you@example.com" />
+      </div>
+    </div>
+
+    <div class="contact-form__row">
+      <div class="contact-form__group">
+        <label class="contact-form__label" for="cf-phone">Phone</label>
+        <div class="contact-form__phone-wrapper" data-cf-phone>
+          <button
+            type="button"
+            class="contact-form__country-btn"
+            aria-label="Select country code"
+            aria-expanded="false"
+            data-cf-country-btn
+          >
+            <span class="contact-form__country-flag" data-cf-flag>{initial.flag}</span>
+            <span class="contact-form__country-dial" data-cf-dial>{initial.dial}</span>
+            <span class="contact-form__country-chevron" aria-hidden="true">▼</span>
+          </button>
+          <input id="cf-phone" name="phone" type="tel" autocomplete="tel-national" class="contact-form__phone-input" placeholder="Phone number" />
+          <div class="contact-form__phone-dropdown" data-cf-dropdown hidden>
+            <input type="text" class="contact-form__phone-search" placeholder="Search" aria-label="Search countries" data-cf-search />
+            <ul class="contact-form__phone-list">
+              {countries.map((country) => (
+                <li>
+                  <button
+                    type="button"
+                    class:list={['contact-form__phone-option', { 'contact-form__phone-option--active': country.name === initial.name }]}
+                    data-cf-option
+                    data-name={country.name}
+                    data-flag={country.flag}
+                    data-dial={country.dial}
+                  >
+                    <span class="contact-form__country-flag">{country.flag}</span>
+                    <span class="contact-form__option-name">{country.name}</span>
+                    <span class="contact-form__option-dial">{country.dial}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form__group">
+        <label class="contact-form__label" for="cf-training">What are you training for? *</label>
+        <select id="cf-training" name="training" required class="contact-form__select">
+          <option value="" disabled selected>Select an option</option>
+          {trainingOptions.map((opt) => <option value={opt}>{opt}</option>)}
+        </select>
+      </div>
+    </div>
+
+    <div class="contact-form__group">
+      <label class="contact-form__label" for="cf-goals">Tell us about your goals</label>
+      <textarea
+        id="cf-goals"
+        name="goals"
+        class="contact-form__textarea"
+        placeholder="Your upcoming races, current fitness level, what you want to achieve..."
+      ></textarea>
+    </div>
+
+    <div class="contact-form__group">
+      <label class="contact-form__label" for="cf-referral">How did you hear about us?</label>
+      <select id="cf-referral" name="referral" class="contact-form__select">
+        <option value="" disabled selected>Select an option</option>
+        {referralOptions.map((opt) => <option value={opt}>{opt}</option>)}
+      </select>
+    </div>
+
+    <div class="contact-form__submit">
+      <slot name="submit">
+        <button type="submit" class="btn btn--primary btn--lg" data-cf-submit>Send Message</button>
+      </slot>
+    </div>
+
+    <p class="contact-form__error" role="alert" data-cf-error hidden>
+      Something went wrong. Please try again or email us directly.
+    </p>
+  </form>
+</div>
+
+<script>
+  import { initContactForm } from '../scripts/contact-form';
+  document.querySelectorAll<HTMLElement>('[data-contact-form]').forEach(initContactForm);
+</script>
