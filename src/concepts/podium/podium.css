@@ -1020,10 +1020,6 @@
     padding-block: clamp(3.5rem, 7vw, 6.5rem) clamp(2.5rem, 5vw, 4.5rem);
   }
 
-  .pd-pagehead .pd-h1 {
-    margin-top: 1.5rem;
-  }
-
   .pd-pagehead__lede {
     max-width: 30rem;
     font-size: clamp(1.125rem, 1.5vw, 1.3125rem);
@@ -1064,7 +1060,6 @@
   }
 
   .pd-coach__name {
-    margin-top: 1.25rem;
     font-family: var(--pd-display);
     font-size: clamp(3.5rem, 8vw, 7.5rem);
     font-weight: 700;
@@ -1073,9 +1068,13 @@
     text-transform: uppercase;
   }
 
+  .pd-coach__base {
+    margin-top: 1rem;
+  }
+
   .pd-coach__bio {
     max-width: 38rem;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     color: var(--pd-muted);
   }
 
@@ -1283,10 +1282,6 @@
     border-top: 1px solid var(--pd-line);
   }
 
-  .pd-premade .pd-h2 {
-    margin-top: 1.25rem;
-  }
-
   .pd-premade__side {
     display: grid;
     gap: 1.75rem;
@@ -1389,7 +1384,6 @@
   }
 
   .pd-contact__title {
-    margin-top: 1.5rem;
     font-size: clamp(4rem, 9vw, 8.5rem);
   }
 

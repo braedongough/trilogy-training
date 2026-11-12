@@ -20,7 +20,6 @@ const certified = reasons.find((r) => r.title.includes('Certified'))!;
   <section class="pd-pagehead">
     <div class="pd-wrap pd-pagehead__inner">
       <div>
-        <p class="pd-label pd-label--accent">About</p>
         <h1 class="pd-h1">Meet <em>the coaches.</em></h1>
       </div>
       <p class="pd-pagehead__lede">{certified.desc}</p>
@@ -46,8 +45,8 @@ const certified = reasons.find((r) => r.title.includes('Certified'))!;
             />
           </figure>
           <div class="pd-coach__body">
-            <p class="pd-label pd-label--accent">Coach / {coach.base}</p>
             <h2 class="pd-coach__name" id={`pd-coach-${coach.id}`}>{coach.name}</h2>
+            <p class="pd-label pd-coach__base">Coach / {coach.base}</p>
             <p class="pd-coach__bio">{coach.bio}</p>
 
             {lists.length > 0 && (
@@ -85,7 +84,6 @@ const certified = reasons.find((r) => r.title.includes('Certified'))!;
   <section class="pd-section" aria-labelledby="pd-principles-title">
     <div class="pd-wrap">
       <header class="pd-head">
-        <p class="pd-label pd-label--accent">Principles</p>
         <h2 class="pd-h2" id="pd-principles-title">How we <em>coach.</em></h2>
       </header>
       <PointList items={principles} />
