@@ -1,55 +1,96 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Section from '../components/Section.astro';
-import CoachProfile from '../components/CoachProfile.astro';
-import CTABand from '../components/CTABand.astro';
-import './About.css';
-import { coaches, principles } from '../data/site';
+import { Image } from 'astro:assets';
+import Layout from '../concepts/podium/Layout.astro';
+import Cta from '../concepts/podium/Cta.astro';
+import PointList from '../concepts/podium/PointList.astro';
+import { coaches, principles, reasons, testimonials } from '../data/site';
+
+const photoAlt: Record<string, string> = {
+  adam: 'Adam Labbett running along a cobbled street during a race',
+  cameron: 'Cameron Keast running in a red and white race suit during a triathlon',
+};
+const certified = reasons.find((r) => r.title.includes('Certified'))!;
 ---
 <Layout
+  page="about"
   title="About Us | Trilogy Training | Meet Your Coaches"
   description="Meet Adam Labbett and Cameron Keast, certified endurance coaches. Learn about our personalised coaching philosophy."
   canonicalPath="/about/"
-  ogTitle="About Us | Trilogy Training | Meet Your Coaches"
-  ogDescription="Meet Adam Labbett and Cameron Keast, certified endurance coaches. Learn about our personalised coaching philosophy."
 >
-  <Section background="default" id="about-hero" class="section--page-header">
-    <div class="about-hero">
-      <p class="about-hero__label">About Us</p>
-      <h1 class="about-hero__title">Meet Your Coaches</h1>
-      <p class="about-hero__subtitle">
-        Two coaches, one shared philosophy: training that fits your life.
-      </p>
-    </div>
-  </Section>
-
-  {coaches.map((coach, i) => (
-    <CoachProfile coach={coach} accent={i % 2 === 0 ? 'accent-1' : 'accent-2'} reverse={i % 2 === 1} />
-  ))}
-
-  <Section background="surface" divider="angle-top" id="philosophy">
-    <div class="phil">
-      <p class="phil__label">What We Believe</p>
-      <h2 class="phil__title">Our Philosophy</h2>
-
-      <div class="phil__grid">
-        {principles.map((p) => (
-          <div class="phil__card">
-            <div class="phil__icon-wrap">
-              <span class="phil__icon">{p.icon}</span>
-            </div>
-            <h3 class="phil__card-title">{p.title}</h3>
-            <p class="phil__card-desc">{p.desc}</p>
-          </div>
-        ))}
+  <section class="pd-pagehead">
+    <div class="pd-wrap pd-pagehead__inner">
+      <div>
+        <p class="pd-label pd-label--accent">About</p>
+        <h1 class="pd-h1">Meet <em>the coaches.</em></h1>
       </div>
+      <p class="pd-pagehead__lede">{certified.desc}</p>
     </div>
-  </Section>
+  </section>
 
-  <CTABand
-    headline="Find out if we're the right fit"
-    subtitle="Book a free consultation to discuss your goals and see how personalised coaching can work for you."
-    buttonText="Book a Free Call"
-    buttonHref="/contact/"
-  />
+  {coaches.map((coach, i) => {
+    const first = coach.name.split(' ')[0];
+    const results = testimonials.filter((t) => t.coach === first);
+    const lists = [
+      { label: 'Career highs', items: coach.careerHighs },
+      { label: 'Career lows', items: coach.careerLows },
+    ].filter((list) => list.items.length > 0);
+    return (
+      <section class:list={['pd-coach', { 'pd-coach--flip': i % 2 === 1 }]} aria-labelledby={`pd-coach-${coach.id}`}>
+        <div class="pd-wrap pd-coach__inner">
+          <figure class="pd-coach__photo">
+            <Image
+              src={coach.photo}
+              alt={photoAlt[coach.id] ?? coach.name}
+              widths={[280, 420, 562]}
+              sizes="280px"
+            />
+          </figure>
+          <div class="pd-coach__body">
+            <p class="pd-label pd-label--accent">Coach / {coach.base}</p>
+            <h2 class="pd-coach__name" id={`pd-coach-${coach.id}`}>{coach.name}</h2>
+            <p class="pd-coach__bio">{coach.bio}</p>
+
+            {lists.length > 0 && (
+              <div class="pd-coach__lists">
+                {lists.map((list) => (
+                  <div class="pd-career">
+                    <h3 class="pd-label">{list.label}</h3>
+                    <ul class="pd-career__list">
+                      {list.items.map((item) => <li>{item}</li>)}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {results.length > 0 && (
+              <div class="pd-career pd-career--results">
+                <h3 class="pd-label">Athletes coached by {first}</h3>
+                <ul class="pd-career__list pd-career__list--results">
+                  {results.map((t) => (
+                    <li>
+                      <span>{t.event}</span>
+                      <span class="pd-label">{t.name}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+    );
+  })}
+
+  <section class="pd-section" aria-labelledby="pd-principles-title">
+    <div class="pd-wrap">
+      <header class="pd-head">
+        <p class="pd-label pd-label--accent">Principles</p>
+        <h2 class="pd-h2" id="pd-principles-title">How we <em>coach.</em></h2>
+      </header>
+      <PointList items={principles} />
+    </div>
+  </section>
+
+  <Cta />
 </Layout>

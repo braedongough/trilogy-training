@@ -1,21 +1,47 @@
 ---
 import { Font } from 'astro:assets';
-import ConceptBase from '../ConceptBase.astro';
 import ThemeSwitcher from '../../components/ThemeSwitcher.astro';
 import { conceptPages, conceptUrl, type ConceptPage } from '../directions';
 import { shopUrl, social, trainingPeaksUrl } from '../../data/site';
+import '../base.css';
 import '../../styles/themes.css';
 import './podium.css';
 
 interface Props {
   page: ConceptPage;
   title: string;
+  description: string;
+  canonicalPath: string;
+  ogTitle?: string;
+  ogDescription?: string;
 }
 
-const { page, title } = Astro.props;
+const { page, title, description, canonicalPath, ogTitle = title, ogDescription = description } = Astro.props;
+const siteUrl = 'https://trilogy-training.com';
 ---
-<ConceptBase direction="podium" page={page} title={title} themeColor="#1a1a2e">
-  <Fragment slot="head">
+<!DOCTYPE html>
+<html lang="en" data-direction="podium">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1a1a2e" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={`${siteUrl}${canonicalPath}`} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:image" content={`${siteUrl}/og-image.png`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:url" content={`${siteUrl}${canonicalPath}`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Trilogy Training" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
+    <meta name="twitter:image" content={`${siteUrl}/og-image.png`} />
     <Font cssVariable="--font-barlow-condensed" preload />
     <Font cssVariable="--font-inter" preload />
     <script is:inline>
@@ -24,7 +50,9 @@ const { page, title } = Astro.props;
         if (theme) document.documentElement.setAttribute('data-theme', theme);
       } catch (e) {}
     </script>
-  </Fragment>
+    <slot name="head" />
+  </head>
+  <body>
   <a class="pd-skip" href="#main">Skip to content</a>
   <header class="pd-header">
     <div class="pd-wrap pd-header__inner">
@@ -78,8 +106,10 @@ const { page, title } = Astro.props;
       <div class="pd-footer__base">
         <p>&copy; {new Date().getFullYear()} Trilogy Training</p>
         <p>Switzerland / Spain</p>
+        <p><a href="/privacy/">Privacy Policy</a> &middot; <a href="/terms/">Terms</a></p>
         <ThemeSwitcher />
       </div>
     </div>
   </footer>
-</ConceptBase>
+  </body>
+</html>

@@ -38,8 +38,11 @@ export const conceptPages = [
 
 export type ConceptPage = (typeof conceptPages)[number]['key'];
 
-/** URL of a page within a direction, e.g. conceptUrl('swiss', 'plans') → /concepts/swiss/plans/ */
+/**
+ * URL of a page within a direction, e.g. conceptUrl('swiss', 'plans') → /concepts/swiss/plans/.
+ * Podium is the live site, so its pages are at the root: conceptUrl('podium', 'plans') → /plans/.
+ */
 export function conceptUrl(slug: DirectionSlug, page: ConceptPage = 'home') {
   const { path } = conceptPages.find((p) => p.key === page)!;
-  return `/concepts/${slug}/${path}`;
+  return slug === 'podium' ? `/${path}` : `/concepts/${slug}/${path}`;
 }

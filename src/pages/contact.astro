@@ -1,87 +1,46 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Section from '../components/Section.astro';
+import Layout from '../concepts/podium/Layout.astro';
 import ContactForm from '../components/ContactForm.astro';
-import './Contact.css';
+import { faqs, social, whatsapp } from '../data/site';
+
+const consultation = faqs.find((faq) => faq.question.includes('consultations'))!;
+const channels = [
+  ...whatsapp.map((w) => ({ label: w.label, value: w.number, href: w.href })),
+  ...Object.values(social).map((s) => ({ label: s.label, value: s.handle, href: s.href })),
+];
 ---
 <Layout
+  page="contact"
   title="Contact Us | Trilogy Training | Book Your Free Consultation"
   description="Book a free consultation call or send us a message. Start your personalised endurance coaching journey today."
   canonicalPath="/contact/"
-  ogTitle="Contact Us | Trilogy Training | Book Your Free Consultation"
-  ogDescription="Book a free consultation call or send us a message. Start your personalised endurance coaching journey today."
 >
-  <Section background="default" class="section--page-header contact-hero-section">
-    <div class="contact-hero">
-      <p class="contact-hero__label">Get in Touch</p>
-      <h1 class="contact-hero__title">Let's Talk</h1>
-      <p class="contact-hero__subtitle">
-        Book a free consultation or drop us a message. We'd love to hear about your goals.
-      </p>
-    </div>
-  </Section>
+  <section class="pd-contact">
+    <div class="pd-wrap pd-contact__inner">
+      <div class="pd-contact__copy">
+        <p class="pd-label pd-label--accent">Contact</p>
+        <h1 class="pd-h1 pd-contact__title">Book a <em>free call.</em></h1>
+        <p class="pd-contact__lede">{consultation.answer}</p>
 
-  <Section background="alt" class="contact-form-section">
-    <div class="contact-grid">
-      <ContactForm panel />
+        <h2 class="pd-label pd-contact__direct">Or reach us directly</h2>
+        <ul class="pd-channels">
+          {channels.map((channel) => (
+            <li>
+              <a href={channel.href} rel="noopener">
+                <span class="pd-label">{channel.label}</span>
+                <span class="pd-channels__value">{channel.value}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
 
-      <div class="contact-info">
-        <h2 class="contact-info__heading">Prefer to reach out directly?</h2>
-
-        <div class="contact-info__items">
-          <a
-            href="https://wa.me/447545017670"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="contact-info__item"
-          >
-            <span class="contact-info__item-icon">&#x1F4AC;</span>
-            <span class="contact-info__item-text">
-              <span class="contact-info__item-label">WhatsApp (UK)</span>
-              +44 7545 017670
-            </span>
-          </a>
-
-          <a
-            href="https://wa.me/41767227296"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="contact-info__item"
-          >
-            <span class="contact-info__item-icon">&#x1F4AC;</span>
-            <span class="contact-info__item-text">
-              <span class="contact-info__item-label">WhatsApp (CH)</span>
-              +41 76 722 7296
-            </span>
-          </a>
-
-          <a
-            href="https://www.instagram.com/trilogy_training_"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="contact-info__item"
-          >
-            <span class="contact-info__item-icon">&#x1F4F8;</span>
-            <span class="contact-info__item-text">
-              <span class="contact-info__item-label">Instagram</span>
-              @trilogy_training_
-            </span>
-          </a>
-
-          <a
-            href="https://www.facebook.com/trilogy.tri.training/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="contact-info__item"
-          >
-            <span class="contact-info__item-icon">&#x1F44D;</span>
-            <span class="contact-info__item-text">
-              <span class="contact-info__item-label">Facebook</span>
-              Trilogy Training
-            </span>
-          </a>
-        </div>
+      <div class="pd-form">
+        <h2 class="pd-form__title">Tell us what you are training for</h2>
+        <ContactForm>
+          <button slot="submit" type="submit" class="pd-btn pd-btn--block" data-cf-submit>Send message</button>
+        </ContactForm>
       </div>
     </div>
-  </Section>
+  </section>
 </Layout>
