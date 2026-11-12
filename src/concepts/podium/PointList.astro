@@ -1,0 +1,16 @@
+---
+/** Two-column list of titled points with hairlines, used for the reasons and the principles. */
+interface Props {
+  items: { title: string; desc: string }[];
+}
+
+const { items } = Astro.props;
+---
+<ul class="pd-points">
+  {items.map((item) => (
+    <li class="pd-points__item">
+      <h3 class="pd-points__title">{item.title}</h3>
+      <p class="pd-points__desc">{item.desc}</p>
+    </li>
+  ))}
+</ul>

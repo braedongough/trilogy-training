@@ -2,10 +2,9 @@
 import { Image } from 'astro:assets';
 import Layout from '../../../concepts/podium/Layout.astro';
 import Cta from '../../../concepts/podium/Cta.astro';
-import NumList from '../../../concepts/podium/NumList.astro';
+import PointList from '../../../concepts/podium/PointList.astro';
 import { coaches, principles, reasons, testimonials } from '../../../data/site';
 
-const pad = (n: number) => String(n).padStart(2, '0');
 const photoAlt: Record<string, string> = {
   adam: 'Adam Labbett running along a cobbled street during a race',
   cameron: 'Cameron Keast running in a red and white race suit during a triathlon',
@@ -37,12 +36,12 @@ const certified = reasons.find((r) => r.title.includes('Certified'))!;
             <Image
               src={coach.photo}
               alt={photoAlt[coach.id] ?? coach.name}
-              widths={[320, 480, 562]}
-              sizes="(min-width: 1320px) 500px, (min-width: 900px) 38vw, 90vw"
+              widths={[280, 420, 562]}
+              sizes="280px"
             />
           </figure>
           <div class="pd-coach__body">
-            <p class="pd-label pd-label--accent">Coach {pad(i + 1)} / {coach.base}</p>
+            <p class="pd-label pd-label--accent">Coach / {coach.base}</p>
             <h2 class="pd-coach__name" id={`pd-coach-${coach.id}`}>{coach.name}</h2>
             <p class="pd-coach__bio">{coach.bio}</p>
 
@@ -84,7 +83,7 @@ const certified = reasons.find((r) => r.title.includes('Certified'))!;
         <p class="pd-label pd-label--accent">Principles</p>
         <h2 class="pd-h2" id="pd-principles-title">How we <em>coach.</em></h2>
       </header>
-      <NumList items={principles} />
+      <PointList items={principles} />
     </div>
   </section>
 

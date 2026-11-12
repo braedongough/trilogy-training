@@ -1,8 +1,10 @@
 ---
 import { Font } from 'astro:assets';
 import ConceptBase from '../ConceptBase.astro';
+import ThemeSwitcher from '../../components/ThemeSwitcher.astro';
 import { conceptPages, conceptUrl, type ConceptPage } from '../directions';
 import { shopUrl, social, trainingPeaksUrl } from '../../data/site';
+import '../../styles/themes.css';
 import './podium.css';
 
 interface Props {
@@ -12,15 +14,21 @@ interface Props {
 
 const { page, title } = Astro.props;
 ---
-<ConceptBase direction="podium" page={page} title={title} themeColor="#0a0c0f">
+<ConceptBase direction="podium" page={page} title={title} themeColor="#1a1a2e">
   <Fragment slot="head">
     <Font cssVariable="--font-barlow-condensed" preload />
     <Font cssVariable="--font-inter" preload />
+    <script is:inline>
+      try {
+        var theme = localStorage.getItem('trilogy-theme');
+        if (theme) document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    </script>
   </Fragment>
   <a class="pd-skip" href="#main">Skip to content</a>
   <header class="pd-header">
     <div class="pd-wrap pd-header__inner">
-      <a class="pd-header__mark" href={conceptUrl('podium', 'home')}>Trilogy <span>Training</span></a>
+      <a class="pd-header__mark" href={conceptUrl('podium', 'home')}><span class="pd-mark__tri">Tri</span><span class="pd-mark__logy">logy</span> Training</a>
       <nav class="pd-header__nav" aria-label="Main">
         <ul class="pd-header__list">
           {conceptPages.map((p) => (
@@ -66,10 +74,11 @@ const { page, title } = Astro.props;
           </ul>
         </div>
       </div>
-      <p class="pd-footer__mark" aria-hidden="true">Trilogy Training</p>
+      <p class="pd-footer__mark" aria-hidden="true"><span class="pd-mark__tri">Tri</span><span class="pd-mark__logy">logy</span> Training</p>
       <div class="pd-footer__base">
         <p>&copy; {new Date().getFullYear()} Trilogy Training</p>
         <p>Switzerland / Spain</p>
+        <ThemeSwitcher />
       </div>
     </div>
   </footer>

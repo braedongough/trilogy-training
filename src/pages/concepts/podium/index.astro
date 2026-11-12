@@ -2,11 +2,12 @@
 import { Image } from 'astro:assets';
 import Layout from '../../../concepts/podium/Layout.astro';
 import Cta from '../../../concepts/podium/Cta.astro';
-import NumList from '../../../concepts/podium/NumList.astro';
+import PointList from '../../../concepts/podium/PointList.astro';
+import Silhouettes from '../../../concepts/podium/Silhouettes.astro';
+import Splatter from '../../../concepts/podium/Splatter.astro';
 import { conceptUrl } from '../../../concepts/directions';
 import { coaches, hero, reasons, steps, testimonials } from '../../../data/site';
 
-const pad = (n: number) => String(n).padStart(2, '0');
 const [feature, ...others] = testimonials;
 const photoAlt: Record<string, string> = {
   adam: 'Adam Labbett running along a cobbled street during a race',
@@ -15,9 +16,9 @@ const photoAlt: Record<string, string> = {
 ---
 <Layout page="home" title="Trilogy Training: personalised endurance coaching">
   <section class="pd-hero">
+    <Silhouettes />
     <div class="pd-wrap pd-hero__inner">
       <div class="pd-hero__copy">
-        <p class="pd-label pd-label--accent">{hero.tag}</p>
         <h1 class="pd-hero__title">
           {hero.titleLines.map((line) => <span>{line}</span>)}
         </h1>
@@ -31,13 +32,16 @@ const photoAlt: Record<string, string> = {
         </div>
       </div>
       <div class="pd-hero__coaches">
+        <Splatter />
+        <span class="pd-tri pd-hero__tri pd-hero__tri--1" aria-hidden="true"></span>
+        <span class="pd-tri pd-hero__tri pd-hero__tri--2" aria-hidden="true"></span>
         {coaches.map((coach) => (
           <figure class="pd-hero__coach">
             <Image
               src={coach.photo}
               alt={photoAlt[coach.id] ?? coach.name}
-              widths={[240, 360, 480, 562]}
-              sizes="(min-width: 1320px) 250px, (min-width: 960px) 19vw, 45vw"
+              widths={[180, 270, 360, 480]}
+              sizes="(min-width: 960px) 12vw, 180px"
               loading="eager"
               fetchpriority="high"
             />
@@ -57,10 +61,9 @@ const photoAlt: Record<string, string> = {
         <h2 class="pd-label pd-label--accent" id="pd-results-title">Athlete results</h2>
         <p class="pd-label">Athlete / Coach</p>
       </div>
-      <ol class="pd-results__list">
-        {testimonials.map((t, i) => (
+      <ul class="pd-results__list">
+        {testimonials.map((t) => (
           <li class="pd-results__row">
-            <span class="pd-results__num" aria-hidden="true">{pad(i + 1)}</span>
             <span class="pd-results__event">{t.event}</span>
             <span class="pd-results__who">
               <span class="pd-results__name">{t.name}</span>
@@ -68,7 +71,7 @@ const photoAlt: Record<string, string> = {
             </span>
           </li>
         ))}
-      </ol>
+      </ul>
     </div>
   </section>
 
@@ -131,7 +134,7 @@ const photoAlt: Record<string, string> = {
         <p class="pd-label pd-label--accent">Why Trilogy</p>
         <h2 class="pd-h2" id="pd-why-title">Built around <em>your life.</em></h2>
       </header>
-      <NumList items={reasons} />
+      <PointList items={reasons} />
     </div>
   </section>
 

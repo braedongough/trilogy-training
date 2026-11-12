@@ -1,14 +1,18 @@
 /*
- * Podium: dark, results-led, sports-broadcast confidence.
+ * Podium: dark, results-led, sports-broadcast confidence, in the Trilogy brand:
+ * the site's navy, cyan and pink, triangles, and a little Endurance Punks splatter.
+ * The accents read --color-accent-1/2, so the footer theme switcher (styles/themes.css) recolours it.
  * Every rule is nested under [data-direction='podium'], so nothing leaks into other directions.
  */
 [data-direction='podium'] {
-  --pd-bg: #0a0c0f;
-  --pd-surface: #12161b;
+  --pd-bg: #1a1a2e;
+  --pd-surface: #16213e;
   --pd-line: rgba(255, 255, 255, 0.12);
-  --pd-text: #f2f4f5;
-  --pd-muted: #9aa4ad;
-  --pd-accent: #22d3ee;
+  --pd-text: #ffffff;
+  --pd-muted: #a0a0b0;
+  --pd-accent: var(--color-accent-1, #00e5cc);
+  --pd-accent-2: var(--color-accent-2, #ff2d78);
+  --pd-on-accent: #1a1a2e;
   --pd-display: var(--font-barlow-condensed), 'Arial Narrow', sans-serif;
   --pd-body: var(--font-inter), system-ui, sans-serif;
   --pd-pad: clamp(1.25rem, 4vw, 3rem);
@@ -114,7 +118,7 @@
   .pd-h1 em,
   .pd-h2 em {
     display: block;
-    color: var(--pd-accent);
+    color: var(--pd-accent-2);
   }
 
   .pd-h2 {
@@ -130,13 +134,18 @@
 
   /* ── Buttons ──────────────────────────────────────────── */
 
+  /* Buttons are parallelograms, like the current site: the slanted shape sits on ::before so the label stays upright. */
   .pd-btn {
+    --pd-btn-bg: var(--pd-accent-2);
+    --pd-btn-line: var(--pd-accent-2);
+    position: relative;
+    isolation: isolate;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
     min-height: 3.25rem;
-    padding: 0.7rem 1.6rem;
+    padding: 0.7rem 1.9rem;
     font-family: var(--pd-display);
     font-size: 1.25rem;
     font-weight: 600;
@@ -144,17 +153,28 @@
     letter-spacing: 0.06em;
     text-transform: uppercase;
     text-decoration: none;
-    color: var(--pd-bg);
-    background: var(--pd-accent);
-    border: 1px solid var(--pd-accent);
-    border-radius: 0;
+    color: var(--pd-on-accent);
+    background: none;
+    border: 0;
     cursor: pointer;
-    transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+    transition: color 0.15s;
+  }
+
+  .pd-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--pd-btn-bg);
+    border: 1px solid var(--pd-btn-line);
+    transform: skewX(-14deg);
+    transition: background-color 0.15s, border-color 0.15s;
   }
 
   .pd-btn:hover {
-    background: var(--pd-text);
-    border-color: var(--pd-text);
+    --pd-btn-bg: var(--pd-text);
+    --pd-btn-line: var(--pd-text);
+    color: var(--pd-on-accent);
   }
 
   .pd-btn:disabled {
@@ -163,32 +183,24 @@
   }
 
   .pd-btn--ghost {
-    color: var(--pd-text);
-    background: transparent;
-    border-color: rgba(255, 255, 255, 0.4);
+    --pd-btn-bg: transparent;
+    --pd-btn-line: var(--pd-accent);
+    color: var(--pd-accent);
   }
 
-  .pd-btn--ghost:hover {
-    color: var(--pd-bg);
-  }
-
+  /* On the pink closing band the button takes the other accent, as on the current site. */
   .pd-btn--dark {
-    color: var(--pd-text);
-    background: var(--pd-bg);
-    border-color: var(--pd-bg);
-  }
-
-  .pd-btn--dark:hover {
-    color: var(--pd-bg);
+    --pd-btn-bg: var(--pd-accent);
+    --pd-btn-line: var(--pd-accent);
   }
 
   .pd-btn--dark:focus-visible {
-    outline-color: var(--pd-bg);
+    outline-color: var(--pd-on-accent);
   }
 
   .pd-btn--sm {
     min-height: 2.5rem;
-    padding: 0.4rem 1rem;
+    padding: 0.4rem 1.2rem;
     font-size: 1.0625rem;
   }
 
@@ -198,7 +210,7 @@
 
   @media (max-width: 480px) {
     .pd-btn:not(.pd-btn--sm) {
-      padding-inline: 1.25rem;
+      padding-inline: 1.4rem;
       font-size: 1.125rem;
     }
   }
@@ -257,9 +269,46 @@
     white-space: nowrap;
   }
 
-  .pd-header__mark span {
-    font-style: italic;
+  .pd-mark__tri {
+    color: var(--pd-accent-2);
+  }
+
+  .pd-mark__logy {
     color: var(--pd-accent);
+  }
+
+  /* ── Brand motifs: triangles and splatter ─────────────── */
+
+  /* An outlined triangle, the site's primary motif. Size it with width; colour it with color. */
+  .pd-tri {
+    display: block;
+    aspect-ratio: 1.1547;
+    background: currentColor;
+    clip-path: polygon(evenodd, 50% 0, 100% 100%, 0 100%, 50% 0, 50% 5%, 4.5% 97.5%, 95.5% 97.5%, 50% 5%);
+    pointer-events: none;
+  }
+
+  .pd-splat {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .pd-splat__a {
+    fill: var(--pd-accent-2);
+  }
+
+  .pd-splat__b {
+    fill: var(--pd-accent);
+  }
+
+  .pd-label--accent::before {
+    content: '';
+    display: inline-block;
+    width: 0.7em;
+    height: 0.62em;
+    margin-right: 0.6em;
+    background: var(--pd-accent-2);
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
   }
 
   .pd-header__list {
@@ -318,7 +367,13 @@
 
   /* ── Hero ─────────────────────────────────────────────── */
 
+  .pd-hero {
+    position: relative;
+    overflow: clip;
+  }
+
   .pd-hero__inner {
+    position: relative;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: 3rem var(--pd-gap);
@@ -326,7 +381,6 @@
   }
 
   .pd-hero__title {
-    margin-top: 1.5rem;
     font-family: var(--pd-display);
     font-size: clamp(3rem, 15vw, 8rem);
     font-weight: 700;
@@ -342,7 +396,7 @@
 
   .pd-hero__title span:last-child {
     font-style: italic;
-    color: var(--pd-accent);
+    color: var(--pd-accent-2);
   }
 
   .pd-hero__sub {
@@ -361,6 +415,9 @@
   }
 
   .pd-hero__coaches {
+    position: relative;
+    isolation: isolate;
+    max-width: 24rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: clamp(0.75rem, 1.5vw, 1.25rem);
@@ -369,6 +426,34 @@
 
   .pd-hero__coach:last-child {
     margin-top: clamp(2rem, 5vw, 4.5rem);
+  }
+
+  .pd-hero__coaches .pd-splat {
+    z-index: -1;
+    top: -12%;
+    left: -16%;
+    width: 105%;
+  }
+
+  .pd-hero__tri {
+    position: absolute;
+    z-index: -1;
+  }
+
+  .pd-hero__tri--1 {
+    right: -13%;
+    bottom: 13%;
+    width: 62%;
+    color: var(--pd-accent);
+    transform: rotate(14deg);
+  }
+
+  .pd-hero__tri--2 {
+    top: -5%;
+    right: 12%;
+    width: 30%;
+    color: var(--pd-accent-2);
+    transform: rotate(-18deg);
   }
 
   .pd-hero__coach img {
@@ -403,12 +488,68 @@
     }
 
     .pd-hero__inner {
-      grid-template-columns: minmax(0, 1fr) clamp(19rem, 30vw, 27rem);
+      grid-template-columns: minmax(0, 1fr) clamp(16rem, 24vw, 21rem);
       align-items: center;
     }
 
     .pd-hero__title {
       font-size: clamp(5rem, 9.9vw, 9rem);
+    }
+  }
+
+  /* ── Hero silhouettes (swim, bike, run marquee) ───────── */
+
+  .pd-sil {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-block: clamp(2.5rem, 6vw, 5rem);
+    overflow: hidden;
+    opacity: 0.07;
+    pointer-events: none;
+  }
+
+  .pd-sil__sprite {
+    display: none;
+  }
+
+  .pd-sil__track {
+    display: flex;
+    width: max-content;
+    animation: pd-marquee 180s linear infinite;
+  }
+
+  .pd-sil__track--reverse {
+    animation-direction: reverse;
+    animation-duration: 225s;
+  }
+
+  /* The figures are drawn facing right; each row faces the way it travels. */
+  .pd-sil__fig {
+    flex-shrink: 0;
+    width: 100px;
+    height: 80px;
+    margin-right: 8rem;
+    fill: var(--pd-accent);
+    transform: scaleX(-1);
+  }
+
+  .pd-sil__track--reverse .pd-sil__fig {
+    transform: none;
+  }
+
+  @media (max-width: 768px) {
+    .pd-sil__fig {
+      width: 60px;
+      height: 48px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pd-sil__track {
+      animation: none;
     }
   }
 
@@ -428,19 +569,10 @@
 
   .pd-results__row {
     display: grid;
-    grid-template-columns: 2.5rem minmax(0, 1fr);
     gap: 0.25rem 1rem;
     align-items: baseline;
     padding-block: clamp(1rem, 1.8vw, 1.5rem);
     border-top: 1px solid var(--pd-line);
-  }
-
-  .pd-results__num {
-    font-family: var(--pd-display);
-    font-size: 1.125rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    color: var(--pd-accent);
   }
 
   .pd-results__event {
@@ -454,7 +586,6 @@
   .pd-results__who {
     display: flex;
     flex-wrap: wrap;
-    grid-column: 2;
     gap: 0.25rem 1rem;
     align-items: baseline;
   }
@@ -472,7 +603,7 @@
 
   @media (min-width: 900px) {
     .pd-results__row {
-      grid-template-columns: 4rem minmax(0, 1fr) auto;
+      grid-template-columns: minmax(0, 1fr) auto;
     }
 
     .pd-results__who {
@@ -524,7 +655,27 @@
     font-style: italic;
     line-height: 0.85;
     color: transparent;
-    -webkit-text-stroke: 1.5px rgba(242, 244, 245, 0.55);
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.7);
+    position: relative;
+    width: fit-content;
+    isolation: isolate;
+  }
+
+  /* Each step number stands in an outlined triangle, alternating the two accents. */
+  .pd-step__num::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: -0.06em;
+    left: -0.12em;
+    height: 0.9em;
+    aspect-ratio: 1.1547;
+    background: var(--pd-accent);
+    clip-path: polygon(evenodd, 50% 0, 100% 100%, 0 100%, 50% 0, 50% 5%, 4.5% 97.5%, 95.5% 97.5%, 50% 5%);
+  }
+
+  .pd-step:nth-child(even) .pd-step__num::before {
+    background: var(--pd-accent-2);
   }
 
   .pd-step .pd-h3 {
@@ -628,32 +779,20 @@
     }
   }
 
-  /* ── Numbered list (reasons, principles) ──────────────── */
+  /* ── Point list (reasons, principles) ─ ──────────────── */
 
-  .pd-numlist {
+  .pd-points {
     display: grid;
     column-gap: var(--pd-gap);
     border-bottom: 1px solid var(--pd-line);
   }
 
-  .pd-numlist__item {
-    display: grid;
-    grid-template-columns: 3rem minmax(0, 1fr);
-    gap: 1rem;
+  .pd-points__item {
     padding-block: 1.75rem 2.5rem;
     border-top: 1px solid var(--pd-line);
   }
 
-  .pd-numlist__num {
-    font-family: var(--pd-display);
-    font-size: 1.25rem;
-    font-weight: 600;
-    line-height: 1.6;
-    letter-spacing: 0.06em;
-    color: var(--pd-accent);
-  }
-
-  .pd-numlist__title {
+  .pd-points__title {
     font-family: var(--pd-display);
     font-size: clamp(2rem, 3vw, 2.75rem);
     font-weight: 700;
@@ -661,30 +800,43 @@
     text-transform: uppercase;
   }
 
-  .pd-numlist__desc {
+  .pd-points__desc {
     max-width: 32rem;
     margin-top: 0.875rem;
     color: var(--pd-muted);
   }
 
   @media (min-width: 800px) {
-    .pd-numlist {
+    .pd-points {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .pd-numlist__item {
-      grid-template-columns: 4.5rem minmax(0, 1fr);
     }
   }
 
   /* ── Closing band ─────────────────────────────────────── */
 
   .pd-cta {
-    color: var(--pd-bg);
-    background: var(--pd-accent);
+    position: relative;
+    overflow: hidden;
+    color: var(--pd-on-accent);
+    background: var(--pd-accent-2);
+    /* Angled top edge, as on the current site's sections. */
+    clip-path: polygon(0 clamp(1.5rem, 4vw, 4rem), 100% 0, 100% 100%, 0 100%);
+  }
+
+  .pd-cta .pd-splat {
+    top: -58%;
+    right: -14%;
+    width: min(80vw, 46rem);
+  }
+
+  /* Kept faint so the copy on top of it stays readable. */
+  .pd-cta .pd-splat__a {
+    fill: var(--pd-on-accent);
+    opacity: 0.14;
   }
 
   .pd-cta__inner {
+    position: relative;
     display: grid;
     gap: 2rem var(--pd-gap);
     align-items: end;
@@ -713,7 +865,7 @@
   }
 
   .pd-cta ::selection {
-    color: var(--pd-accent);
+    color: var(--pd-accent-2);
     background: var(--pd-bg);
   }
 
@@ -786,6 +938,69 @@
     color: var(--pd-muted);
   }
 
+  /* Theme switcher (shared component, restyled): each swatch is a triangle split into its two accents. */
+  .pd-footer__base {
+    align-items: center;
+  }
+
+  .theme-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding-top: 1.5rem;
+    margin-top: 1rem;
+    border-top: 1px solid var(--pd-line);
+  }
+
+  .theme-switcher__label {
+    font-family: var(--pd-display);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--pd-muted);
+  }
+
+  .theme-switcher__swatches {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .theme-switcher__swatch {
+    display: flex;
+    width: 44px;
+    height: 44px;
+    padding: 4px 3px 6px;
+    overflow: visible;
+    background: none;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    cursor: pointer;
+    transition: transform 0.15s, border-color 0.15s;
+  }
+
+  .theme-switcher__swatch span {
+    flex: 1;
+    height: 100%;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  }
+
+  .theme-switcher__swatch span + span {
+    clip-path: polygon(0 0, 100% 100%, 0 100%);
+  }
+
+  .theme-switcher__swatch:hover {
+    transform: translateY(-3px);
+  }
+
+  .theme-switcher__swatch--active,
+  .theme-switcher__swatch--active:hover {
+    border-bottom-color: var(--pd-text);
+    transform: none;
+  }
+
   @media (min-width: 900px) {
     .pd-footer__cols {
       grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
@@ -839,8 +1054,9 @@
   }
 
   .pd-coach__photo img {
+    /* The source photos are about 560px wide, so they are never shown wider than half that. */
     width: 100%;
-    max-width: 35rem;
+    max-width: 17.5rem;
     aspect-ratio: 2 / 3;
     object-fit: cover;
     object-position: 50% 0;
@@ -902,7 +1118,7 @@
 
   @media (min-width: 900px) {
     .pd-coach__inner {
-      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      grid-template-columns: 17.5rem minmax(0, 1fr);
       align-items: start;
     }
 
@@ -912,7 +1128,7 @@
     }
 
     .pd-coach--flip .pd-coach__inner {
-      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      grid-template-columns: minmax(0, 1fr) 17.5rem;
     }
 
     .pd-coach--flip .pd-coach__photo {
@@ -994,7 +1210,6 @@
   }
 
   .pd-plan__name {
-    margin-top: 1rem;
     font-family: var(--pd-display);
     font-size: clamp(2.25rem, 3.4vw, 3rem);
     font-weight: 700;
@@ -1370,5 +1585,12 @@
     *::after {
       transition: none !important;
     }
+  }
+}
+
+/* Keyframes cannot nest inside the scope rule above. */
+@keyframes pd-marquee {
+  to {
+    transform: translateX(-50%);
   }
 }

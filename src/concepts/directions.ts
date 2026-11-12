@@ -3,7 +3,7 @@ export const directions = [
   {
     slug: 'podium',
     name: 'Podium',
-    summary: 'Dark, results-led, condensed type. The current brand grown up.',
+    summary: 'Navy, pink and cyan, triangles and splatter, condensed type. The current brand grown up.',
   },
   {
     slug: 'field-notes',

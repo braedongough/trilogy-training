@@ -1,0 +1,41 @@
+---
+/**
+ * The hero background from the original site: three faint rows of swimmer,
+ * cyclist, and runner silhouettes drifting behind the copy, the middle row
+ * in the opposite direction. CSS only (podium.css). Decorative.
+ */
+import swimmerSvg from '../../assets/silhouettes/swimmer.svg?raw';
+import cyclistSvg from '../../assets/silhouettes/cyclist.svg?raw';
+import runnerSvg from '../../assets/silhouettes/runner.svg?raw';
+
+const figures = [
+  { id: 'swim', raw: swimmerSvg },
+  { id: 'bike', raw: cyclistSvg },
+  { id: 'run', raw: runnerSvg },
+].map(({ id, raw }) => ({
+  id: `pd-sil-${id}`,
+  viewBox: raw.match(/viewBox="([^"]+)"/)?.[1] ?? '0 0 100 100',
+  inner: raw.match(/<svg[^>]*>([\s\S]*)<\/svg>/)?.[1] ?? '',
+}));
+
+// Each track holds two identical halves and slides by one half, so the loop is seamless.
+// A half repeats the three figures often enough to be wider than any screen.
+const half = Array.from({ length: 6 }, () => figures).flat();
+const rows = [false, true, false];
+---
+<div class="pd-sil" aria-hidden="true">
+  <svg class="pd-sil__sprite">
+    {figures.map((f) => (
+      <symbol id={f.id} viewBox={f.viewBox}>
+        <Fragment set:html={f.inner} />
+      </symbol>
+    ))}
+  </svg>
+  {rows.map((reverse) => (
+    <div class:list={['pd-sil__track', { 'pd-sil__track--reverse': reverse }]}>
+      {[...half, ...half].map((f) => (
+        <svg class="pd-sil__fig"><use href={`#${f.id}`} /></svg>
+      ))}
+    </div>
+  ))}
+</div>

@@ -276,7 +276,7 @@ Five candidate redesigns live under `/concepts/<slug>/`, each with home, about, 
 
 | Slug | Name | Fonts | Palette |
 |------|------|-------|---------|
-| `podium` | Podium | Barlow Condensed, Inter | Near-black, one cyan accent |
+| `podium` | Podium | Barlow Condensed, Inter | The production palette: navy `#1A1A2E`, `--color-accent-1` (cyan), `--color-accent-2` (pink) |
 | `field-notes` | Field Notes | Fraunces, Instrument Sans | Warm paper, ink, forest green |
 | `swiss` | Swiss | Inter Tight | White, black, one red |
 | `race-data` | Race Data | Inter Tight, JetBrains Mono | Graphite, signal orange |
@@ -286,6 +286,7 @@ Five candidate redesigns live under `/concepts/<slug>/`, each with home, about, 
 - `src/concepts/ConceptBase.astro` and `base.css` are the shared document shell, reset, and review switcher.
 - `src/concepts/<slug>/` holds each direction's `Layout.astro`, stylesheet, and partials. Every selector is scoped under `[data-direction='<slug>']`.
 - `src/pages/concepts/<slug>/` holds the four pages; `src/pages/concepts/index.astro` is the review index.
+- **Podium is the preferred direction and keeps the brand.** It reads `--color-accent-1/2`, so the footer `ThemeSwitcher` and `themes.css` recolour it. Accent 2 (pink) is for actions, emphasis lines, and the closing band; accent 1 (cyan) is for labels, ghost buttons, and highlights. Its brand motifs: outlined triangles (`.pd-tri`, step numbers, label and list markers, triangular theme swatches), parallelogram buttons, an angled edge on the closing band, paint splatter (`Splatter.astro`, after the Endurance Punks kit) in at most two places per page, and the original hero marquee (`Silhouettes.astro`): three faint rows of swimmer, cyclist, and runner silhouettes drifting behind the hero copy, CSS only, static under `prefers-reduced-motion`.
 - All directions render the content in `src/data/site.ts` and reuse `ContactForm.astro`, `scripts/currency.ts`, and native `<details>` for FAQs. They add no JavaScript.
 
 When a direction is chosen: move its tokens and rules into the sections above, replace the production pages, then delete the other directions and their font declarations in `astro.config.mjs`.

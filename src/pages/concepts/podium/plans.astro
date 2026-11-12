@@ -4,7 +4,6 @@ import Cta from '../../../concepts/podium/Cta.astro';
 import { conceptUrl } from '../../../concepts/directions';
 import { currencies, defaultCurrency, faqs, plans, premade, trainingPeaksUrl } from '../../../data/site';
 
-const pad = (n: number) => String(n).padStart(2, '0');
 ---
 <Layout page="plans" title="Plans and pricing: Trilogy Training">
   <div data-pricing>
@@ -30,9 +29,8 @@ const pad = (n: number) => String(n).padStart(2, '0');
     <section class="pd-plans-section" aria-label="Coaching plans">
       <div class="pd-wrap">
         <ul class="pd-plans">
-          {plans.map((plan, i) => (
+          {plans.map((plan) => (
             <li class="pd-plan">
-              <p class="pd-label pd-label--accent" aria-hidden="true">Plan {pad(i + 1)}</p>
               <h2 class="pd-plan__name">{plan.name}</h2>
               <p class="pd-plan__desc">{plan.desc}</p>
               <p class="pd-plan__price">
