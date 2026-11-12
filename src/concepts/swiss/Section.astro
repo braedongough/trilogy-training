@@ -1,0 +1,23 @@
+---
+/** A ruled section: number and label in the narrow left column, content in the remaining nine. */
+interface Props {
+  num: string;
+  label: string;
+  class?: string;
+}
+
+const { num, label, class: className } = Astro.props;
+---
+<section class:list={['sw-section', className]}>
+  <div class="sw-wrap">
+    <div class="sw-grid sw-section__grid">
+      <div class="sw-section__aside">
+        <h2 class="sw-label sw-section__label"><span class="sw-num">{num}</span>{label}</h2>
+        <slot name="aside" />
+      </div>
+      <div class="sw-section__body">
+        <slot />
+      </div>
+    </div>
+  </div>
+</section>

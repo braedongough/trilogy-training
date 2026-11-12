@@ -1,0 +1,92 @@
+---
+import Layout from '../../../concepts/swiss/Layout.astro';
+import Section from '../../../concepts/swiss/Section.astro';
+import PageHead from '../../../concepts/swiss/PageHead.astro';
+import Closing from '../../../concepts/swiss/Closing.astro';
+import { sentence } from '../../../concepts/swiss/text';
+import { conceptUrl } from '../../../concepts/directions';
+import { currencies, defaultCurrency, faqs, plans, premade, trainingPeaksUrl } from '../../../data/site';
+
+const pad = (n: number) => String(n).padStart(2, '0');
+---
+<Layout page="plans" title="Plans and pricing: Trilogy Training">
+  <PageHead label="Plans" note="Billed monthly">Plans and pricing.</PageHead>
+
+  <div data-pricing>
+    <Section num="01" label="Coaching">
+      <div slot="aside" class="sw-currency" role="group" aria-label="Currency">
+        <p class="sw-label sw-label--grey">Currency</p>
+        <div class="sw-currency__options">
+          {currencies.map((c) => (
+            <button type="button" class="sw-currency__btn" data-currency={c} aria-pressed={c === defaultCurrency ? 'true' : 'false'}>
+              {c}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <ul class="sw-plans">
+        {plans.map((plan, i) => (
+          <li class="sw-plan">
+            <div class="sw-plan__head">
+              <p class="sw-label sw-label--grey" aria-hidden="true">{pad(i + 1)}</p>
+              <h3 class="sw-plan__name">{sentence(plan.name)}</h3>
+            </div>
+            <p class="sw-plan__desc">{plan.desc}</p>
+            <p class="sw-plan__price">
+              {plan.prices ? (
+                <>
+                  <span class="sw-plan__figure">
+                    <span class="sw-plan__amount" data-prices={JSON.stringify(plan.prices)}>{plan.prices[defaultCurrency]}</span>
+                    <span class="sw-plan__code" data-currency-label>{defaultCurrency}</span>
+                  </span>
+                  <span class="sw-label sw-label--grey">per month</span>
+                </>
+              ) : (
+                <>
+                  <span class="sw-plan__figure sw-plan__figure--text">On request</span>
+                  <span class="sw-label sw-label--grey">priced to fit</span>
+                </>
+              )}
+            </p>
+            <p class="sw-plan__cta">
+              <a class="sw-btn sw-btn--outline sw-btn--block" href={conceptUrl('swiss', 'contact')}>
+                {plan.prices ? 'Book a free call' : 'Get in touch'}
+                <span class="sw-visually-hidden">about {sentence(plan.name)} coaching</span>
+              </a>
+            </p>
+          </li>
+        ))}
+      </ul>
+    </Section>
+  </div>
+
+  <Section num="02" label={sentence(premade.label)}>
+    <h3 class="sw-title sw-premade__title">{sentence(premade.title)}</h3>
+    <p class="sw-body sw-premade__desc">{premade.desc}</p>
+    <div class="sw-premade__action">
+      <a class="sw-btn sw-btn--outline" href={trainingPeaksUrl} rel="noopener">{sentence(premade.cta)}</a>
+    </div>
+  </Section>
+
+  <Section num="03" label="Questions">
+    <div class="sw-faqs">
+      {faqs.map((faq) => (
+        <details class="sw-faq" name="faq">
+          <summary class="sw-faq__q">
+            <span>{faq.question}</span>
+            <span class="sw-faq__plus" aria-hidden="true"></span>
+          </summary>
+          <p class="sw-faq__a">{faq.answer}</p>
+        </details>
+      ))}
+    </div>
+  </Section>
+
+  <Closing num="04" />
+</Layout>
+
+<script>
+  import { initCurrencySwitch } from '../../../scripts/currency';
+  document.querySelectorAll<HTMLElement>('[data-pricing]').forEach(initCurrencySwitch);
+</script>

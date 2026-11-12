@@ -1,0 +1,76 @@
+---
+import { Font } from 'astro:assets';
+import ConceptBase from '../ConceptBase.astro';
+import { conceptPages, conceptUrl, type ConceptPage } from '../directions';
+import { shopUrl, social, trainingPeaksUrl } from '../../data/site';
+import './podium.css';
+
+interface Props {
+  page: ConceptPage;
+  title: string;
+}
+
+const { page, title } = Astro.props;
+---
+<ConceptBase direction="podium" page={page} title={title} themeColor="#0a0c0f">
+  <Fragment slot="head">
+    <Font cssVariable="--font-barlow-condensed" preload />
+    <Font cssVariable="--font-inter" preload />
+  </Fragment>
+  <a class="pd-skip" href="#main">Skip to content</a>
+  <header class="pd-header">
+    <div class="pd-wrap pd-header__inner">
+      <a class="pd-header__mark" href={conceptUrl('podium', 'home')}>Trilogy <span>Training</span></a>
+      <nav class="pd-header__nav" aria-label="Main">
+        <ul class="pd-header__list">
+          {conceptPages.map((p) => (
+            <li>
+              <a href={conceptUrl('podium', p.key)} aria-current={p.key === page ? 'page' : undefined}>{p.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <a class="pd-btn pd-btn--sm pd-header__cta" href={conceptUrl('podium', 'contact')}>Book a free call</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <slot />
+  </main>
+
+  <footer class="pd-footer">
+    <div class="pd-wrap">
+      <div class="pd-footer__cols">
+        <p class="pd-footer__intro">Personalised coaching for triathlon, running, cycling and swimming.</p>
+        <nav aria-label="Footer">
+          <h2 class="pd-label">Pages</h2>
+          <ul class="pd-footer__list">
+            {conceptPages.map((p) => (
+              <li><a href={conceptUrl('podium', p.key)}>{p.label}</a></li>
+            ))}
+          </ul>
+        </nav>
+        <div>
+          <h2 class="pd-label">Follow</h2>
+          <ul class="pd-footer__list">
+            {Object.values(social).map((s) => (
+              <li><a href={s.href} rel="noopener">{s.label}</a></li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2 class="pd-label">Elsewhere</h2>
+          <ul class="pd-footer__list">
+            <li><a href={shopUrl} rel="noopener">Team kit shop</a></li>
+            <li><a href={trainingPeaksUrl} rel="noopener">TrainingPeaks plans</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="pd-footer__mark" aria-hidden="true">Trilogy Training</p>
+      <div class="pd-footer__base">
+        <p>&copy; {new Date().getFullYear()} Trilogy Training</p>
+        <p>Switzerland / Spain</p>
+      </div>
+    </div>
+  </footer>
+</ConceptBase>

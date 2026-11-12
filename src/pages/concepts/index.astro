@@ -1,0 +1,88 @@
+---
+/** Review index for the design directions. Not part of the public site. */
+import { conceptPages, conceptUrl, directions } from '../../concepts/directions';
+import '../../concepts/base.css';
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Design directions | Trilogy Training</title>
+    <style>
+      body {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 64px 24px;
+        font: 16px/1.5 system-ui, sans-serif;
+        color: #111;
+        background: #fff;
+      }
+      h1 {
+        font-size: 28px;
+        letter-spacing: -0.02em;
+      }
+      .lede {
+        margin-top: 8px;
+        color: #555;
+      }
+      ol {
+        margin: 40px 0 0;
+        padding: 0;
+        list-style: none;
+        border-top: 1px solid #ddd;
+      }
+      li {
+        display: grid;
+        grid-template-columns: 2rem 1fr;
+        gap: 4px 8px;
+        padding: 20px 0;
+        border-bottom: 1px solid #ddd;
+      }
+      .num {
+        color: #888;
+        font-variant-numeric: tabular-nums;
+      }
+      h2 {
+        font-size: 18px;
+      }
+      h2 a {
+        text-decoration: none;
+      }
+      h2 a:hover {
+        text-decoration: underline;
+      }
+      .summary,
+      .pages {
+        grid-column: 2;
+        color: #555;
+      }
+      .pages {
+        display: flex;
+        gap: 16px;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Design directions</h1>
+    <p class="lede">
+      Five ways the Trilogy Training site could look. Each has the same four pages and the same content.
+      The bar at the bottom of every page switches direction while staying on the same page.
+    </p>
+    <ol>
+      {directions.map((d, i) => (
+        <li>
+          <span class="num">{i + 1}</span>
+          <h2><a href={conceptUrl(d.slug)}>{d.name}</a></h2>
+          <p class="summary">{d.summary}</p>
+          <p class="pages">
+            {conceptPages.map((p) => <a href={conceptUrl(d.slug, p.key)}>{p.label}</a>)}
+          </p>
+        </li>
+      ))}
+    </ol>
+    <p class="lede" style="margin-top: 32px"><a href="/">Current site</a></p>
+  </body>
+</html>

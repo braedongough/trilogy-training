@@ -1,0 +1,86 @@
+---
+/**
+ * Tricolour direction: three sports, three flat colour fields on cream.
+ * Wraps the shared concept shell with this direction's header, footer and fonts.
+ */
+import { Font } from 'astro:assets';
+import ConceptBase from '../ConceptBase.astro';
+import { conceptPages, conceptUrl, type ConceptPage } from '../directions';
+import { hero, shopUrl, social, whatsapp } from '../../data/site';
+import './tricolour.css';
+
+interface Props {
+  page: ConceptPage;
+  title: string;
+}
+
+const { page, title } = Astro.props;
+const url = (p: ConceptPage) => conceptUrl('tricolour', p);
+---
+<ConceptBase direction="tricolour" page={page} title={`${title} | Trilogy Training`} themeColor="#fbf6ec">
+  <Fragment slot="head">
+    <Font cssVariable="--font-bricolage" preload />
+    <Font cssVariable="--font-dm-sans" preload />
+  </Fragment>
+
+  <a class="tc-skip" href="#main">Skip to content</a>
+
+  <header class="tc-header">
+    <div class="tc-wrap tc-header__inner">
+      <a class="tc-wordmark" href={url('home')}>
+        <span class="tc-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        Trilogy Training
+      </a>
+      <nav class="tc-nav" aria-label="Main">
+        <ul class="tc-nav__list">
+          {conceptPages.map((p) => (
+            <li>
+              <a href={url(p.key)} aria-current={p.key === page ? 'page' : undefined}>{p.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <a class="tc-btn tc-btn--sm tc-header__cta" href={url('contact')}>Book a free call</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <slot />
+  </main>
+
+  <footer class="tc-footer">
+    <div class="tc-stripe" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="tc-wrap tc-footer__inner">
+      <div class="tc-footer__brand">
+        <a class="tc-wordmark tc-wordmark--lg" href={url('home')}>
+          <span class="tc-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          Trilogy Training
+        </a>
+        <p>{hero.tag}</p>
+      </div>
+      <nav aria-label="Footer">
+        <h2 class="tc-label">Pages</h2>
+        <ul class="tc-footer__list">
+          {conceptPages.map((p) => <li><a href={url(p.key)}>{p.label}</a></li>)}
+        </ul>
+      </nav>
+      <div>
+        <h2 class="tc-label">Follow</h2>
+        <ul class="tc-footer__list">
+          {Object.values(social).map((s) => <li><a href={s.href} rel="noopener">{s.label}</a></li>)}
+          {whatsapp.map((w) => <li><a href={w.href} rel="noopener">{w.label}</a></li>)}
+        </ul>
+      </div>
+      <div>
+        <h2 class="tc-label">Kit</h2>
+        <ul class="tc-footer__list">
+          <li><a href={shopUrl} rel="noopener">Team kit shop</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="tc-wrap tc-footer__legal">
+      <p>&copy; {new Date().getFullYear()} Trilogy Training</p>
+      <p>Swim. Bike. Run.</p>
+    </div>
+  </footer>
+</ConceptBase>

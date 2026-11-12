@@ -1,0 +1,152 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../../../concepts/tricolour/Layout.astro';
+import { conceptUrl } from '../../../concepts/directions';
+import { coaches, hero, reasons, steps, testimonials } from '../../../data/site';
+import swimmer from '../../../assets/silhouettes/swimmer.svg?raw';
+import cyclist from '../../../assets/silhouettes/cyclist.svg?raw';
+import runner from '../../../assets/silhouettes/runner.svg?raw';
+
+const url = (p: Parameters<typeof conceptUrl>[1]) => conceptUrl('tricolour', p);
+const sentence = (s: string) => s.charAt(0) + s.slice(1).toLowerCase();
+
+const sports = [
+  { key: 'swim', label: 'Swim', svg: swimmer, field: 'tc-blue' },
+  { key: 'bike', label: 'Bike', svg: cyclist, field: 'tc-yellow' },
+  { key: 'run', label: 'Run', svg: runner, field: 'tc-coral' },
+];
+const fields = ['tc-blue', 'tc-yellow', 'tc-coral'];
+const cardFields = ['tc-blue', 'tc-yellow', 'tc-coral', 'tc-outline'];
+const frames = ['tc-blue', 'tc-yellow'];
+---
+<Layout page="home" title="Personalised endurance coaching">
+  <section class="tc-hero">
+    <div class="tc-wrap">
+      <div class="tc-hero__top">
+        <div>
+          <p class="tc-label tc-hero__tag">{hero.tag}</p>
+          <h1 class="tc-hero__title">
+            {hero.titleLines.map((line) => <span>{sentence(line)}</span>)}
+          </h1>
+        </div>
+        <div class="tc-hero__side">
+          <p class="tc-lead">{hero.subtitle}</p>
+          <div class="tc-actions">
+            <a class="tc-btn" href={url('contact')}>{sentence(hero.primaryCta)}</a>
+            <a class="tc-btn tc-btn--outline" href={url('plans')}>Plans and pricing</a>
+          </div>
+        </div>
+      </div>
+
+      <ul class="tc-triptych">
+        {sports.map((s, i) => (
+          <li class:list={['tc-panel', `tc-panel--${s.key}`, s.field]}>
+            <p class="tc-panel__head">
+              <span class="tc-panel__label">{s.label}</span>
+              <span class="tc-panel__num" aria-hidden="true">0{i + 1}</span>
+            </p>
+            <span class="tc-panel__figure" aria-hidden="true"><Fragment set:html={s.svg} /></span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="tc-section">
+    <div class="tc-wrap">
+      <header class="tc-section__head">
+        <p class="tc-label">Three steps</p>
+        <h2 class="tc-h2">How it works</h2>
+      </header>
+      <ol class="tc-steps">
+        {steps.map((step, i) => (
+          <li class:list={['tc-step', fields[i % 3]]}>
+            <span class="tc-step__num" aria-hidden="true">{i + 1}</span>
+            <h3 class="tc-h3">{step.title}</h3>
+            <p>{step.desc}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="tc-section">
+    <div class="tc-wrap">
+      <header class="tc-section__head">
+        <p class="tc-label">Athletes</p>
+        <h2 class="tc-h2">In their own words</h2>
+      </header>
+      <ul class="tc-quotes">
+        {testimonials.map((t, i) => (
+          <li>
+            <figure class:list={['tc-quote', cardFields[i % 4]]}>
+              <h3 class="tc-quote__event">{t.event}</h3>
+              <blockquote><p>{t.quote}</p></blockquote>
+              <figcaption>
+                <span class="tc-quote__name">{t.name}</span>
+                <span class="tc-quote__coach">Coached by {t.coach}</span>
+              </figcaption>
+            </figure>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="tc-section">
+    <div class="tc-wrap tc-team">
+      <header class="tc-team__intro">
+        <p class="tc-label">Two coaches</p>
+        <h2 class="tc-h2">Meet the coaches</h2>
+        <p class="tc-lead">{reasons[1].desc}</p>
+        <a class="tc-btn tc-btn--outline" href={url('about')}>About Adam and Cameron</a>
+      </header>
+      {coaches.map((coach, i) => (
+        <a class="tc-team__card" href={url('about')}>
+          <span class:list={['tc-team__frame', frames[i % 2]]}>
+            <Image
+              src={coach.photo}
+              alt={`${coach.name} racing`}
+              widths={[320, 480, 562]}
+              sizes="(min-width: 900px) 360px, 45vw"
+            />
+          </span>
+          <span class="tc-team__name">{coach.name}</span>
+          <span class="tc-pill">{coach.base}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="tc-section">
+    <div class="tc-wrap tc-reasons">
+      <header class="tc-section__head">
+        <p class="tc-label">Why Trilogy</p>
+        <h2 class="tc-h2">Coaching that fits your life</h2>
+      </header>
+      <ul class="tc-reasons__list">
+        {reasons.map((r, i) => (
+          <li class="tc-reason">
+            <span class:list={['tc-dot', `tc-dot--${i + 1}`]} aria-hidden="true"></span>
+            <div>
+              <h3 class="tc-h3">{r.title}</h3>
+              <p>{r.desc}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="tc-section tc-section--last">
+    <div class="tc-wrap">
+      <div class="tc-cta tc-blue">
+        <div>
+          <h2 class="tc-cta__title">Start with a free call.</h2>
+          <p class="tc-lead">{steps[0].desc}</p>
+        </div>
+        <a class="tc-btn tc-btn--cream tc-btn--lg" href={url('contact')}>{sentence(hero.primaryCta)}</a>
+      </div>
+    </div>
+  </section>
+</Layout>

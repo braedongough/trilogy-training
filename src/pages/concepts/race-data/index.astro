@@ -1,0 +1,159 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../../../concepts/race-data/Layout.astro';
+import SectionHead from '../../../concepts/race-data/SectionHead.astro';
+import Profile from '../../../concepts/race-data/Profile.astro';
+import { conceptUrl } from '../../../concepts/directions';
+import { coaches, defaultCurrency, hero, plans, reasons, steps, testimonials } from '../../../data/site';
+
+const url = (key: Parameters<typeof conceptUrl>[1]) => conceptUrl('race-data', key);
+const coach = coaches[0];
+const lowestPrice = Math.min(...plans.flatMap((p) => (p.prices ? [p.prices[defaultCurrency]] : [])));
+const facts = [
+  { key: 'First call', value: 'Free, up to 60 min' },
+  { key: 'Plans from', value: `${defaultCurrency} ${lowestPrice} / month` },
+  { key: 'Disciplines', value: 'Swim / Bike / Run / Tri' },
+  { key: 'Delivery', value: 'TrainingPeaks' },
+];
+const pad = (n: number) => String(n).padStart(2, '0');
+const [featured, ...entries] = testimonials;
+---
+<Layout page="home" title="Trilogy Training | Race Data concept">
+  <section class="rd-hero">
+    <div class="rd-wrap rd-hero__grid">
+      <div class="rd-hero__copy">
+        <p class="rd-label rd-hero__tag"><span class="rd-dot" aria-hidden="true"></span>{hero.tag}</p>
+        <h1 class="rd-h1">
+          {hero.titleLines.map((line) => <span class="rd-h1__line">{line}</span>)}
+        </h1>
+        <p class="rd-lead">{hero.subtitle}</p>
+        <div class="rd-actions">
+          <a class="rd-btn rd-btn--primary" href={url('contact')}>{hero.primaryCta}</a>
+          <a class="rd-btn rd-btn--ghost" href={url('plans')}>{hero.secondaryCta}</a>
+        </div>
+      </div>
+
+      <div class="rd-hero__instruments">
+        <figure class="rd-panel rd-hero__photo">
+          <Image
+            src={coach.photo}
+            alt={`${coach.name} racing on the run course`}
+            widths={[280, 420, 562]}
+            sizes="(max-width: 720px) 45vw, 260px"
+            loading="eager"
+            fetchpriority="high"
+          />
+          <figcaption class="rd-hero__caption">
+            <span>Coach</span>
+            <span>{coach.name}</span>
+          </figcaption>
+        </figure>
+
+        <div class="rd-hero__stack">
+          <div class="rd-panel">
+            <p class="rd-panel__head"><span>Overview</span><span class="rd-dot" aria-hidden="true"></span></p>
+            <dl class="rd-kv rd-kv--stacked">
+              {facts.map((f) => (
+                <div class="rd-kv__row">
+                  <dt>{f.key}</dt>
+                  <dd>{f.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+          <div class="rd-panel rd-hero__profile">
+            <Profile />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="rd-wrap"><div class="rd-ticks" aria-hidden="true"></div></div>
+  </section>
+
+  <section class="rd-section">
+    <div class="rd-wrap">
+      <SectionHead index="01" label="Protocol" title="Three steps from first call to race day." />
+      <ol class="rd-protocol">
+        {steps.map((step) => (
+          <li class="rd-protocol__step">
+            <div class="rd-protocol__rail" aria-hidden="true"><span class="rd-protocol__node"></span></div>
+            <div class="rd-panel rd-protocol__panel">
+              <p class="rd-panel__head"><span>Step {step.num}</span><span class="rd-panel__head-of">/ {pad(steps.length)}</span></p>
+              <div class="rd-protocol__body">
+                <h3 class="rd-h3">{step.title}</h3>
+                <p class="rd-body">{step.desc}</p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="rd-section">
+    <div class="rd-wrap">
+      <SectionHead index="02" label="Athlete log" title="What athletes report back." />
+      <div class="rd-log">
+        <figure class="rd-panel rd-entry rd-entry--featured">
+          <figcaption class="rd-entry__meta">
+            <p class="rd-panel__head"><span>Entry 01</span><span class="rd-dot" aria-hidden="true"></span></p>
+            <dl class="rd-kv">
+              <div class="rd-kv__row"><dt>Event</dt><dd>{featured.event}</dd></div>
+              <div class="rd-kv__row"><dt>Athlete</dt><dd>{featured.name}</dd></div>
+              <div class="rd-kv__row"><dt>Coach</dt><dd>{featured.coach}</dd></div>
+            </dl>
+          </figcaption>
+          <blockquote class="rd-entry__quote"><p>{featured.quote}</p></blockquote>
+        </figure>
+
+        <div class="rd-log__grid">
+          {entries.map((t, i) => (
+            <figure class="rd-panel rd-entry">
+              <figcaption class="rd-entry__meta">
+                <p class="rd-panel__head"><span>Entry {pad(i + 2)}</span><span>{t.event}</span></p>
+                <dl class="rd-kv rd-kv--inline">
+                  <div class="rd-kv__row"><dt>Athlete</dt><dd>{t.name}</dd></div>
+                  <div class="rd-kv__row"><dt>Coach</dt><dd>{t.coach}</dd></div>
+                </dl>
+              </figcaption>
+              <blockquote class="rd-entry__quote"><p>{t.quote}</p></blockquote>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rd-section">
+    <div class="rd-wrap">
+      <SectionHead index="03" label="Method" title="How the coaching is built." />
+      <ul class="rd-cells">
+        {reasons.map((r, i) => (
+          <li class="rd-cell">
+            <p class="rd-cell__idx">M.{pad(i + 1)}</p>
+            <h3 class="rd-h3">{r.title}</h3>
+            <p class="rd-body">{r.desc}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="rd-section rd-section--last">
+    <div class="rd-wrap">
+      <div class="rd-panel rd-cta">
+        <p class="rd-panel__head"><span>Session 01 / Consultation</span><span class="rd-dot" aria-hidden="true"></span></p>
+        <div class="rd-cta__body">
+          <div>
+            <h2 class="rd-h2">{steps[0].title}</h2>
+            <p class="rd-body rd-cta__text">{steps[0].desc}</p>
+          </div>
+          <div class="rd-actions">
+            <a class="rd-btn rd-btn--primary" href={url('contact')}>{hero.primaryCta}</a>
+            <a class="rd-btn rd-btn--ghost" href={url('about')}>Meet the coaches</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

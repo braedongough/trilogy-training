@@ -270,6 +270,26 @@ src/
 
 ---
 
+## Design Directions (Exploration)
+
+Five candidate redesigns live under `/concepts/<slug>/`, each with home, about, plans, and contact pages. They are proposals for review: their palettes, fonts, radii, and layouts are **not** part of this design system until one is chosen and promoted. The pages are `noindex` and are not linked from the public site.
+
+| Slug | Name | Fonts | Palette |
+|------|------|-------|---------|
+| `podium` | Podium | Barlow Condensed, Inter | Near-black, one cyan accent |
+| `field-notes` | Field Notes | Fraunces, Instrument Sans | Warm paper, ink, forest green |
+| `swiss` | Swiss | Inter Tight | White, black, one red |
+| `race-data` | Race Data | Inter Tight, JetBrains Mono | Graphite, signal orange |
+| `tricolour` | Tricolour | Bricolage Grotesque, DM Sans | Cream, ink, blue / yellow / coral |
+
+- `src/concepts/directions.ts` lists the directions and builds their URLs (`conceptUrl`).
+- `src/concepts/ConceptBase.astro` and `base.css` are the shared document shell, reset, and review switcher.
+- `src/concepts/<slug>/` holds each direction's `Layout.astro`, stylesheet, and partials. Every selector is scoped under `[data-direction='<slug>']`.
+- `src/pages/concepts/<slug>/` holds the four pages; `src/pages/concepts/index.astro` is the review index.
+- All directions render the content in `src/data/site.ts` and reuse `ContactForm.astro`, `scripts/currency.ts`, and native `<details>` for FAQs. They add no JavaScript.
+
+When a direction is chosen: move its tokens and rules into the sections above, replace the production pages, then delete the other directions and their font declarations in `astro.config.mjs`.
+
 ## Quick Reference: Do / Don't
 
 | Do | Don't |

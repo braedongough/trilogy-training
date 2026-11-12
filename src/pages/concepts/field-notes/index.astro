@@ -1,0 +1,145 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../../../concepts/field-notes/Layout.astro';
+import Invitation from '../../../concepts/field-notes/Invitation.astro';
+import { conceptUrl } from '../../../concepts/directions';
+import { coaches, hero, reasons, steps, testimonials } from '../../../data/site';
+
+const [feature, ...stories] = testimonials;
+const heroCoach = coaches[1];
+const featureCoach = coaches.find((c) => c.name.startsWith(feature.coach));
+---
+<Layout page="home" title="Personalised Endurance Coaching">
+  <section class="fn-hero">
+    <div class="fn-wrap fn-grid">
+      <div class="fn-hero__text">
+        <p class="fn-label">{hero.tag}</p>
+        <h1 class="fn-display fn-hero__title">
+          <span>{hero.titleLines[0]}</span>
+          <em>{hero.titleLines[1]}</em>
+        </h1>
+        <p class="fn-lede fn-hero__sub">{hero.subtitle}</p>
+        <div class="fn-actions">
+          <a class="fn-btn" href={conceptUrl('field-notes', 'contact')}>{hero.primaryCta}</a>
+          <a class="fn-link" href={conceptUrl('field-notes', 'plans')}>{hero.secondaryCta}</a>
+        </div>
+      </div>
+
+      <figure class="fn-hero__figure">
+        <div class="fn-photo">
+          <Image
+            src={heroCoach.photo}
+            alt={`${heroCoach.name} running during a triathlon`}
+            widths={[340, 480, heroCoach.photo.width]}
+            sizes="(min-width: 960px) 400px, 78vw"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+        <figcaption class="fn-caption">{heroCoach.name}, coach. Based in {heroCoach.base}.</figcaption>
+      </figure>
+
+      <dl class="fn-roster">
+        {coaches.map((coach) => (
+          <div>
+            <dt class="fn-label">Coach</dt>
+            <dd class="fn-roster__name">{coach.name}, <span>{coach.base}</span></dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section class="fn-section fn-section--ruled">
+    <div class="fn-wrap fn-grid">
+      <header class="fn-feature__meta">
+        <p class="fn-label">No. 01 &mdash; Feature story</p>
+        <h2 class="fn-feature__title">{feature.event}</h2>
+        <p class="fn-label fn-feature__by">{feature.name}, coached by {feature.coach}</p>
+        {featureCoach && (
+          <figure class="fn-feature__coach">
+            <div class="fn-photo">
+              <Image
+                src={featureCoach.photo}
+                alt={`${featureCoach.name} racing`}
+                widths={[200, 400]}
+                sizes="200px"
+              />
+            </div>
+            <figcaption class="fn-caption">{feature.name}&rsquo;s coach, {featureCoach.name}</figcaption>
+          </figure>
+        )}
+      </header>
+      <figure class="fn-feature__quote">
+        <blockquote>
+          <p>{feature.quote}</p>
+        </blockquote>
+        <figcaption class="fn-label fn-feature__sign">{feature.name} &middot; {feature.event}</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="fn-section fn-section--ruled">
+    <div class="fn-wrap fn-grid">
+      <header class="fn-split__head">
+        <p class="fn-label">No. 02 &mdash; How it works</p>
+        <h2 class="fn-h2">Three steps, <em>taken together.</em></h2>
+      </header>
+      <ol class="fn-steps fn-split__body">
+        {steps.map((step) => (
+          <li class="fn-step">
+            <span class="fn-step__num" aria-hidden="true">{step.num}</span>
+            <div>
+              <h3 class="fn-h3">{step.title}</h3>
+              <p>{step.desc}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="fn-section fn-section--deep">
+    <div class="fn-wrap">
+      <header class="fn-stories__head">
+        <div>
+          <p class="fn-label">No. 03 &mdash; Athlete stories</p>
+          <h2 class="fn-h2">In their <em>own words.</em></h2>
+        </div>
+      </header>
+      <div class="fn-stories__list">
+        {stories.map((story) => (
+          <article class="fn-story">
+            <h3 class="fn-story__title">{story.event}</h3>
+            <blockquote>
+              <p>{story.quote}</p>
+            </blockquote>
+            <p class="fn-story__by">
+              <span class="fn-story__name">{story.name}</span>
+              <span class="fn-label">Coached by {story.coach}</span>
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="fn-section">
+    <div class="fn-wrap fn-grid">
+      <header class="fn-split__head">
+        <p class="fn-label">No. 04 &mdash; Why Trilogy</p>
+        <h2 class="fn-h2">Coaching that fits <em>the life around it.</em></h2>
+      </header>
+      <ul class="fn-reasons fn-split__body">
+        {reasons.map((reason) => (
+          <li class="fn-reason">
+            <h3 class="fn-h3">{reason.title}</h3>
+            <p>{reason.desc}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <Invitation />
+</Layout>

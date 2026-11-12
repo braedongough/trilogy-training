@@ -1,0 +1,19 @@
+---
+/** Closing band inviting the reader to book the free call. */
+import { conceptUrl } from '../directions';
+import { hero, steps } from '../../data/site';
+---
+<section class="fn-invite">
+  <div class="fn-wrap fn-grid">
+    <div class="fn-invite__head">
+      <p class="fn-label">An invitation</p>
+      <h2 class="fn-display fn-invite__title">It starts with <em>a conversation.</em></h2>
+    </div>
+    <div class="fn-invite__body">
+      <p>{steps[0].desc}</p>
+      <div class="fn-actions">
+        <a class="fn-btn" href={conceptUrl('field-notes', 'contact')}>{hero.primaryCta}</a>
+      </div>
+    </div>
+  </div>
+</section>

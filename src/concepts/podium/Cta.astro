@@ -1,0 +1,17 @@
+---
+/** Closing call-to-action band: the one place the accent fills the screen. */
+import { conceptUrl } from '../directions';
+import { hero, steps } from '../../data/site';
+---
+<section class="pd-cta" aria-labelledby="pd-cta-title">
+  <div class="pd-wrap pd-cta__inner">
+    <h2 class="pd-cta__title" id="pd-cta-title">Start with <em>a free call.</em></h2>
+    <div class="pd-cta__side">
+      <p>{steps[0].desc}</p>
+      <a class="pd-btn pd-btn--dark" href={conceptUrl('podium', 'contact')}>
+        {hero.primaryCta}
+        <span class="pd-arrow" aria-hidden="true"></span>
+      </a>
+    </div>
+  </div>
+</section>

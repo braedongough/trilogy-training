@@ -1,0 +1,84 @@
+---
+/** Field Notes: page shell with the direction's fonts, header, and colophon footer. */
+import { Font } from 'astro:assets';
+import ConceptBase from '../ConceptBase.astro';
+import { conceptPages, conceptUrl, type ConceptPage } from '../directions';
+import { hero, shopUrl, social, whatsapp } from '../../data/site';
+import './field-notes.css';
+
+interface Props {
+  page: ConceptPage;
+  title: string;
+}
+
+const { page, title } = Astro.props;
+const url = (key: ConceptPage) => conceptUrl('field-notes', key);
+---
+<ConceptBase direction="field-notes" page={page} title={`${title} | Trilogy Training`} themeColor="#f5f0e6">
+  <Fragment slot="head">
+    <Font cssVariable="--font-fraunces" preload />
+    <Font cssVariable="--font-instrument-sans" preload />
+  </Fragment>
+
+  <header class="fn-header">
+    <div class="fn-wrap">
+      <div class="fn-header__inner">
+        <a class="fn-wordmark" href={url('home')}>Trilogy <em>Training</em></a>
+        <nav class="fn-header__nav" aria-label="Main">
+          <ul class="fn-nav">
+            {conceptPages.map((p) => (
+              <li>
+                <a href={url(p.key)} aria-current={p.key === page ? 'page' : undefined}>{p.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <a class="fn-btn fn-header__cta" href={url('contact')}>Book a free call</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="fn-footer">
+    <div class="fn-wrap">
+      <div class="fn-footer__inner">
+        <div class="fn-footer__brand">
+          <a class="fn-wordmark" href={url('home')}>Trilogy <em>Training</em></a>
+          <p>{hero.subtitle}</p>
+        </div>
+        <nav class="fn-footer__col" aria-label="Footer">
+          <p class="fn-label">Pages</p>
+          <ul>
+            {conceptPages.map((p) => (
+              <li><a href={url(p.key)}>{p.label}</a></li>
+            ))}
+          </ul>
+        </nav>
+        <div class="fn-footer__col">
+          <p class="fn-label">Elsewhere</p>
+          <ul>
+            {Object.values(social).map((s) => (
+              <li><a href={s.href} rel="noopener">{s.label}</a></li>
+            ))}
+            <li><a href={shopUrl} rel="noopener">Team kit shop</a></li>
+          </ul>
+        </div>
+        <div class="fn-footer__col">
+          <p class="fn-label">WhatsApp</p>
+          <ul>
+            {whatsapp.map((w) => (
+              <li><a href={w.href} rel="noopener">{w.number}</a></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div class="fn-footer__legal fn-label">
+        <p>&copy; {new Date().getFullYear()} Trilogy Training</p>
+        <p>{hero.tag}</p>
+      </div>
+    </div>
+  </footer>
+</ConceptBase>

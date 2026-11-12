@@ -1,0 +1,79 @@
+---
+import { Font } from 'astro:assets';
+import ConceptBase from '../ConceptBase.astro';
+import { conceptPages, conceptUrl, type ConceptPage } from '../directions';
+import { shopUrl, social, trainingPeaksUrl } from '../../data/site';
+import './swiss.css';
+
+interface Props {
+  page: ConceptPage;
+  title: string;
+}
+
+const { page, title } = Astro.props;
+const external = [
+  { label: social.instagram.label, href: social.instagram.href },
+  { label: social.facebook.label, href: social.facebook.href },
+];
+---
+<ConceptBase direction="swiss" page={page} title={title} themeColor="#ffffff">
+  <Font slot="head" cssVariable="--font-inter-tight" preload />
+  <a class="sw-skip" href="#main">Skip to content</a>
+  <header class="sw-header">
+    <div class="sw-wrap">
+      <div class="sw-grid sw-header__grid">
+      <a class="sw-header__mark" href={conceptUrl('swiss', 'home')}>Trilogy Training</a>
+      <nav class="sw-header__nav" aria-label="Main">
+        <ul class="sw-header__list">
+          {conceptPages.map((p) => (
+            <li>
+              <a href={conceptUrl('swiss', p.key)} aria-current={p.key === page ? 'page' : undefined}>{p.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <a class="sw-header__cta" href={conceptUrl('swiss', 'contact')}>Book a free call</a>
+    </div>
+    </div>
+  </header>
+
+  <main id="main" class="sw-main">
+    <slot />
+  </main>
+
+  <footer class="sw-footer">
+    <div class="sw-wrap">
+      <div class="sw-grid sw-footer__grid">
+        <p class="sw-footer__intro">Personalised coaching for triathlon, running, cycling and swimming.</p>
+        <nav class="sw-footer__col sw-footer__col--a" aria-label="Footer">
+          <h2 class="sw-label">Pages</h2>
+          <ul class="sw-footer__list">
+            {conceptPages.map((p) => (
+              <li><a href={conceptUrl('swiss', p.key)}>{p.label}</a></li>
+            ))}
+          </ul>
+        </nav>
+        <div class="sw-footer__col sw-footer__col--b">
+          <h2 class="sw-label">Social</h2>
+          <ul class="sw-footer__list">
+            {external.map((link) => (
+              <li><a href={link.href} rel="noopener">{link.label}</a></li>
+            ))}
+          </ul>
+        </div>
+        <div class="sw-footer__col sw-footer__col--c">
+          <h2 class="sw-label">Elsewhere</h2>
+          <ul class="sw-footer__list">
+            <li><a href={shopUrl} rel="noopener">Team kit shop</a></li>
+            <li><a href={trainingPeaksUrl} rel="noopener">TrainingPeaks plans</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="sw-footer__mark" aria-hidden="true">Trilogy Training</p>
+      <div class="sw-footer__base">
+        <p>&copy; {new Date().getFullYear()} Trilogy Training</p>
+        <p>Switzerland / Spain</p>
+      </div>
+    </div>
+  </footer>
+</ConceptBase>

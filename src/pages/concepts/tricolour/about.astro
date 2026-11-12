@@ -1,0 +1,94 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../../../concepts/tricolour/Layout.astro';
+import { conceptUrl } from '../../../concepts/directions';
+import { coaches, principles, reasons, steps } from '../../../data/site';
+
+const fields = ['tc-blue', 'tc-yellow', 'tc-coral', 'tc-outline'];
+const blocks = ['tc-blue', 'tc-coral'];
+---
+<Layout page="about" title="About the coaches">
+  <section class="tc-pagehead">
+    <div class="tc-wrap tc-pagehead__inner">
+      <div>
+        <p class="tc-label">About</p>
+        <h1 class="tc-h1">Two coaches, on your side.</h1>
+      </div>
+      <p class="tc-lead">{reasons[1].desc}</p>
+    </div>
+  </section>
+
+  <section class="tc-section tc-section--tight">
+    <div class="tc-wrap tc-coaches">
+      {coaches.map((coach, i) => (
+        <article class:list={['tc-coach', { 'tc-coach--flip': i % 2 === 1, 'tc-coach--brief': coach.careerHighs.length + coach.careerLows.length === 0 }]}>
+          <div class="tc-coach__media">
+            <span class:list={['tc-coach__block', blocks[i % 2]]} aria-hidden="true"></span>
+            <Image
+              class="tc-coach__photo"
+              src={coach.photo}
+              alt={`${coach.name} racing`}
+              widths={[320, 480, 562]}
+              sizes="(min-width: 900px) 440px, 80vw"
+            />
+          </div>
+          <div class="tc-coach__body">
+            <span class="tc-pill">Based in {coach.base}</span>
+            <h2 class="tc-h2">{coach.name}</h2>
+            <p class="tc-coach__bio">{coach.bio}</p>
+            {(coach.careerHighs.length > 0 || coach.careerLows.length > 0) && (
+              <div class="tc-career">
+                {coach.careerHighs.length > 0 && (
+                  <div>
+                    <h3 class="tc-label">Career highs</h3>
+                    <ul class="tc-marks tc-marks--high">
+                      {coach.careerHighs.map((item) => <li>{item}</li>)}
+                    </ul>
+                  </div>
+                )}
+                {coach.careerLows.length > 0 && (
+                  <div>
+                    <h3 class="tc-label">Career lows</h3>
+                    <ul class="tc-marks tc-marks--low">
+                      {coach.careerLows.map((item) => <li>{item}</li>)}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="tc-section">
+    <div class="tc-wrap">
+      <header class="tc-section__head">
+        <p class="tc-label">Principles</p>
+        <h2 class="tc-h2">How we coach</h2>
+      </header>
+      <ol class="tc-tiles">
+        {principles.map((p, i) => (
+          <li class:list={['tc-tile', fields[i % 4]]}>
+            <span class="tc-tile__num" aria-hidden="true">0{i + 1}</span>
+            <h3 class="tc-h3">{p.title}</h3>
+            <p>{p.desc}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="tc-section tc-section--last">
+    <div class="tc-wrap">
+      <div class="tc-cta tc-blue">
+        <div>
+          <h2 class="tc-cta__title">Come and say hello.</h2>
+          <p class="tc-lead">{steps[0].desc}</p>
+        </div>
+        <a class="tc-btn tc-btn--cream tc-btn--lg" href={conceptUrl('tricolour', 'contact')}>Book a free call</a>
+      </div>
+    </div>
+  </section>
+</Layout>

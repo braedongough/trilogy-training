@@ -1,0 +1,102 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../../../concepts/field-notes/Layout.astro';
+import Invitation from '../../../concepts/field-notes/Invitation.astro';
+import { coaches, principles, reasons, testimonials } from '../../../data/site';
+
+const profiles = coaches.map((coach) => {
+  const firstName = coach.name.split(' ')[0];
+  const notes = [
+    { label: 'Career highs', items: coach.careerHighs },
+    { label: 'Career lows', items: coach.careerLows },
+  ].filter((note) => note.items.length > 0);
+  // A coach without career notes gets the shortest story from one of their athletes instead.
+  const story = testimonials
+    .filter((t) => t.coach === firstName)
+    .sort((a, b) => a.quote.length - b.quote.length)[0];
+  return { coach, notes, story, paragraphs: coach.bio.split(/(?<=\.)\s+/) };
+});
+---
+<Layout page="about" title="About the Coaches">
+  <section class="fn-intro">
+    <div class="fn-wrap fn-grid">
+      <div class="fn-intro__head">
+        <p class="fn-label">The coaches</p>
+        <h1 class="fn-display fn-intro__title">Two coaches, <em>one way of working.</em></h1>
+        <p class="fn-lede fn-intro__lede">{reasons[1].desc}</p>
+      </div>
+    </div>
+  </section>
+
+  {profiles.map(({ coach, notes, story, paragraphs }, i) => (
+    <section class:list={['fn-profile', { 'fn-profile--flip': i % 2 === 1 }]}>
+      <div class="fn-wrap fn-grid">
+        <figure class="fn-profile__figure">
+          <div class="fn-photo">
+            <Image
+              src={coach.photo}
+              alt={`${coach.name} mid-race`}
+              widths={[360, 480, coach.photo.width]}
+              sizes="(min-width: 960px) 40vw, 90vw"
+              loading={i === 0 ? 'eager' : 'lazy'}
+            />
+          </div>
+          <figcaption class="fn-caption">{coach.name}, {coach.base}.</figcaption>
+        </figure>
+
+        <div class="fn-profile__text">
+          <p class="fn-label">Profile No. 0{i + 1} &mdash; {coach.base}</p>
+          <h2 class="fn-profile__name">{coach.name}</h2>
+          <div class="fn-profile__bio">
+            {paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+          </div>
+
+          {notes.length > 0 ? (
+            <div class="fn-notes">
+              {notes.map((note) => (
+                <div class="fn-note">
+                  <h3 class="fn-label">{note.label}</h3>
+                  <ul>
+                    {note.items.map((item) => <li>{item}</li>)}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          ) : story && (
+            <div class="fn-notes">
+              <figure class="fn-note">
+                <h3 class="fn-label">From an athlete</h3>
+                <blockquote>
+                  <p>{story.quote}</p>
+                </blockquote>
+                <figcaption>{story.name}, {story.event}</figcaption>
+              </figure>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="fn-section fn-section--ruled">
+    <div class="fn-wrap fn-grid">
+      <header class="fn-split__head">
+        <p class="fn-label">What we believe</p>
+        <h2 class="fn-h2">Four principles, <em>briefly.</em></h2>
+      </header>
+      <ol class="fn-essays fn-split__body">
+        {principles.map((principle, i) => (
+          <li class="fn-essay">
+            <span class="fn-essay__num" aria-hidden="true">0{i + 1}</span>
+            <div>
+              <h3 class="fn-h3">{principle.title}</h3>
+              <p>{principle.desc}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <Invitation />
+</Layout>

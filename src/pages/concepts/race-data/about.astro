@@ -1,0 +1,108 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../../../concepts/race-data/Layout.astro';
+import SectionHead from '../../../concepts/race-data/SectionHead.astro';
+import { conceptUrl } from '../../../concepts/directions';
+import { coaches, hero, principles } from '../../../data/site';
+
+const pad = (n: number) => String(n).padStart(2, '0');
+/** Splits an entry around a race time such as "8:36" so it can be emphasised. */
+const splitTime = (text: string) => text.split(/(\b\d{1,2}:\d{2}\b)/);
+---
+<Layout page="about" title="About | Trilogy Training | Race Data concept">
+  <section class="rd-pagehead">
+    <div class="rd-wrap">
+      <p class="rd-label rd-hero__tag"><span class="rd-dot" aria-hidden="true"></span>About / Coaches</p>
+      <h1 class="rd-h1 rd-h1--page">Two coaches. One athlete at a time.</h1>
+      <p class="rd-lead">{hero.subtitle}</p>
+      <div class="rd-ticks" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  {coaches.map((coach, i) => (
+    <section class="rd-section rd-section--sheet" id={coach.id}>
+      <div class="rd-wrap rd-sheet">
+        <figure class="rd-panel rd-sheet__photo">
+          <Image
+            src={coach.photo}
+            alt={`${coach.name} racing`}
+            widths={[320, 480, coach.photo.width]}
+            sizes="(max-width: 860px) 90vw, 420px"
+            loading="eager"
+          />
+          <figcaption class="rd-hero__caption">
+            <span>Profile {pad(i + 1)}</span>
+            <span>{coach.base}</span>
+          </figcaption>
+        </figure>
+
+        <div class="rd-panel rd-sheet__data">
+          <p class="rd-panel__head"><span>Coach {pad(i + 1)} / Profile sheet</span><span class="rd-dot" aria-hidden="true"></span></p>
+          <div class="rd-sheet__body">
+            <h2 class="rd-h2">{coach.name}</h2>
+            <dl class="rd-kv">
+              <div class="rd-kv__row"><dt>Name</dt><dd>{coach.name}</dd></div>
+              <div class="rd-kv__row"><dt>Base</dt><dd>{coach.base}</dd></div>
+            </dl>
+            <p class="rd-body rd-sheet__bio">{coach.bio}</p>
+
+            {(coach.careerHighs.length > 0 || coach.careerLows.length > 0) && (
+              <div class="rd-sheet__lists">
+                {coach.careerHighs.length > 0 && (
+                  <div>
+                    <h3 class="rd-label rd-sheet__list-title">Career highs</h3>
+                    <ul class="rd-list">
+                      {coach.careerHighs.map((item) => (
+                        <li>
+                          {splitTime(item).map((part, j) => (j % 2 ? <strong class="rd-figure">{part}</strong> : part))}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {coach.careerLows.length > 0 && (
+                  <div>
+                    <h3 class="rd-label rd-sheet__list-title">Career lows</h3>
+                    <ul class="rd-list rd-list--low">
+                      {coach.careerLows.map((item) => <li>{item}</li>)}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="rd-section">
+    <div class="rd-wrap">
+      <SectionHead index="03" label="Principles" title="What every plan is held to." />
+      <ul class="rd-cells">
+        {principles.map((p, i) => (
+          <li class="rd-cell">
+            <p class="rd-cell__idx">P.{pad(i + 1)}</p>
+            <h3 class="rd-h3">{p.title}</h3>
+            <p class="rd-body">{p.desc}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="rd-section rd-section--last">
+    <div class="rd-wrap">
+      <div class="rd-panel rd-cta">
+        <p class="rd-panel__head"><span>Session 01 / Consultation</span><span class="rd-dot" aria-hidden="true"></span></p>
+        <div class="rd-cta__body">
+          <h2 class="rd-h2">Talk it through with a coach.</h2>
+          <div class="rd-actions">
+            <a class="rd-btn rd-btn--primary" href={conceptUrl('race-data', 'contact')}>{hero.primaryCta}</a>
+            <a class="rd-btn rd-btn--ghost" href={conceptUrl('race-data', 'plans')}>{hero.secondaryCta}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

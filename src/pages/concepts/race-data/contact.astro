@@ -1,0 +1,45 @@
+---
+import Layout from '../../../concepts/race-data/Layout.astro';
+import ContactForm from '../../../components/ContactForm.astro';
+import { faqs, social, whatsapp } from '../../../data/site';
+
+const consultation = faqs.find((f) => f.question.toLowerCase().includes('consultation'));
+---
+<Layout page="contact" title="Contact | Trilogy Training | Race Data concept">
+  <section class="rd-pagehead rd-pagehead--contact">
+    <div class="rd-wrap rd-contact">
+      <div class="rd-contact__copy">
+        <p class="rd-label rd-hero__tag"><span class="rd-dot" aria-hidden="true"></span>Contact / Free call</p>
+        <h1 class="rd-h1 rd-h1--page">Book a free call.</h1>
+        {consultation && <p class="rd-lead">{consultation.answer}</p>}
+
+        <div class="rd-panel rd-contact__channels">
+          <p class="rd-panel__head"><span>Channels</span><span>Reply within 24 hours</span></p>
+          <dl class="rd-kv">
+            {whatsapp.map((w) => (
+              <div class="rd-kv__row">
+                <dt>{w.label}</dt>
+                <dd><a href={w.href} rel="noopener">{w.number}</a></dd>
+              </div>
+            ))}
+            {Object.values(social).map((s) => (
+              <div class="rd-kv__row">
+                <dt>{s.label}</dt>
+                <dd><a href={s.href} rel="noopener">{s.handle}</a></dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+
+      <div class="rd-panel rd-contact__form">
+        <p class="rd-panel__head"><span>Session 01 / Consultation request</span><span class="rd-dot" aria-hidden="true"></span></p>
+        <div class="rd-form">
+          <ContactForm>
+            <button slot="submit" type="submit" class="rd-btn rd-btn--primary rd-form__submit" data-cf-submit>Send message</button>
+          </ContactForm>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

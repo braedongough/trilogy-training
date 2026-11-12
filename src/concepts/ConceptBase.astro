@@ -1,0 +1,49 @@
+---
+/**
+ * Document shell shared by every design direction: metadata, the direction's
+ * fonts (via the "head" slot), and the review switcher. Each direction wraps
+ * this in its own Layout.astro with its header, footer, and stylesheet.
+ */
+import { conceptPages, conceptUrl, directions, type ConceptPage, type DirectionSlug } from './directions';
+import './base.css';
+
+interface Props {
+  direction: DirectionSlug;
+  page: ConceptPage;
+  title: string;
+  /** Browser UI colour, matching the direction's page background. */
+  themeColor: string;
+}
+
+const { direction, page, title, themeColor } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en" data-direction={direction}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content={themeColor} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+    <nav class="concept-switcher" aria-label="Design directions">
+      <a href="/concepts/">All</a>
+      <span class="concept-switcher__sep"></span>
+      {directions.map((d, i) => (
+        <a href={conceptUrl(d.slug, page)} aria-current={d.slug === direction ? 'true' : undefined}>
+          {i + 1} {d.name}
+        </a>
+      ))}
+      <span class="concept-switcher__sep"></span>
+      {conceptPages.map((p) => (
+        <a href={conceptUrl(direction, p.key)} aria-current={p.key === page ? 'true' : undefined}>
+          {p.label}
+        </a>
+      ))}
+    </nav>
+  </body>
+</html>

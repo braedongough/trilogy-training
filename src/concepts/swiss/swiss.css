@@ -1,0 +1,1256 @@
+/*
+ * Swiss direction: white, black, one red. Twelve columns, 1px black rules,
+ * Inter Tight only. Everything is scoped under [data-direction='swiss'].
+ */
+[data-direction='swiss'] {
+  --sw-white: #ffffff;
+  --sw-black: #0a0a0a;
+  --sw-grey: #6e6e6e;
+  --sw-band: #f3f3f3;
+  --sw-red: #e10600;
+  --sw-font: var(--font-inter-tight), 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --sw-gap: 16px;
+  --sw-pad: 20px;
+  --sw-rule: 1px solid var(--sw-black);
+  --sw-space: 72px;
+
+  background: var(--sw-white);
+  color: var(--sw-black);
+  scroll-padding-top: 24px;
+}
+
+[data-direction='swiss'] body {
+  font-family: var(--sw-font);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.5;
+  background: var(--sw-white);
+  color: var(--sw-black);
+  overflow-wrap: break-word;
+}
+
+[data-direction='swiss'] ::selection {
+  background: var(--sw-red);
+  color: var(--sw-white);
+}
+
+[data-direction='swiss'] :focus-visible {
+  outline: 2px solid var(--sw-red);
+  outline-offset: 3px;
+}
+
+/* ── Grid ───────────────────────────────────────────────── */
+
+[data-direction='swiss'] .sw-wrap {
+  width: 100%;
+  max-width: calc(1360px + 2 * var(--sw-pad));
+  margin-inline: auto;
+  padding-inline: var(--sw-pad);
+}
+
+[data-direction='swiss'] .sw-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: var(--sw-gap);
+}
+
+[data-direction='swiss'] .sw-grid > * {
+  grid-column: 1 / -1;
+}
+
+/* ── Type ───────────────────────────────────────────────── */
+
+[data-direction='swiss'] .sw-display {
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.92;
+  text-wrap: balance;
+}
+
+[data-direction='swiss'] .sw-label {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+[data-direction='swiss'] .sw-label--grey {
+  color: var(--sw-grey);
+}
+
+[data-direction='swiss'] .sw-num {
+  display: inline-block;
+  min-width: 2.25em;
+  color: var(--sw-red);
+  font-variant-numeric: tabular-nums;
+}
+
+[data-direction='swiss'] .sw-lede {
+  font-size: clamp(1.25rem, 0.95rem + 1vw, 1.75rem);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+[data-direction='swiss'] .sw-title {
+  font-size: clamp(1.75rem, 1.2rem + 2vw, 3rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+[data-direction='swiss'] .sw-body {
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+[data-direction='swiss'] .sw-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+[data-direction='swiss'] .sw-skip {
+  position: absolute;
+  left: var(--sw-pad);
+  top: -100px;
+  z-index: 10;
+  padding: 12px 16px;
+  background: var(--sw-black);
+  color: var(--sw-white);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+[data-direction='swiss'] .sw-skip:focus {
+  top: 8px;
+}
+
+/* ── Buttons ────────────────────────────────────────────── */
+
+[data-direction='swiss'] .sw-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+  padding: 0 28px;
+  border: 1px solid var(--sw-red);
+  border-radius: 0;
+  background: var(--sw-red);
+  color: var(--sw-white);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+[data-direction='swiss'] .sw-btn:hover {
+  background: var(--sw-black);
+  border-color: var(--sw-black);
+}
+
+[data-direction='swiss'] .sw-btn:disabled {
+  background: var(--sw-grey);
+  border-color: var(--sw-grey);
+  cursor: default;
+}
+
+[data-direction='swiss'] .sw-btn--outline {
+  background: transparent;
+  border-color: var(--sw-black);
+  color: var(--sw-black);
+}
+
+[data-direction='swiss'] .sw-btn--outline:hover {
+  background: var(--sw-black);
+  color: var(--sw-white);
+}
+
+[data-direction='swiss'] .sw-btn--block {
+  display: flex;
+  width: 100%;
+}
+
+[data-direction='swiss'] .sw-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ── Header ─────────────────────────────────────────────── */
+
+[data-direction='swiss'] .sw-header__grid {
+  align-items: baseline;
+  row-gap: 12px;
+  padding-block: 18px 16px;
+  border-bottom: var(--sw-rule);
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+[data-direction='swiss'] .sw-header__grid > .sw-header__mark {
+  grid-column: 1 / 3;
+  justify-self: start;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  text-decoration: none;
+}
+
+[data-direction='swiss'] .sw-header__grid > .sw-header__cta {
+  grid-column: 3 / -1;
+  grid-row: 1;
+  justify-self: end;
+  color: var(--sw-red);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+[data-direction='swiss'] .sw-header__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 24px;
+}
+
+[data-direction='swiss'] .sw-header__list a {
+  display: inline-block;
+  padding-block: 4px;
+  text-decoration: none;
+}
+
+[data-direction='swiss'] .sw-header__list a[aria-current='page'] {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+}
+
+[data-direction='swiss'] .sw-header a:hover {
+  color: var(--sw-red);
+}
+
+[data-direction='swiss'] .sw-header__cta:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+}
+
+/* ── Hero ───────────────────────────────────────────────── */
+
+[data-direction='swiss'] .sw-hero {
+  padding-block: 40px var(--sw-space);
+}
+
+[data-direction='swiss'] .sw-hero__title {
+  font-size: clamp(2.75rem, 13.4vw, 9rem);
+  margin-left: -0.02em;
+}
+
+[data-direction='swiss'] .sw-hero__title span {
+  display: block;
+}
+
+[data-direction='swiss'] .sw-hero__row {
+  row-gap: 24px;
+  margin-top: 40px;
+}
+
+[data-direction='swiss'] .sw-hero__lede {
+  display: grid;
+  gap: 28px;
+  align-content: start;
+}
+
+[data-direction='swiss'] .sw-hero__row > .sw-hero__figure {
+  margin-top: 24px;
+}
+
+[data-direction='swiss'] .sw-photo {
+  width: 100%;
+  object-fit: cover;
+  object-position: 50% 0;
+  border-radius: 0;
+  filter: grayscale(1) contrast(1.06);
+  background: var(--sw-band);
+}
+
+[data-direction='swiss'] .sw-photo--hero {
+  aspect-ratio: 4 / 5;
+}
+
+[data-direction='swiss'] .sw-photo--coach {
+  aspect-ratio: 3 / 5;
+}
+
+[data-direction='swiss'] .sw-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: var(--sw-rule);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+[data-direction='swiss'] .sw-caption span:last-child {
+  color: var(--sw-grey);
+}
+
+/* ── Page head (inner pages) ────────────────────────────── */
+
+[data-direction='swiss'] .sw-pagehead {
+  padding-block: 16px var(--sw-space);
+}
+
+[data-direction='swiss'] .sw-pagehead__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+[data-direction='swiss'] .sw-pagehead__title {
+  max-width: 14ch;
+  margin-top: clamp(56px, 9vw, 128px);
+  margin-left: -0.02em;
+  font-size: clamp(2.75rem, 9.6vw, 8rem);
+}
+
+/* ── Section ────────────────────────────────────────────── */
+
+[data-direction='swiss'] .sw-section__grid {
+  row-gap: 32px;
+  padding-block: 14px var(--sw-space);
+  border-top: var(--sw-rule);
+}
+
+[data-direction='swiss'] .sw-section__body {
+  display: grid;
+  grid-template-columns: subgrid;
+  align-content: start;
+}
+
+[data-direction='swiss'] .sw-section__body > * {
+  grid-column: 1 / -1;
+}
+
+[data-direction='swiss'] .sw-intro {
+  max-width: 27em;
+}
+
+/* ── Process ────────────────────────────────────────────── */
+
+[data-direction='swiss'] .sw-steps {
+  display: grid;
+  grid-template-columns: subgrid;
+  row-gap: 40px;
+}
+
+[data-direction='swiss'] .sw-step {
+  grid-column: 1 / -1;
+}
+
+[data-direction='swiss'] .sw-step__num {
+  padding-bottom: 12px;
+  border-bottom: var(--sw-rule);
+  font-size: clamp(4rem, 2.6rem + 5vw, 7.5rem);
+  font-weight: 600;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+[data-direction='swiss'] .sw-step__title {
+  margin-top: 16px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+[data-direction='swiss'] .sw-step__desc {
+  max-width: 30em;
+  margin-top: 12px;
+}
+
+/* ── Results ────────────────────────────────────────────── */
+
+[data-direction='swiss'] .sw-results,
+[data-direction='swiss'] .sw-result {
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+[data-direction='swiss'] .sw-result {
+  grid-column: 1 / -1;
+  row-gap: 16px;
+  padding-block: 16px 40px;
+  border-top: var(--sw-rule);
+}
+
+[data-direction='swiss'] .sw-result:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+[data-direction='swiss'] .sw-result:last-child {
+  padding-bottom: 0;
+}
+
+[data-direction='swiss'] .sw-result > * {
+  grid-column: 1 / -1;
+}
+
+[data-direction='swiss'] .sw-result__num {
+  font-variant-numeric: tabular-nums;
+}
+
+[data-direction='swiss'] .sw-result__event {
+  font-size: clamp(1.875rem, 1.1rem + 2.8vw, 3.75rem);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+}
+
+[data-direction='swiss'] .sw-result__who {
+  display: grid;
+  align-content: start;
+}
+
+[data-direction='swiss'] .sw-result__quote {
+  max-width: 38em;
+}
+
+/* ── Approach ───────────────────────────────────────────── */
+
+[data-direction='swiss'] .sw-reasons {
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+[data-direction='swiss'] .sw-reason {
+  grid-column: 1 / -1;
+  padding-block: 12px 40px;
+  border-top: var(--sw-rule);
+}
+
+[data-direction='swiss'] .sw-reason:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+[data-direction='swiss'] .sw-reason__title {
+  margin-top: 28px;
+  font-size: clamp(1.625rem, 1.2rem + 1.2vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+
+[data-direction='swiss'] .sw-reason__desc {
+  max-width: 28em;
+  margin-top: 14px;
+}
+
+/* ── Closing ────────────────────────────────────────────── */
+
+[data-direction='swiss'] .sw-closing__line {
+  margin-left: -0.02em;
+  font-size: clamp(2.75rem, 1rem + 7.4vw, 8rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+}
+
+[data-direction='swiss'] .sw-closing__note {
+  margin-top: 28px;
+  color: var(--sw-grey);
+}
+
+[data-direction='swiss'] .sw-closing__action {
+  margin-top: 24px;
+}
+
+/* ── About ──────────────────────────────────────────────── */
+
+[data-direction='swiss'] .sw-coach__grid {
+  row-gap: 24px;
+  padding-block: 16px var(--sw-space);
+  border-top: var(--sw-rule);
+}
+
+[data-direction='swiss'] .sw-coach__figure {
+  max-width: 420px;
+}
+
+[data-direction='swiss'] .sw-coach__body {
+  display: grid;
+  grid-template-columns: subgrid;
+  align-content: start;
+}
+
+[data-direction='swiss'] .sw-coach__body > * {
+  grid-column: 1 / -1;
+}
+
+[data-direction='swiss'] .sw-coach__name {
+  margin-top: 8px;
+  margin-left: -0.02em;
+  font-size: clamp(2.5rem, 1.4rem + 4.6vw, 6rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+}
+
+[data-direction='swiss'] .sw-coach__bio {
+  max-width: 38em;
+  margin-top: 28px;
+}
+
+[data-direction='swiss'] .sw-coach__list {
+  margin-top: 48px;
+}
+
+[data-direction='swiss'] .sw-ruled {
+  margin-top: 10px;
+  border-top: var(--sw-rule);
+}
+
+[data-direction='swiss'] .sw-ruled > li {
+  padding-block: 10px 11px;
+  border-bottom: var(--sw-rule);
+  line-height: 1.35;
+}
+
+[data-direction='swiss'] .sw-principles,
+[data-direction='swiss'] .sw-principle {
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+[data-direction='swiss'] .sw-principle {
+  grid-column: 1 / -1;
+  row-gap: 12px;
+  padding-block: 16px 40px;
+  border-top: var(--sw-rule);
+}
+
+[data-direction='swiss'] .sw-principle:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+[data-direction='swiss'] .sw-principle:last-child {
+  padding-bottom: 0;
+}
+
+[data-direction='swiss'] .sw-principle > * {
+  grid-column: 1 / -1;
+}
+
+[data-direction='swiss'] .sw-principle__num {
+  font-variant-numeric: tabular-nums;
+}
+
+[data-direction='swiss'] .sw-principle__title {
+  font-size: clamp(1.625rem, 1.2rem + 1.2vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+
+[data-direction='swiss'] .sw-principle__desc {
+  max-width: 34em;
+}
+
+/* ── Plans ──────────────────────────────────────────────── */
+
+[data-direction='swiss'] .sw-currency {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+[data-direction='swiss'] .sw-currency__options {
+  display: flex;
+  gap: 4px;
+}
+
+[data-direction='swiss'] .sw-currency__btn {
+  min-height: 32px;
+  padding: 4px 8px;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+
+[data-direction='swiss'] .sw-currency__btn:first-child {
+  margin-left: -8px;
+}
+
+[data-direction='swiss'] .sw-currency__btn:hover {
+  color: var(--sw-red);
+}
+
+[data-direction='swiss'] .sw-currency__btn[aria-pressed='true'] {
+  color: var(--sw-red);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+}
+
+[data-direction='swiss'] .sw-plans {
+  display: grid;
+  grid-template-columns: subgrid;
+  row-gap: 56px;
+}
+
+[data-direction='swiss'] .sw-plan {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+}
+
+[data-direction='swiss'] .sw-plan__head {
+  padding-bottom: 20px;
+}
+
+[data-direction='swiss'] .sw-plan__name {
+  margin-top: 28px;
+  font-size: clamp(1.625rem, 1.2rem + 1.2vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+
+[data-direction='swiss'] .sw-plan__desc {
+  padding-block: 14px 32px;
+  border-top: var(--sw-rule);
+}
+
+[data-direction='swiss'] .sw-plan__price {
+  display: grid;
+  align-content: end;
+  gap: 10px;
+  padding-block: 14px 20px;
+  border-top: var(--sw-rule);
+}
+
+[data-direction='swiss'] .sw-plan__figure {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-left: -0.02em;
+  font-size: clamp(5.5rem, 2rem + 7.4vw, 8.5rem);
+  font-weight: 600;
+  line-height: 0.86;
+  letter-spacing: -0.055em;
+  font-variant-numeric: tabular-nums;
+}
+
+[data-direction='swiss'] .sw-plan__figure--text {
+  font-size: clamp(2.75rem, 1rem + 3.7vw, 4.25rem);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+}
+
+[data-direction='swiss'] .sw-plan__code {
+  margin-top: 0.35em;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+[data-direction='swiss'] .sw-plan__cta {
+  padding-top: 0;
+}
+
+[data-direction='swiss'] .sw-premade__desc {
+  max-width: 34em;
+  margin-top: 24px;
+}
+
+[data-direction='swiss'] .sw-premade__action {
+  margin-top: 32px;
+}
+
+[data-direction='swiss'] .sw-faqs {
+  border-bottom: var(--sw-rule);
+}
+
+[data-direction='swiss'] .sw-faq {
+  border-top: var(--sw-rule);
+}
+
+[data-direction='swiss'] .sw-faq:first-child {
+  border-top: 0;
+}
+
+[data-direction='swiss'] .sw-faq__q {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: 20px 22px;
+  font-size: clamp(1.25rem, 1rem + 0.9vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  list-style: none;
+  cursor: pointer;
+}
+
+[data-direction='swiss'] .sw-faq:first-child .sw-faq__q {
+  padding-top: 0;
+}
+
+[data-direction='swiss'] .sw-faq__q::-webkit-details-marker {
+  display: none;
+}
+
+[data-direction='swiss'] .sw-faq__q:hover {
+  color: var(--sw-red);
+}
+
+[data-direction='swiss'] .sw-faq__plus {
+  position: relative;
+  flex: none;
+  width: 19px;
+  height: 19px;
+  margin-top: 0.2em;
+  transition: transform 0.2s;
+}
+
+[data-direction='swiss'] .sw-faq__plus::before,
+[data-direction='swiss'] .sw-faq__plus::after {
+  content: '';
+  position: absolute;
+  background: currentColor;
+}
+
+[data-direction='swiss'] .sw-faq__plus::before {
+  top: 9px;
+  left: 0;
+  width: 19px;
+  height: 1px;
+}
+
+[data-direction='swiss'] .sw-faq__plus::after {
+  top: 0;
+  left: 9px;
+  width: 1px;
+  height: 19px;
+}
+
+[data-direction='swiss'] .sw-faq[open] .sw-faq__plus {
+  color: var(--sw-red);
+  transform: rotate(45deg);
+}
+
+[data-direction='swiss'] .sw-faq__a {
+  max-width: 38em;
+  padding-bottom: 32px;
+}
+
+/* ── Contact ────────────────────────────────────────────── */
+
+[data-direction='swiss'] .sw-channels {
+  margin-top: 32px;
+}
+
+[data-direction='swiss'] .sw-channels__list > li {
+  padding: 0;
+}
+
+[data-direction='swiss'] .sw-channels__list a {
+  display: grid;
+  gap: 2px;
+  padding-block: 12px 13px;
+  text-decoration: none;
+}
+
+[data-direction='swiss'] .sw-channels__value {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  font-variant-numeric: tabular-nums;
+}
+
+[data-direction='swiss'] .sw-channels__list a:hover .sw-channels__value {
+  color: var(--sw-red);
+}
+
+[data-direction='swiss'] .sw-form {
+  --cf-font: var(--sw-font);
+  --cf-label-font: var(--sw-font);
+  --cf-heading-font: var(--sw-font);
+  --cf-text: var(--sw-black);
+  --cf-muted: var(--sw-grey);
+  --cf-accent: var(--sw-black);
+  --cf-field-bg: var(--sw-white);
+  --cf-field-border: var(--sw-black);
+  --cf-menu-bg: var(--sw-white);
+  --cf-hover: var(--sw-band);
+  --cf-error: var(--sw-red);
+  --cf-gap: var(--sw-gap);
+}
+
+[data-direction='swiss'] .sw-form__title {
+  max-width: 14em;
+  margin-bottom: 40px;
+}
+
+[data-direction='swiss'] .sw-form .contact-form__fields {
+  gap: 24px;
+}
+
+[data-direction='swiss'] .sw-form .contact-form__group {
+  gap: 8px;
+}
+
+[data-direction='swiss'] .sw-form .contact-form__label {
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+[data-direction='swiss'] .sw-form .contact-form__input,
+[data-direction='swiss'] .sw-form .contact-form__select,
+[data-direction='swiss'] .sw-form .contact-form__textarea,
+[data-direction='swiss'] .sw-form .contact-form__phone-input,
+[data-direction='swiss'] .sw-form .contact-form__country-btn {
+  min-height: 56px;
+  padding: 14px 16px;
+  border-radius: 0;
+  font-size: 17px;
+  line-height: 1.4;
+  transition: none;
+}
+
+[data-direction='swiss'] .sw-form .contact-form__input::placeholder,
+[data-direction='swiss'] .sw-form .contact-form__textarea::placeholder,
+[data-direction='swiss'] .sw-form .contact-form__phone-input::placeholder,
+[data-direction='swiss'] .sw-form .contact-form__phone-search::placeholder {
+  color: var(--sw-grey);
+  opacity: 1;
+}
+
+[data-direction='swiss'] .sw-form .contact-form__select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230a0a0a' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+  background-position: right 16px center;
+}
+
+[data-direction='swiss'] .sw-form .contact-form__select:has(option[value='']:checked) {
+  color: var(--sw-grey);
+}
+
+[data-direction='swiss'] .sw-form .contact-form__textarea {
+  min-height: 168px;
+}
+
+[data-direction='swiss'] .sw-form .contact-form__input:focus-visible,
+[data-direction='swiss'] .sw-form .contact-form__select:focus-visible,
+[data-direction='swiss'] .sw-form .contact-form__textarea:focus-visible,
+[data-direction='swiss'] .sw-form .contact-form__phone-input:focus-visible,
+[data-direction='swiss'] .sw-form .contact-form__phone-search:focus-visible {
+  outline: 2px solid var(--sw-red);
+  outline-offset: -2px;
+  border-color: var(--sw-red);
+}
+
+/* The country picker shows the dialling code only: no flag glyphs in this direction. */
+[data-direction='swiss'] .sw-form .contact-form__country-flag,
+[data-direction='swiss'] .sw-form .contact-form__country-chevron,
+[data-direction='swiss'] .sw-form .contact-form__success-icon {
+  display: none;
+}
+
+[data-direction='swiss'] .sw-form .contact-form__country-dial {
+  font-size: 17px;
+  font-variant-numeric: tabular-nums;
+}
+
+[data-direction='swiss'] .sw-form .contact-form__phone-dropdown {
+  top: calc(100% - 1px);
+  width: min(320px, 100%);
+  box-shadow: none;
+}
+
+[data-direction='swiss'] .sw-form .contact-form__phone-list {
+  scrollbar-color: var(--sw-black) transparent;
+}
+
+[data-direction='swiss'] .sw-form .contact-form__phone-search,
+[data-direction='swiss'] .sw-form .contact-form__phone-option {
+  padding: 12px 16px;
+  font-size: 15px;
+}
+
+[data-direction='swiss'] .sw-form .contact-form__option-dial {
+  font-size: 13px;
+  opacity: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+[data-direction='swiss'] .sw-form .contact-form__submit {
+  margin-top: 8px;
+}
+
+[data-direction='swiss'] .sw-form .contact-form__error {
+  margin-top: 0;
+  font-size: 15px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+[data-direction='swiss'] .sw-form .contact-form__success {
+  align-items: flex-start;
+  gap: 16px;
+  padding: 24px 0 0;
+  border-top: 1px solid var(--sw-red);
+  text-align: left;
+}
+
+[data-direction='swiss'] .sw-form .contact-form__success-title {
+  font-size: clamp(1.75rem, 1.2rem + 2vw, 3rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+[data-direction='swiss'] .sw-form .contact-form__success-text {
+  line-height: 1.5;
+}
+
+/* ── Footer ─────────────────────────────────────────────── */
+
+[data-direction='swiss'] .sw-footer {
+  padding-bottom: 96px;
+}
+
+[data-direction='swiss'] .sw-footer__grid {
+  row-gap: 32px;
+  padding-block: 14px 56px;
+  border-top: var(--sw-rule);
+}
+
+[data-direction='swiss'] .sw-footer__intro {
+  max-width: 20em;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+[data-direction='swiss'] .sw-footer__grid > .sw-footer__col {
+  grid-column: span 2;
+}
+
+[data-direction='swiss'] .sw-footer__grid > .sw-footer__col--c {
+  grid-column: 1 / -1;
+}
+
+[data-direction='swiss'] .sw-footer__col .sw-label {
+  color: var(--sw-grey);
+}
+
+[data-direction='swiss'] .sw-footer__list {
+  margin-top: 10px;
+}
+
+[data-direction='swiss'] .sw-footer__list a {
+  display: inline-block;
+  padding-block: 3px;
+  text-decoration: none;
+}
+
+[data-direction='swiss'] .sw-footer__list a:hover {
+  color: var(--sw-red);
+}
+
+[data-direction='swiss'] .sw-footer__mark {
+  margin-left: -0.02em;
+  padding-bottom: 0.08em;
+  /* Sized so the two words span the full measure of the grid. */
+  font-size: min(calc((100vw - 2 * var(--sw-pad)) / 6.42), 13.2rem);
+  font-weight: 700;
+  line-height: 0.86;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+}
+
+[data-direction='swiss'] .sw-footer__base {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 24px;
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: var(--sw-rule);
+  color: var(--sw-grey);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* ── Tablet: two-up lists inside the single content column ── */
+
+@media (min-width: 600px) {
+  [data-direction='swiss'] {
+    --sw-pad: 32px;
+    --sw-gap: 20px;
+    --sw-space: 96px;
+  }
+
+  [data-direction='swiss'] .sw-step,
+  [data-direction='swiss'] .sw-plan {
+    grid-column: 1 / -1;
+  }
+
+  [data-direction='swiss'] .sw-reason {
+    grid-column: span 2;
+  }
+
+  [data-direction='swiss'] .sw-reason:nth-child(2) {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  [data-direction='swiss'] .sw-footer__grid > .sw-footer__col,
+  [data-direction='swiss'] .sw-footer__grid > .sw-footer__col--c {
+    grid-column: span 1;
+  }
+
+  [data-direction='swiss'] .sw-footer__grid > .sw-footer__intro {
+    grid-column: span 1;
+  }
+}
+
+/* ── Desktop: the full twelve columns ───────────────────── */
+
+@media (min-width: 901px) {
+  [data-direction='swiss'] {
+    --sw-pad: 40px;
+    --sw-gap: 24px;
+    --sw-space: 144px;
+  }
+
+  [data-direction='swiss'] .sw-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  /* Header */
+  [data-direction='swiss'] .sw-header__grid {
+    padding-block: 22px 20px;
+  }
+
+  [data-direction='swiss'] .sw-header__grid > .sw-header__mark {
+    grid-column: 1 / 4;
+  }
+
+  [data-direction='swiss'] .sw-header__grid > .sw-header__nav {
+    grid-column: 4 / 10;
+    grid-row: 1;
+  }
+
+  [data-direction='swiss'] .sw-header__grid > .sw-header__cta {
+    grid-column: 10 / -1;
+  }
+
+  [data-direction='swiss'] .sw-header__list {
+    gap: 4px 32px;
+  }
+
+  /* Hero */
+  [data-direction='swiss'] .sw-hero {
+    padding-top: 72px;
+  }
+
+  [data-direction='swiss'] .sw-hero__row {
+    margin-top: 88px;
+  }
+
+  [data-direction='swiss'] .sw-hero__row > .sw-hero__tag {
+    grid-column: 1 / 4;
+    padding-top: 6px;
+  }
+
+  [data-direction='swiss'] .sw-hero__row > .sw-hero__lede {
+    grid-column: 4 / 9;
+    gap: 40px;
+  }
+
+  [data-direction='swiss'] .sw-hero__row > .sw-hero__figure {
+    grid-column: 9 / -1;
+    margin-top: 0;
+  }
+
+  /* Section */
+  [data-direction='swiss'] .sw-section__grid > .sw-section__aside {
+    grid-column: 1 / 4;
+  }
+
+  [data-direction='swiss'] .sw-section__grid > .sw-section__body {
+    grid-column: 4 / -1;
+  }
+
+  /* Process: three columns of three */
+  [data-direction='swiss'] .sw-step {
+    grid-column: span 3;
+  }
+
+  /* Results: number, event, then name beside the quote */
+  [data-direction='swiss'] .sw-result {
+    row-gap: 28px;
+    padding-block: 16px 72px;
+  }
+
+  [data-direction='swiss'] .sw-result > .sw-result__num {
+    grid-column: 1 / 2;
+    padding-top: 8px;
+  }
+
+  [data-direction='swiss'] .sw-result > .sw-result__event {
+    grid-column: 2 / -1;
+  }
+
+  [data-direction='swiss'] .sw-result > .sw-result__who {
+    grid-column: 2 / 4;
+    padding-top: 4px;
+  }
+
+  [data-direction='swiss'] .sw-result > .sw-result__quote {
+    grid-column: 4 / -1;
+  }
+
+  /* Approach: two by two */
+  [data-direction='swiss'] .sw-reason {
+    grid-column: span 4;
+    padding-bottom: 72px;
+  }
+
+  [data-direction='swiss'] .sw-reason:nth-child(n + 3) {
+    padding-bottom: 0;
+  }
+
+  /* About */
+  [data-direction='swiss'] .sw-coach__grid > .sw-coach__figure {
+    grid-column: 1 / 4;
+    max-width: none;
+  }
+
+  [data-direction='swiss'] .sw-coach__grid > .sw-coach__body {
+    grid-column: 4 / -1;
+  }
+
+  [data-direction='swiss'] .sw-coach__body > .sw-coach__bio {
+    grid-column: 1 / 7;
+  }
+
+  [data-direction='swiss'] .sw-coach__body > .sw-coach__list {
+    grid-column: 1 / 6;
+    margin-top: 64px;
+  }
+
+  [data-direction='swiss'] .sw-coach__body > .sw-coach__list--2 {
+    grid-column: 6 / -1;
+  }
+
+  [data-direction='swiss'] .sw-principle {
+    padding-block: 16px 56px;
+  }
+
+  [data-direction='swiss'] .sw-principle > .sw-principle__num {
+    grid-column: 1 / 2;
+    padding-top: 8px;
+  }
+
+  [data-direction='swiss'] .sw-principle > .sw-principle__title {
+    grid-column: 2 / 5;
+  }
+
+  [data-direction='swiss'] .sw-principle > .sw-principle__desc {
+    grid-column: 5 / -1;
+    padding-top: 4px;
+  }
+
+  /* Plans: a three-column specification table with shared rows */
+  [data-direction='swiss'] .sw-currency {
+    display: block;
+    margin-top: 48px;
+  }
+
+  [data-direction='swiss'] .sw-currency__options {
+    margin-top: 2px;
+  }
+
+  [data-direction='swiss'] .sw-plans {
+    grid-template-rows: repeat(4, auto);
+    row-gap: 0;
+  }
+
+  [data-direction='swiss'] .sw-plan {
+    grid-column: span 3;
+    grid-row: span 4;
+    grid-template-rows: subgrid;
+  }
+
+  [data-direction='swiss'] .sw-plan__head {
+    padding-bottom: 28px;
+  }
+
+  [data-direction='swiss'] .sw-plan__name {
+    margin-top: 40px;
+  }
+
+  [data-direction='swiss'] .sw-plan__desc {
+    padding-bottom: 72px;
+  }
+
+  [data-direction='swiss'] .sw-plan__price {
+    padding-bottom: 36px;
+  }
+
+  [data-direction='swiss'] .sw-premade__title {
+    grid-column: 1 / 7;
+  }
+
+  /* Contact */
+  [data-direction='swiss'] .sw-channels {
+    margin-top: 48px;
+  }
+
+  [data-direction='swiss'] .sw-form .contact-form__fields {
+    gap: 28px;
+  }
+
+  /* Footer */
+  [data-direction='swiss'] .sw-footer__grid {
+    padding-bottom: 96px;
+  }
+
+  [data-direction='swiss'] .sw-footer__grid > .sw-footer__intro {
+    grid-column: 1 / 4;
+  }
+
+  [data-direction='swiss'] .sw-footer__grid > .sw-footer__col,
+  [data-direction='swiss'] .sw-footer__grid > .sw-footer__col--c {
+    grid-column: span 3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-direction='swiss'] .sw-btn,
+  [data-direction='swiss'] .sw-faq__plus {
+    transition: none;
+  }
+}

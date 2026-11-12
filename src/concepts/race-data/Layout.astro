@@ -1,0 +1,79 @@
+---
+/** Race Data direction: graphite, monospace labels, one signal-orange accent. */
+import { Font } from 'astro:assets';
+import ConceptBase from '../ConceptBase.astro';
+import { conceptPages, conceptUrl, type ConceptPage } from '../directions';
+import { hero, shopUrl, social } from '../../data/site';
+import './race-data.css';
+
+interface Props {
+  page: ConceptPage;
+  title: string;
+}
+
+const { page, title } = Astro.props;
+const url = (key: ConceptPage) => conceptUrl('race-data', key);
+---
+<ConceptBase direction="race-data" page={page} title={title} themeColor="#101214">
+  <Fragment slot="head">
+    <Font cssVariable="--font-inter-tight" preload />
+    <Font cssVariable="--font-jetbrains-mono" preload />
+  </Fragment>
+
+  <a class="rd-skip" href="#rd-main">Skip to content</a>
+
+  <header class="rd-header">
+    <div class="rd-wrap rd-header__inner">
+      <a class="rd-wordmark" href={url('home')} aria-label="Trilogy Training, home">
+        Trilogy<span aria-hidden="true">/</span>Training
+      </a>
+      <nav class="rd-nav" aria-label="Main">
+        <ul class="rd-nav__list">
+          {conceptPages.map((p) => (
+            <li>
+              <a class="rd-nav__link" href={url(p.key)} aria-current={p.key === page ? 'page' : undefined}>
+                {p.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <a class="rd-btn rd-btn--primary rd-btn--sm rd-header__cta" href={url('contact')}>{hero.primaryCta}</a>
+    </div>
+  </header>
+
+  <main id="rd-main" class="rd-main">
+    <slot />
+  </main>
+
+  <footer class="rd-footer">
+    <div class="rd-wrap rd-footer__inner">
+      <div class="rd-footer__brand">
+        <a class="rd-wordmark" href={url('home')} aria-label="Trilogy Training, home">
+          Trilogy<span aria-hidden="true">/</span>Training
+        </a>
+        <p class="rd-footer__tag">{hero.tag}</p>
+      </div>
+      <nav class="rd-footer__col" aria-label="Footer">
+        <p class="rd-label">Index</p>
+        <ul class="rd-footer__list">
+          {conceptPages.map((p) => (
+            <li><a href={url(p.key)}>{p.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+      <div class="rd-footer__col">
+        <p class="rd-label">Channels</p>
+        <ul class="rd-footer__list">
+          <li><a href={social.instagram.href} rel="noopener">{social.instagram.label}</a></li>
+          <li><a href={social.facebook.href} rel="noopener">{social.facebook.label}</a></li>
+          <li><a href={shopUrl} rel="noopener">Kit shop</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="rd-wrap rd-footer__base">
+      <p>&copy; {new Date().getFullYear()} Trilogy Training</p>
+      <p>Swim / Bike / Run</p>
+    </div>
+  </footer>
+</ConceptBase>

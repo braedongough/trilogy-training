@@ -1,0 +1,43 @@
+---
+import Layout from '../../../concepts/swiss/Layout.astro';
+import Section from '../../../concepts/swiss/Section.astro';
+import PageHead from '../../../concepts/swiss/PageHead.astro';
+import ContactForm from '../../../components/ContactForm.astro';
+import { faqs, social, whatsapp } from '../../../data/site';
+
+const consultation = faqs.find((faq) => faq.question.includes('consultations'))!;
+const channels = [
+  ...whatsapp.map((w) => ({ label: w.label, value: w.number, href: w.href })),
+  ...Object.values(social).map((s) => ({ label: s.label, value: s.handle, href: s.href })),
+];
+---
+<Layout page="contact" title="Contact: Trilogy Training">
+  <PageHead label="Contact" note="Free consultation">Book a free call.</PageHead>
+
+  <Section num="01" label="Consultation">
+    <p class="sw-lede sw-intro">{consultation.answer}</p>
+  </Section>
+
+  <Section num="02" label="Enquiry" class="sw-section--enquiry">
+    <div slot="aside" class="sw-channels">
+      <h3 class="sw-label sw-label--grey">Direct</h3>
+      <ul class="sw-ruled sw-channels__list">
+        {channels.map((channel) => (
+          <li>
+            <a href={channel.href} rel="noopener">
+              <span class="sw-label sw-label--grey">{channel.label}</span>
+              <span class="sw-channels__value">{channel.value}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="sw-form">
+      <h3 class="sw-title sw-form__title">Tell us what you are training for.</h3>
+      <ContactForm>
+        <button slot="submit" type="submit" class="sw-btn" data-cf-submit>Send message</button>
+      </ContactForm>
+    </div>
+  </Section>
+</Layout>

@@ -1,0 +1,17 @@
+---
+import Section from './Section.astro';
+import { conceptUrl } from '../directions';
+
+interface Props {
+  num: string;
+}
+
+const { num } = Astro.props;
+---
+<Section num={num} label="Start" class="sw-closing">
+  <p class="sw-closing__line">Start with a conversation.</p>
+  <p class="sw-closing__note">A free video call of up to 60 minutes. Zero pressure.</p>
+  <div class="sw-closing__action">
+    <a class="sw-btn" href={conceptUrl('swiss', 'contact')}>Book a free call</a>
+  </div>
+</Section>

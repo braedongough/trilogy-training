@@ -1,0 +1,19 @@
+---
+/** Two-column numbered list with hairlines, used for the reasons and the principles. */
+interface Props {
+  items: { title: string; desc: string }[];
+}
+
+const { items } = Astro.props;
+---
+<ol class="pd-numlist">
+  {items.map((item, i) => (
+    <li class="pd-numlist__item">
+      <span class="pd-numlist__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+      <div>
+        <h3 class="pd-numlist__title">{item.title}</h3>
+        <p class="pd-numlist__desc">{item.desc}</p>
+      </div>
+    </li>
+  ))}
+</ol>

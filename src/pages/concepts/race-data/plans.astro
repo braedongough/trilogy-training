@@ -1,0 +1,102 @@
+---
+import Layout from '../../../concepts/race-data/Layout.astro';
+import SectionHead from '../../../concepts/race-data/SectionHead.astro';
+import Profile from '../../../concepts/race-data/Profile.astro';
+import { conceptUrl } from '../../../concepts/directions';
+import { currencies, defaultCurrency, faqs, hero, plans, premade, trainingPeaksUrl } from '../../../data/site';
+
+const pad = (n: number) => String(n).padStart(2, '0');
+const contact = conceptUrl('race-data', 'contact');
+---
+<Layout page="plans" title="Plans | Trilogy Training | Race Data concept">
+  <section class="rd-pagehead">
+    <div class="rd-wrap">
+      <p class="rd-label rd-hero__tag"><span class="rd-dot" aria-hidden="true"></span>Plans / Pricing</p>
+      <h1 class="rd-h1 rd-h1--page">One-to-one coaching, priced by the month.</h1>
+      <p class="rd-lead">{hero.subtitle}</p>
+    </div>
+  </section>
+
+  <section class="rd-section rd-section--flush">
+    <div class="rd-wrap" data-pricing>
+      <div class="rd-pricebar">
+        <p class="rd-label" id="rd-currency-label">Currency</p>
+        <div class="rd-segment" role="group" aria-labelledby="rd-currency-label">
+          {currencies.map((c) => (
+            <button type="button" class="rd-segment__btn" data-currency={c} aria-pressed={c === defaultCurrency ? 'true' : 'false'}>
+              {c}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <ul class="rd-plans">
+        {plans.map((plan, i) => (
+          <li class="rd-panel rd-plan">
+            <p class="rd-panel__head"><span>Plan {pad(i + 1)}</span><span class="rd-dot" aria-hidden="true"></span></p>
+            <div class="rd-plan__body">
+              <h2 class="rd-h3">{plan.name}</h2>
+              <p class="rd-plan__price">
+                {plan.prices ? (
+                  <>
+                    <span class="rd-plan__currency" data-currency-label>{defaultCurrency}</span>
+                    <span class="rd-plan__amount" data-prices={JSON.stringify(plan.prices)}>{plan.prices[defaultCurrency]}</span>
+                    <span class="rd-plan__period">/ month</span>
+                  </>
+                ) : (
+                  <span class="rd-plan__amount rd-plan__amount--text">On request</span>
+                )}
+              </p>
+              <p class="rd-body rd-plan__desc">{plan.desc}</p>
+              <a class:list={['rd-btn', i === 1 ? 'rd-btn--primary' : 'rd-btn--ghost', 'rd-plan__cta']} href={contact}>
+                {plan.prices ? hero.primaryCta : 'Get in touch'}<span class="rd-sr"> about {plan.name}</span>
+              </a>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="rd-section">
+    <div class="rd-wrap">
+      <div class="rd-panel rd-premade">
+        <p class="rd-panel__head"><span>{premade.label}</span><span>TrainingPeaks</span></p>
+        <div class="rd-premade__body">
+          <div class="rd-premade__copy">
+            <h2 class="rd-h2">{premade.title}</h2>
+            <p class="rd-body">{premade.desc}</p>
+            <a class="rd-btn rd-btn--ghost" href={trainingPeaksUrl} rel="noopener">
+              {premade.cta}
+              <svg class="rd-btn__icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9L9 3M4 3h5v5" /></svg>
+            </a>
+          </div>
+          <div class="rd-premade__graphic"><Profile /></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rd-section rd-section--last">
+    <div class="rd-wrap">
+      <SectionHead index="02" label="FAQ" title="Questions, answered." />
+      <div class="rd-faqs">
+        {faqs.map((faq, i) => (
+          <details class="rd-faq" name="faq">
+            <summary class="rd-faq__q">
+              <span class="rd-faq__idx">Q.{pad(i + 1)}</span>
+              <span class="rd-faq__text">{faq.question}</span>
+              <span class="rd-faq__mark" aria-hidden="true"></span>
+            </summary>
+            <p class="rd-body rd-faq__a">{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import { initCurrencySwitch } from '../../../scripts/currency';
+  document.querySelectorAll<HTMLElement>('[data-pricing]').forEach(initCurrencySwitch);
+</script>

@@ -1,0 +1,47 @@
+---
+import Layout from '../../../concepts/tricolour/Layout.astro';
+import ContactForm from '../../../components/ContactForm.astro';
+import { faqs, social, whatsapp } from '../../../data/site';
+
+const consultation = faqs.find((f) => f.question.toLowerCase().includes('consultation'))!;
+---
+<Layout page="contact" title="Book a free call">
+  <section class="tc-pagehead tc-contact">
+    <div class="tc-wrap tc-contact__grid">
+      <div class="tc-contact__intro">
+        <p class="tc-label">Contact</p>
+        <h1 class="tc-h1">Let's talk about your goals.</h1>
+        <p class="tc-lead">{consultation.answer}</p>
+
+        <div class="tc-contact__links">
+          <h2 class="tc-label">Prefer to message?</h2>
+          <ul class="tc-pills">
+            {whatsapp.map((w, i) => (
+              <li>
+                <a class="tc-pill tc-pill--link" href={w.href} rel="noopener">
+                  <span class:list={['tc-dot', `tc-dot--${i + 1}`]} aria-hidden="true"></span>
+                  {w.label} <span class="tc-pill__meta">{w.number}</span>
+                </a>
+              </li>
+            ))}
+            {Object.values(social).map((s, i) => (
+              <li>
+                <a class="tc-pill tc-pill--link" href={s.href} rel="noopener">
+                  <span class:list={['tc-dot', `tc-dot--${i + 3}`]} aria-hidden="true"></span>
+                  {s.label} <span class="tc-pill__meta">{s.handle}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div class="tc-form">
+        <h2 class="tc-h3">Tell us a little about you</h2>
+        <ContactForm>
+          <button slot="submit" type="submit" class="tc-btn tc-btn--lg" data-cf-submit>Send message</button>
+        </ContactForm>
+      </div>
+    </div>
+  </section>
+</Layout>

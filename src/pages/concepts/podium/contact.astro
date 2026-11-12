@@ -1,0 +1,41 @@
+---
+import Layout from '../../../concepts/podium/Layout.astro';
+import ContactForm from '../../../components/ContactForm.astro';
+import { faqs, social, whatsapp } from '../../../data/site';
+
+const consultation = faqs.find((faq) => faq.question.includes('consultations'))!;
+const channels = [
+  ...whatsapp.map((w) => ({ label: w.label, value: w.number, href: w.href })),
+  ...Object.values(social).map((s) => ({ label: s.label, value: s.handle, href: s.href })),
+];
+---
+<Layout page="contact" title="Book a free call: Trilogy Training">
+  <section class="pd-contact">
+    <div class="pd-wrap pd-contact__inner">
+      <div class="pd-contact__copy">
+        <p class="pd-label pd-label--accent">Contact</p>
+        <h1 class="pd-h1 pd-contact__title">Book a <em>free call.</em></h1>
+        <p class="pd-contact__lede">{consultation.answer}</p>
+
+        <h2 class="pd-label pd-contact__direct">Or reach us directly</h2>
+        <ul class="pd-channels">
+          {channels.map((channel) => (
+            <li>
+              <a href={channel.href} rel="noopener">
+                <span class="pd-label">{channel.label}</span>
+                <span class="pd-channels__value">{channel.value}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="pd-form">
+        <h2 class="pd-form__title">Tell us what you are training for</h2>
+        <ContactForm>
+          <button slot="submit" type="submit" class="pd-btn pd-btn--block" data-cf-submit>Send message</button>
+        </ContactForm>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,116 @@
+---
+import Layout from '../../../concepts/field-notes/Layout.astro';
+import Invitation from '../../../concepts/field-notes/Invitation.astro';
+import { conceptUrl } from '../../../concepts/directions';
+import {
+  currencies,
+  defaultCurrency,
+  faqs,
+  hero,
+  plans,
+  premade,
+  reasons,
+  trainingPeaksUrl,
+} from '../../../data/site';
+import swimmer from '../../../assets/silhouettes/swimmer.svg?raw';
+import cyclist from '../../../assets/silhouettes/cyclist.svg?raw';
+import runner from '../../../assets/silhouettes/runner.svg?raw';
+---
+<Layout page="plans" title="Plans & Pricing">
+  <section class="fn-intro">
+    <div class="fn-wrap fn-grid">
+      <div class="fn-intro__head">
+        <p class="fn-label">Plans &amp; pricing</p>
+        <h1 class="fn-display fn-intro__title">Coaching, <em>priced plainly.</em></h1>
+        <p class="fn-lede fn-intro__lede">{reasons[0].desc}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="fn-pricing" data-pricing>
+    <div class="fn-wrap">
+      <div class="fn-pricing__bar">
+        <p class="fn-label">One-to-one coaching, billed monthly</p>
+        <div class="fn-toggle" role="group" aria-label="Currency">
+          {currencies.map((c) => (
+            <button type="button" data-currency={c} aria-pressed={c === defaultCurrency ? 'true' : 'false'}>
+              {c}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <ol class="fn-prices">
+        {plans.map((plan, i) => (
+          <li class="fn-price">
+            <span class="fn-price__num" aria-hidden="true">0{i + 1}</span>
+            <div class="fn-price__info">
+              <h2 class="fn-price__name">{plan.name}</h2>
+              <p>{plan.desc}</p>
+            </div>
+            <div class="fn-price__cost">
+              {plan.prices ? (
+                <>
+                  <p class="fn-price__amount">
+                    <span class="fn-label" data-currency-label>{defaultCurrency}</span>
+                    <span data-prices={JSON.stringify(plan.prices)}>{plan.prices[defaultCurrency]}</span>
+                  </p>
+                  <span class="fn-label">per month</span>
+                </>
+              ) : (
+                <>
+                  <p class="fn-price__amount fn-price__request">On request</p>
+                  <span class="fn-label">Tell us what you need</span>
+                </>
+              )}
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <div class="fn-actions fn-pricing__foot">
+        <a class="fn-btn" href={conceptUrl('field-notes', 'contact')}>{hero.primaryCta}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="fn-section fn-section--deep">
+    <div class="fn-wrap fn-grid">
+      <div class="fn-premade__marks" aria-hidden="true">
+        <span set:html={swimmer} />
+        <span set:html={cyclist} />
+        <span set:html={runner} />
+      </div>
+      <div class="fn-premade__body">
+        <p class="fn-label">{premade.label}</p>
+        <h2 class="fn-h2">{premade.title}</h2>
+        <p>{premade.desc}</p>
+        <a class="fn-link" href={trainingPeaksUrl} rel="noopener">{premade.cta}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="fn-section">
+    <div class="fn-wrap fn-grid">
+      <header class="fn-split__head">
+        <p class="fn-label">Frequently asked</p>
+        <h2 class="fn-h2">Questions, <em>answered.</em></h2>
+      </header>
+      <div class="fn-faqs fn-split__body">
+        {faqs.map((faq) => (
+          <details class="fn-faq" name="faq">
+            <summary>{faq.question}</summary>
+            <p>{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Invitation />
+</Layout>
+
+<script>
+  import { initCurrencySwitch } from '../../../scripts/currency';
+  document.querySelectorAll<HTMLElement>('[data-pricing]').forEach(initCurrencySwitch);
+</script>

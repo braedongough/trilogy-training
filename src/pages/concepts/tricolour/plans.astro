@@ -1,0 +1,99 @@
+---
+import Layout from '../../../concepts/tricolour/Layout.astro';
+import { conceptUrl } from '../../../concepts/directions';
+import { currencies, defaultCurrency, faqs, plans, premade, trainingPeaksUrl } from '../../../data/site';
+
+const contact = conceptUrl('tricolour', 'contact');
+const fields = ['tc-blue', 'tc-yellow', 'tc-coral'];
+---
+<Layout page="plans" title="Plans and pricing">
+  <div data-pricing>
+    <section class="tc-pagehead">
+      <div class="tc-wrap tc-pagehead__inner">
+        <div>
+          <p class="tc-label">Plans and pricing</p>
+          <h1 class="tc-h1">One sport, or all three.</h1>
+        </div>
+        <div class="tc-currency">
+          <p class="tc-label" id="tc-currency-label">Show prices in</p>
+          <div class="tc-toggle" role="group" aria-labelledby="tc-currency-label">
+            {currencies.map((c) => (
+              <button type="button" data-currency={c} aria-pressed={c === defaultCurrency ? 'true' : 'false'}>{c}</button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tc-section tc-section--tight">
+      <div class="tc-wrap">
+        <h2 class="tc-visually-hidden">Coaching plans</h2>
+        <ul class="tc-plans">
+          {plans.map((plan, i) => (
+            <li class:list={['tc-plan', fields[i % 3]]}>
+              <h3 class="tc-plan__name">{plan.name}</h3>
+              <p class="tc-plan__price">
+                {plan.prices ? (
+                  <>
+                    <span class="tc-plan__amount" data-prices={JSON.stringify(plan.prices)}>{plan.prices[defaultCurrency]}</span>
+                    <span class="tc-plan__unit">
+                      <span data-currency-label>{defaultCurrency}</span>
+                      <span>per month</span>
+                    </span>
+                  </>
+                ) : (
+                  <span class="tc-plan__amount tc-plan__amount--text">On request</span>
+                )}
+              </p>
+              <p class="tc-plan__desc">{plan.desc}</p>
+              <a class:list={['tc-btn', { 'tc-btn--cream': i % 3 === 0 }]} href={contact}>
+                {plan.prices ? 'Book a free call' : 'Tell us what you need'}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <section class="tc-section tc-section--tight">
+    <div class="tc-wrap">
+      <div class="tc-premade tc-outline">
+        <div>
+          <p class="tc-label">{premade.label}</p>
+          <h2 class="tc-h2">{premade.title}</h2>
+        </div>
+        <div class="tc-premade__body">
+          <p>{premade.desc}</p>
+          <a class="tc-btn" href={trainingPeaksUrl} rel="noopener">{premade.cta}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tc-section tc-section--last">
+    <div class="tc-wrap tc-faq">
+      <header class="tc-faq__head">
+        <p class="tc-label">Questions</p>
+        <h2 class="tc-h2">Good to know</h2>
+        <a class="tc-btn tc-btn--outline" href={contact}>Ask us anything</a>
+      </header>
+      <div class="tc-faq__list">
+        {faqs.map((faq) => (
+          <details class="tc-faq__item" name="faq">
+            <summary>
+              <span>{faq.question}</span>
+              <span class="tc-faq__icon" aria-hidden="true"></span>
+            </summary>
+            <p>{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import { initCurrencySwitch } from '../../../scripts/currency';
+  document.querySelectorAll<HTMLElement>('[data-pricing]').forEach(initCurrencySwitch);
+</script>

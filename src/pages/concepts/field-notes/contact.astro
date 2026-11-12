@@ -1,0 +1,55 @@
+---
+import Layout from '../../../concepts/field-notes/Layout.astro';
+import ContactForm from '../../../components/ContactForm.astro';
+import { faqs, social, whatsapp } from '../../../data/site';
+
+const consultation = faqs.find((faq) => faq.question.includes('consultations'));
+---
+<Layout page="contact" title="Book a Free Call">
+  <section class="fn-intro">
+    <div class="fn-wrap fn-grid">
+      <div class="fn-intro__head">
+        <p class="fn-label">Book a free call</p>
+        <h1 class="fn-display fn-intro__title">Tell us what you are <em>training for.</em></h1>
+        {consultation && <p class="fn-lede fn-intro__lede">{consultation.answer}</p>}
+      </div>
+    </div>
+  </section>
+
+  <section class="fn-contact">
+    <div class="fn-wrap">
+      <div class="fn-grid">
+        <div class="fn-contact__form fn-form">
+          <ContactForm>
+            <button slot="submit" type="submit" class="fn-btn" data-cf-submit>Send message</button>
+          </ContactForm>
+        </div>
+
+        <aside class="fn-contact__aside" aria-label="Other ways to reach us">
+          <div class="fn-aside__group">
+            <h2 class="fn-label">Or message us</h2>
+            <ul>
+              {whatsapp.map((w) => (
+                <li>
+                  <a href={w.href} rel="noopener">{w.number}</a>
+                  <span>{w.label}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="fn-aside__group">
+            <h2 class="fn-label">Follow along</h2>
+            <ul>
+              {Object.values(social).map((s) => (
+                <li>
+                  <a href={s.href} rel="noopener">{s.label}</a>
+                  <span>{s.handle}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</Layout>

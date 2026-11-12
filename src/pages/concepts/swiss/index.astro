@@ -1,0 +1,90 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../../../concepts/swiss/Layout.astro';
+import Section from '../../../concepts/swiss/Section.astro';
+import Closing from '../../../concepts/swiss/Closing.astro';
+import { sentence } from '../../../concepts/swiss/text';
+import { conceptUrl } from '../../../concepts/directions';
+import { coaches, hero, reasons, steps, testimonials } from '../../../data/site';
+
+const coach = coaches[0];
+const pad = (n: number) => String(n).padStart(2, '0');
+---
+<Layout page="home" title="Trilogy Training: personalised endurance coaching">
+  <div class="sw-hero">
+    <div class="sw-wrap">
+      <h1 class="sw-display sw-hero__title">
+        {hero.titleLines.map((line) => <span>{sentence(line)}</span>)}
+      </h1>
+      <div class="sw-grid sw-hero__row">
+        <p class="sw-label sw-hero__tag">{sentence(hero.tag)}</p>
+        <div class="sw-hero__lede">
+          <p class="sw-lede">{hero.subtitle}</p>
+          <div class="sw-actions">
+            <a class="sw-btn" href={conceptUrl('swiss', 'contact')}>{sentence(hero.primaryCta)}</a>
+            <a class="sw-btn sw-btn--outline" href={conceptUrl('swiss', 'plans')}>{sentence(hero.secondaryCta)}</a>
+          </div>
+        </div>
+        <figure class="sw-hero__figure">
+          <Image
+            class="sw-photo sw-photo--hero"
+            src={coach.photo}
+            alt={`${coach.name} running past an aid station during a race`}
+            widths={[360, 480, 562]}
+            sizes="(min-width: 901px) 440px, 92vw"
+            loading="eager"
+            fetchpriority="high"
+          />
+          <figcaption class="sw-caption">
+            <span>{coach.name}, coach</span>
+            <span>{coach.base}</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <Section num="01" label="Process">
+    <ol class="sw-steps">
+      {steps.map((step) => (
+        <li class="sw-step">
+          <p class="sw-step__num" aria-hidden="true">{step.num}</p>
+          <h3 class="sw-step__title">{sentence(step.title)}</h3>
+          <p class="sw-step__desc">{step.desc}</p>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <Section num="02" label="Results">
+    <ol class="sw-results">
+      {testimonials.map((t, i) => (
+        <li class="sw-result">
+          <p class="sw-label sw-result__num" aria-hidden="true">{pad(i + 1)}</p>
+          <h3 class="sw-result__event">{sentence(t.event)}</h3>
+          <p class="sw-label sw-result__who">
+            <span>{t.name}</span>
+            <span class="sw-label--grey">Coached by {t.coach}</span>
+          </p>
+          <blockquote class="sw-result__quote">
+            <p>{t.quote}</p>
+          </blockquote>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <Section num="03" label="Approach">
+    <ul class="sw-reasons">
+      {reasons.map((reason, i) => (
+        <li class="sw-reason">
+          <p class="sw-label sw-label--grey" aria-hidden="true">{pad(i + 1)}</p>
+          <h3 class="sw-reason__title">{sentence(reason.title)}</h3>
+          <p class="sw-reason__desc">{reason.desc}</p>
+        </li>
+      ))}
+    </ul>
+  </Section>
+
+  <Closing num="04" />
+</Layout>
