@@ -32,6 +32,13 @@
   color: #fff;
 }
 
+/* Overlap the previous section by the angle's height so the clipped corner
+   shows that section's colour instead of the page background */
+.section--divider-angle-top,
+.section--divider-angle-both {
+  margin-top: -40px;
+}
+
 .section--divider-angle-top {
   clip-path: polygon(0 40px, 100% 0, 100% 100%, 0 100%);
   padding-top: calc(var(--space-xl) + 40px);
