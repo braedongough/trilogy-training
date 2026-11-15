@@ -109,26 +109,6 @@ const photoAlt: Record<string, string> = {
     </div>
   </section>
 
-  <section class="pd-results" aria-labelledby="pd-results-title">
-    <div class="pd-wrap">
-      <div class="pd-results__head">
-        <h2 class="pd-label pd-label--accent" id="pd-results-title">Athlete results</h2>
-        <p class="pd-label">Athlete / Coach</p>
-      </div>
-      <ul class="pd-results__list">
-        {testimonials.map((t) => (
-          <li class="pd-results__row">
-            <span class="pd-results__event">{t.event}</span>
-            <span class="pd-results__who">
-              <span class="pd-results__name">{t.name}</span>
-              <span class="pd-label">Coached by {t.coach}</span>
-            </span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
   <section class="pd-section" aria-labelledby="pd-how-title">
     <div class="pd-wrap">
       <header class="pd-head">
