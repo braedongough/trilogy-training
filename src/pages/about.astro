@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import Layout from '../concepts/podium/Layout.astro';
 import Cta from '../concepts/podium/Cta.astro';
 import PointList from '../concepts/podium/PointList.astro';
-import { coaches, principles, reasons, testimonials } from '../data/site';
+import { coaches, principles, reasons } from '../data/site';
 
 const photoAlt: Record<string, string> = {
   adam: 'Adam Labbett running along a cobbled street during a race',
@@ -27,8 +27,6 @@ const certified = reasons.find((r) => r.title.includes('Certified'))!;
   </section>
 
   {coaches.map((coach, i) => {
-    const first = coach.name.split(' ')[0];
-    const results = testimonials.filter((t) => t.coach === first);
     const lists = [
       { label: 'Career highs', items: coach.careerHighs },
       { label: 'Career lows', items: coach.careerLows },
@@ -59,20 +57,6 @@ const certified = reasons.find((r) => r.title.includes('Certified'))!;
                     </ul>
                   </div>
                 ))}
-              </div>
-            )}
-
-            {results.length > 0 && (
-              <div class="pd-career pd-career--results">
-                <h3 class="pd-label">Athletes coached by {first}</h3>
-                <ul class="pd-career__list pd-career__list--results">
-                  {results.map((t) => (
-                    <li>
-                      <span>{t.event}</span>
-                      <span class="pd-label">{t.name}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
             )}
           </div>
