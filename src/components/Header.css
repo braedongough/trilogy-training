@@ -28,6 +28,7 @@
 
 .header__logo {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
   gap: 0;
   font-family: var(--font-heading);
@@ -50,6 +51,19 @@
   font-size: 0.6em;
   margin-left: 0.5rem;
   letter-spacing: 0.15em;
+}
+
+.header__logo-by,
+.footer__logo-by {
+  display: block;
+  flex-basis: 100%;
+  margin-top: 0.3rem;
+  font-family: var(--font-body);
+  font-size: 0.625rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  color: var(--color-text-muted);
 }
 
 .header__nav {

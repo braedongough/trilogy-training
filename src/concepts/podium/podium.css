@@ -273,6 +273,25 @@
     color: var(--pd-accent);
   }
 
+  /* The registered name's second half: always a small line under the wordmark. */
+  .pd-mark__by {
+    display: block;
+    margin-top: 0.3rem;
+    font-family: var(--pd-body);
+    font-size: 0.625rem;
+    font-weight: 600;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: 0.16em;
+    color: var(--pd-muted);
+  }
+
+  .pd-footer__mark .pd-mark__by {
+    margin-top: clamp(0.75rem, 1.6vw, 1.5rem);
+    font-size: clamp(0.75rem, 1.5vw, 1.25rem);
+    letter-spacing: 0.22em;
+  }
+
   /* ── Brand motifs: triangles and splatter ─────────────── */
 
   /* An outlined triangle, the site's primary motif. Size it with width; colour it with color. */
