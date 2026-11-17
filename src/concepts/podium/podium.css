@@ -422,15 +422,7 @@
   .pd-hero__coaches {
     position: relative;
     isolation: isolate;
-    max-width: 24rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(0.75rem, 1.5vw, 1.25rem);
-    align-items: start;
-  }
-
-  .pd-hero__coach:last-child {
-    margin-top: clamp(2rem, 5vw, 4.5rem);
+    max-width: 20rem;
   }
 
   .pd-hero__coaches .pd-splat {
@@ -454,8 +446,8 @@
   }
 
   .pd-hero__tri--2 {
-    top: -5%;
-    right: 12%;
+    top: -13%;
+    right: 10%;
     width: 30%;
     color: var(--pd-accent-2);
     transform: rotate(-18deg);
@@ -463,7 +455,7 @@
 
   .pd-hero__coach img {
     width: 100%;
-    aspect-ratio: 9 / 16;
+    aspect-ratio: 4 / 5;
     object-fit: cover;
     object-position: 50% 0;
     background: var(--pd-surface);

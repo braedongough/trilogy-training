@@ -6,13 +6,10 @@ import PointList from '../concepts/podium/PointList.astro';
 import Silhouettes from '../concepts/podium/Silhouettes.astro';
 import Splatter from '../concepts/podium/Splatter.astro';
 import { conceptUrl } from '../concepts/directions';
-import { coaches, hero, reasons, steps, testimonials } from '../data/site';
+import { hero, reasons, steps, testimonials } from '../data/site';
+import adamHero from '../assets/coaches/adam-hero.jpg';
 
 const [feature, ...others] = testimonials;
-const photoAlt: Record<string, string> = {
-  adam: 'Adam Labbett running along a cobbled street during a race',
-  cameron: 'Cameron Keast running in a red and white race suit during a triathlon',
-};
 ---
 <Layout
   page="home"
@@ -89,22 +86,20 @@ const photoAlt: Record<string, string> = {
         <Splatter />
         <span class="pd-tri pd-hero__tri pd-hero__tri--1" aria-hidden="true"></span>
         <span class="pd-tri pd-hero__tri pd-hero__tri--2" aria-hidden="true"></span>
-        {coaches.map((coach) => (
-          <figure class="pd-hero__coach">
-            <Image
-              src={coach.photo}
-              alt={photoAlt[coach.id] ?? coach.name}
-              widths={[180, 270, 360, 480]}
-              sizes="(min-width: 960px) 12vw, 180px"
-              loading="eager"
-              fetchpriority="high"
-            />
-            <figcaption>
-              <span class="pd-hero__coach-name">{coach.name}</span>
-              <span class="pd-label">Coach / {coach.base}</span>
-            </figcaption>
-          </figure>
-        ))}
+        <figure class="pd-hero__coach">
+          <Image
+            src={adamHero}
+            alt="Adam Labbett in a cap and sunglasses, standing on a lava field by the sea"
+            widths={[320, 480, 672]}
+            sizes="(min-width: 960px) 24vw, 320px"
+            loading="eager"
+            fetchpriority="high"
+          />
+          <figcaption>
+            <span class="pd-hero__coach-name">Adam Labbett</span>
+            <span class="pd-label">Head coach</span>
+          </figcaption>
+        </figure>
       </div>
     </div>
   </section>
