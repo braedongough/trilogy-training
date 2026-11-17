@@ -446,7 +446,7 @@
   }
 
   .pd-hero__tri--2 {
-    top: -13%;
+    top: -9%;
     right: 10%;
     width: 30%;
     color: var(--pd-accent-2);
@@ -458,15 +458,15 @@
     aspect-ratio: 4 / 5;
     object-fit: cover;
     object-position: 50% 0;
+    /* The same slant as the buttons, so the photo belongs to the page. */
+    clip-path: polygon(13% 0, 100% 0, 87% 100%, 0 100%);
     background: var(--pd-surface);
   }
 
   .pd-hero__coach figcaption {
     display: grid;
     gap: 0.25rem;
-    padding-top: 0.75rem;
     margin-top: 0.75rem;
-    border-top: 1px solid var(--pd-line);
   }
 
   .pd-hero__coach-name {
